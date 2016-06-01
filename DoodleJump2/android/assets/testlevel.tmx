@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="30" height="70" tilewidth="16" tileheight="16" nextobjectid="3">
+ <tileset firstgid="1" name="plat" tilewidth="16" tileheight="16" tilecount="4" columns="4">
+  <image source="../../../../../Users/Inês/Desktop/lpoo/projeto2/plat.png" trans="ff00ff" width="64" height="16"/>
+ </tileset>
+ <tileset firstgid="5" name="background" tilewidth="16" tileheight="16" tilecount="640" columns="20">
+  <image source="../../../../../Users/Inês/Desktop/lpoo/projeto2/background.png" trans="ff00ff" width="320" height="512"/>
+ </tileset>
+ <layer name="background" width="30" height="70">
+  <data encoding="base64" compression="zlib">
+   eJzt11OTmAcYhuHNxrZtmxvbtm1bG9tJ3Zh1Y9aNWTdm3Zh1g+sX9GC/6dk3816H9+k78ySMiIhIRGKSkJRkJCcFKUlFatKQlnSkJwMJY9hnJRvZyUFOcpGbPOQlH/kpQEEKUZgiAfqSlKI0ZShLOcpTgSgqUonKVKEq1ageoK9DXepRnwY0pBGNaUJTmtGcFrSkFa0D9B3oSCc604WudKM7PehJL3rTh770o3+AfghDGcZwRjCSUYxmDGMZx3gmMJFoJgXopzODmcxiNnOYyzzms4CFLGIxS1jKsgD9S7zMK7zKclawklWsZg1rWcd6NrCRTQH6t3ibd3iXzWxhK9vYzg52sovd7GEv+wL0H/Exn/Ap+znAQQ5xmCMc5RjHOcFJTgXov+JrvuFbTnOGs5zjPBe4yCUuc4WrXAvQ/8TP/MKvXOcGN7nFbe5wl3vc5wEPeRSg/4u/+Yd/ecwTnhIRyxFJbOIQl3jEJ0GsmPdJSUZyUpCSVKQmDWlJR3oykJFMZCZLgD4nuchNHvKSj/wUoCCFKEwRilKM4pQI0JelHOWpQBQVqURlqlCValSnBjWpRe0AfQMa0ojGNKEpzWhOC1rSita0oS3taB+g70JXutGdHvSkF73pQ1/60Z8BDGQQgwP0IxjJKEYzhrGMYzwTmEg0k5jMFKYyLUA/mznMZR7zWcBCFrGYJSxlGc/xPC/wYoB+OStYySpWs4a1rGM9G9jIJl7jdd7gzQD9ZrawlW1sZwc72cVu9rCXfbzH+3zAhwH6/RzgIIc4zBGOcozjnOAkp/iMz/mCLwP0pznDWc5xngtc5BKXucJVrvEd3/MDPwbor3ODm9ziNne4yz3u84CHPOI3fucP/gzQP+YJT4mI9MeJJDZxiEs84pOAhCQiMUkiY96nJBWpSUNa0pGeDGQkE5nJQlaykZ0cAfq85CM/BShIIQpThKIUozglKEkpSlMmQB9FRSpRmSpUpRrVqUFNalGbOtSlHvUD9E1oSjOa04KWtKI1bWhLO9rTgY50onOAvgc96UVv+tCXfvRnAAMZxGCGMJRhDA/Qj2Es4xjPBCYSzSQmM4WpTGM6M5jJrAB9TPdruH/D/ftffbh/w/0b7t9w/4b7N9y/4f4N92+4f8P9G+7fcP+G+zfcv+H+/f/27zMzhZYI
+  </data>
+ </layer>
+ <layer name="graphics" width="30" height="70">
+  <data encoding="base64" compression="zlib">
+   eJzt1EEKwCAMBEC1/v/NBrwVPNhDjTADexezSSnAzWqkRZ5IP/wWJjPJwyzISjfJQA8hD/vIm04Af3Br1vwNu3QGzrKDfKE39xifWQB5
+  </data>
+ </layer>
+ <objectgroup name="plats"/>
+</map>
