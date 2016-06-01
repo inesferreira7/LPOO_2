@@ -2,6 +2,7 @@ package com.tq.doodle.Screens;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
+import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;;
@@ -30,7 +31,7 @@ import com.tq.doodle.Tools.B2WorldCreator;
 /**
  * Created by Inês on 01/06/2016.
  */
-public class PlayScreen implements Screen {
+public class PlayScreen implements Screen, InputProcessor {
 
     private DoodleJump game;
     private TextureAtlas atlas;
@@ -51,6 +52,9 @@ public class PlayScreen implements Screen {
 
     private int mapWidth;
     private int mapHeight;
+
+    public final static Vector2 GRAVITY = new Vector2(0, -10);
+    private final static int JUMP_HEIGHT_MODIFIER = 50;
 
 
     public PlayScreen(DoodleJump game){
@@ -74,6 +78,8 @@ public class PlayScreen implements Screen {
 
         new B2WorldCreator(world, map);
 
+        Gdx.input.setInputProcessor(this);
+
     }
 
     public TextureAtlas getAtlas(){
@@ -86,10 +92,13 @@ public class PlayScreen implements Screen {
     }
 
     public void handleInput(float dt){
-        if(Gdx.input.isButtonPressed(Input.Buttons.LEFT)) {
-            player.b2body.applyLinearImpulse(new Vector2(0, 4f), player.b2body.getWorldCenter(), true);
-            player.b2body.applyLinearImpulse(new Vector2(-0.1f, 0), player.b2body.getWorldCenter(), true);
+      /*  if(Gdx.input.isKeyJustPressed(Input.Keys.A)) {
+            player.b2body.applyLinearImpulse(new Vector2(-0.1f, 4f), player.b2body.getWorldCenter(), true);
+           // player.b2body.applyLinearImpulse(new Vector2(-0.1f, 0), player.b2body.getWorldCenter(), true);
         }
+        if(Gdx.input.isKeyJustPressed(Input.Keys.D)){
+            player.b2body.applyLinearImpulse(new Vector2(0.1f,4f),player.b2body.getWorldCenter(),true);
+        }*/
     }
 
     public void update(float dt){
@@ -162,5 +171,46 @@ public class PlayScreen implements Screen {
         world.dispose();
         b2dr.dispose();
         hud.dispose();
+    }
+
+    @Override
+    public boolean keyDown(int keycode) {
+        return false;
+    }
+
+    @Override
+    public boolean keyUp(int keycode) {
+        return false;
+    }
+
+    @Override
+    public boolean keyTyped(char character) {
+        return false;
+    }
+
+    @Override
+    public boolean touchDown(int screenX, int screenY, int pointer, int button) {
+        player.b2body.applyForceToCenter(-GRAVITY.x, JUMP_HEIGHT_MODIFIER *-GRAVITY.y, true);
+        return false;
+    }
+
+    @Override
+    public boolean touchUp(int screenX, int screenY, int pointer, int button) {
+        return false;
+    }
+
+    @Override
+    public boolean touchDragged(int screenX, int screenY, int pointer) {
+        return false;
+    }
+
+    @Override
+    public boolean mouseMoved(int screenX, int screenY) {
+        return false;
+    }
+
+    @Override
+    public boolean scrolled(int amount) {
+        return false;
     }
 }
