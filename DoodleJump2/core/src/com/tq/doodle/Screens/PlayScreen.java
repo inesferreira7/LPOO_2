@@ -24,6 +24,7 @@ import com.badlogic.gdx.utils.viewport.Viewport;
 import com.tq.doodle.DoodleJump;
 import com.tq.doodle.Scenes.Hud;
 import com.tq.doodle.Sprites.Doodle;
+import com.tq.doodle.Tools.B2WorldCreator;
 
 /**
  * Created by Inês on 01/06/2016.
@@ -66,35 +67,11 @@ public class PlayScreen implements Screen {
         b2dr = new Box2DDebugRenderer();
         player = new Doodle(world);
 
-        BodyDef bdef = new BodyDef();
-        PolygonShape shape = new PolygonShape();
-        FixtureDef fdef = new FixtureDef();
-        Body body;
-
         mapWidth = prop.get("width", Integer.class).intValue() * prop.get("tilewidth", Integer.class).intValue();
         mapHeight = prop.get("height", Integer.class).intValue() * prop.get("tileheight", Integer.class).intValue();
 
-        //Definir as plataformas como um corpo
-        for (MapObject object : map.getLayers().get(2).getObjects().getByType(RectangleMapObject.class)){
-            Rectangle rect = ((RectangleMapObject) object).getRectangle();
-            bdef.type = BodyDef.BodyType.StaticBody;
-            bdef.position.set((rect.getX() + rect.getWidth()/2)/DoodleJump.PPM, (rect.getY() + rect.getHeight()/2)/DoodleJump.PPM);
-            body = world.createBody(bdef);
-            shape.setAsBox(rect.getWidth()/2 /DoodleJump.PPM, rect.getHeight()/2 /DoodleJump.PPM);
-            fdef.shape = shape;
-            body.createFixture(fdef);
-        }
+        new B2WorldCreator(world, map);
 
-        //Definir o chao como um corpo
-        for (MapObject object : map.getLayers().get(3).getObjects().getByType(RectangleMapObject.class)){
-            Rectangle rect = ((RectangleMapObject) object).getRectangle();
-            bdef.type = BodyDef.BodyType.StaticBody;
-            bdef.position.set((rect.getX() + rect.getWidth()/2)/DoodleJump.PPM, (rect.getY() + rect.getHeight()/2)/DoodleJump.PPM);
-            body = world.createBody(bdef);
-            shape.setAsBox(rect.getWidth()/2 /DoodleJump.PPM, rect.getHeight()/2 /DoodleJump.PPM);
-            fdef.shape = shape;
-            body.createFixture(fdef);
-        }
     }
 
     @Override
@@ -103,21 +80,15 @@ public class PlayScreen implements Screen {
     }
 
     public void handleInput(float dt){
-        if (Gdx.input.justTouched())
+        if(Gdx.input.isButtonPressed(Input.Buttons.LEFT)) {
             player.b2body.applyLinearImpulse(new Vector2(0, 4f), player.b2body.getWorldCenter(), true);
-        if (Gdx.input.isKeyPressed(Input.Keys.RIGHT) && player.b2body.getLinearVelocity().x <= 2)
-            player.b2body.applyLinearImpulse(new Vector2(0.1f, 0), player.b2body.getWorldCenter(), true);
-        if (Gdx.input.isKeyPressed(Input.Keys.LEFT) && player.b2body.getLinearVelocity().x >= -2)
             player.b2body.applyLinearImpulse(new Vector2(-0.1f, 0), player.b2body.getWorldCenter(), true);
-
+        }
     }
 
     public void update(float dt){
         handleInput(dt);
         world.step(1/60f, 6, 2);
-        //gamecam.position.y = player.b2body.getPosition().y;
-
-
         gamecam.update();
         renderer.setView(gamecam);
     }
@@ -173,6 +144,10 @@ public class PlayScreen implements Screen {
 
     @Override
     public void dispose() {
-
+        map.dispose();
+        renderer.dispose();
+        world.dispose();
+        b2dr.dispose();
+        hud.dispose();
     }
 }
