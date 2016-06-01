@@ -55,6 +55,8 @@ public class PlayScreen implements Screen, InputProcessor {
 
     public final static Vector2 GRAVITY = new Vector2(0, -10);
     private final static int JUMP_HEIGHT_MODIFIER = 50;
+    private final static int JUMP_WIDTH_MODIFIER = 30;
+
 
 
     public PlayScreen(DoodleJump game){
@@ -190,7 +192,10 @@ public class PlayScreen implements Screen, InputProcessor {
 
     @Override
     public boolean touchDown(int screenX, int screenY, int pointer, int button) {
-        player.b2body.applyForceToCenter(-GRAVITY.x, JUMP_HEIGHT_MODIFIER *-GRAVITY.y, true);
+        if (screenX < DoodleJump.V_WIDTH/2)
+            player.b2body.applyForceToCenter(-JUMP_WIDTH_MODIFIER, JUMP_HEIGHT_MODIFIER *-GRAVITY.y, true);
+        if (screenX > DoodleJump.V_WIDTH/2)
+            player.b2body.applyForceToCenter(JUMP_WIDTH_MODIFIER, JUMP_HEIGHT_MODIFIER *-GRAVITY.y, true);
         return false;
     }
 
