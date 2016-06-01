@@ -1,10 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" orientation="orthogonal" renderorder="right-down" width="30" height="70" tilewidth="16" tileheight="16" nextobjectid="3">
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="30" height="70" tilewidth="16" tileheight="16" nextobjectid="6">
  <tileset firstgid="1" name="plat" tilewidth="16" tileheight="16" tilecount="4" columns="4">
   <image source="plat.png" trans="ff00ff" width="64" height="16"/>
  </tileset>
  <tileset firstgid="5" name="background" tilewidth="16" tileheight="16" tilecount="640" columns="20">
   <image source="background.png" trans="ff00ff" width="320" height="512"/>
+ </tileset>
+ <tileset firstgid="645" name="floor" tilewidth="16" tileheight="16" tilecount="64" columns="32">
+  <image source="floor.png" trans="ff00ff" width="512" height="46"/>
  </tileset>
  <layer name="background" width="30" height="70">
   <data encoding="base64" compression="zlib">
@@ -13,8 +16,12 @@
  </layer>
  <layer name="graphics" width="30" height="70">
   <data encoding="base64" compression="zlib">
-   eJzt1EEKwCAMBEC1/v/NBrwVPNhDjTADexezSSnAzWqkRZ5IP/wWJjPJwyzISjfJQA8hD/vIm04Af3Br1vwNu3QGzrKDfKE39xifWQB5
+   eJzt1EEOgCAMBEBEv86/aeLNxIMeoISZZO+EblsKsLIjUiNn5Jr8Fm5mkodZkJVukoEeQh72kSedAEZwa975G77SGZjLDvLHyr1pda90s+ogHQ==
   </data>
  </layer>
  <objectgroup name="plats"/>
+ <objectgroup name="floor">
+  <object id="4" x="-1" y="1088" width="480" height="30"/>
+  <object id="5" x="479" y="1118"/>
+ </objectgroup>
 </map>
