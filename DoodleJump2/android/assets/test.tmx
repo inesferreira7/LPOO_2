@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <map version="1.0" orientation="orthogonal" renderorder="right-down" width="30" height="70" tilewidth="16" tileheight="16" nextobjectid="3">
  <tileset firstgid="1" name="plat" tilewidth="16" tileheight="16" tilecount="4" columns="4">
-  <image source="../../../../../Users/Inês/Desktop/lpoo/projeto2/plat.png" trans="ff00ff" width="64" height="16"/>
+  <image source="plat.png" trans="ff00ff" width="64" height="16"/>
  </tileset>
  <tileset firstgid="5" name="background" tilewidth="16" tileheight="16" tilecount="640" columns="20">
-  <image source="../../../../../Users/Inês/Desktop/lpoo/projeto2/background.png" trans="ff00ff" width="320" height="512"/>
+  <image source="background.png" trans="ff00ff" width="320" height="512"/>
  </tileset>
  <layer name="background" width="30" height="70">
   <data encoding="base64" compression="zlib">
