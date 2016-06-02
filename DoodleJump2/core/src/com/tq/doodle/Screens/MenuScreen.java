@@ -6,21 +6,13 @@ import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.graphics.g2d.Sprite;
-import com.badlogic.gdx.scenes.scene2d.InputEvent;
-import com.badlogic.gdx.scenes.scene2d.Stage;
-import com.badlogic.gdx.scenes.scene2d.ui.Image;
-import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
-import com.sun.glass.ui.Menu;
 import com.tq.doodle.DoodleJump;
-import com.tq.doodle.Sprites.Doodle;
+
 
 /**
  * Created by Inês on 02/06/2016.
  */
 public class MenuScreen implements Screen {
-
-    private OrthographicCamera gamecam;
     private DoodleJump game;
 
     //Variables of textures of menu
@@ -43,13 +35,12 @@ public class MenuScreen implements Screen {
 
     public MenuScreen(DoodleJump game){
         this.game = game;
-        this.gamecam = new OrthographicCamera();
         this.background = new Texture("background.png");
         this.title = new Texture("title.png");
         this.optionsBtn = new Texture("options.png");
         this.scoresBtn = new Texture("scores.png");
         menudoodle = new Texture("menu.png");
-        ovni = new Texture("ovni.png");
+        //ovni = new Texture("ovni.png");
 
         //Buttonplay variables
         this.playBtn = new Texture("play.png");
@@ -117,6 +108,12 @@ public class MenuScreen implements Screen {
 
     @Override
     public void dispose() {
+        background.dispose();
+        title.dispose();
+        playBtn.dispose();
+        scoresBtn.dispose();
+        optionsBtn.dispose();
+        menudoodle.dispose();
 
     }
 }

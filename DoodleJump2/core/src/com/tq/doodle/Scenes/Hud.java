@@ -2,12 +2,15 @@ package com.tq.doodle.Scenes;
 
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.OrthographicCamera;
+import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.scenes.scene2d.Stage;
+import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.utils.Disposable;
+import com.badlogic.gdx.utils.Scaling;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 import com.tq.doodle.DoodleJump;
@@ -21,16 +24,16 @@ public class Hud implements Disposable{
     private Viewport viewport;
     private float timeCount;
 
-    private Integer lives;
+    private Image pause;
+    private Texture pauseTexture;
     private Integer score;
     private static Integer coins;
-    private Label livesLabel;
+    private Label pauseLabel;
     private Label scoreLabel;
     private static Label coinsLabel;
 
 
     public Hud(SpriteBatch sb) {
-        lives = 3;
         score = 0;
         coins = 0;
         viewport = new FitViewport(DoodleJump.V_WIDTH, DoodleJump.V_HEIGHT, new OrthographicCamera());
@@ -40,15 +43,14 @@ public class Hud implements Disposable{
         table.top();
         table.setFillParent(true);
 
-        livesLabel = new Label(String.format("%d", lives), new Label.LabelStyle(new BitmapFont(), Color.BLACK));
-        livesLabel.setFontScale(2);
+        pauseTexture = new Texture("pause.png");
+        pause = new Image(pauseTexture);
         scoreLabel = new Label(String.format("%04d", score), new Label.LabelStyle(new BitmapFont(), Color.BLACK));
         scoreLabel.setFontScale(2);
         coinsLabel = new Label(String.format("%03d", coins), new Label.LabelStyle(new BitmapFont(), Color.BLACK));
         coinsLabel.setFontScale(2);
 
-
-        table.add(livesLabel).expandX().padTop(10);
+        table.add(pause).expandX().padTop(18); //pause button alligned with the others
         table.add(scoreLabel).expandX().padTop(10);
         table.add(coinsLabel).expandX().padTop(10);
 
@@ -60,8 +62,6 @@ public class Hud implements Disposable{
         coinsLabel.setText(String.format("%03d", coins));
 
     }
-
-
 
     @Override
     public void dispose() {
