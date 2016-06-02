@@ -37,10 +37,6 @@ public class Doodle extends Sprite{
         if(b2body.getPosition().x >= DoodleJump.V_WIDTH/DoodleJump.PPM - 0.3f){
             b2body.setTransform(DoodleJump.V_WIDTH/DoodleJump.PPM -0.3f ,b2body.getPosition().y,0);
         }
-
-       /* if(b2body.getPosition().y >=DoodleJump.V_HEIGHT/DoodleJump.PPM + 3){
-            b2body.setTransform(b2body.getPosition().x,DoodleJump.V_HEIGHT/DoodleJump.PPM+3,0);
-        }*/
     }
 
 

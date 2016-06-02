@@ -1,12 +1,8 @@
 package com.tq.doodle;
 
-import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.Game;
-import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.graphics.GL20;
-import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.badlogic.gdx.math.Vector2;
+import com.tq.doodle.Screens.MenuScreen;
 import com.tq.doodle.Screens.PlayScreen;
 
 public class DoodleJump extends Game {
@@ -19,7 +15,7 @@ public class DoodleJump extends Game {
 	@Override
 	public void create () {
 		batch = new SpriteBatch();
-		setScreen( new PlayScreen(this));
+		setScreen( new MenuScreen(this));
 	}
 
 	@Override
