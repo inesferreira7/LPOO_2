@@ -19,15 +19,17 @@ public class Hud implements Disposable{
 
     public Stage stage;
     private Viewport viewport;
+    private float timeCount;
 
     private Integer lives;
     private Integer score;
-    private Integer coins;
-    Label livesLabel;
-    Label scoreLabel;
-    Label coinsLabel;
+    private static Integer coins;
+    private Label livesLabel;
+    private Label scoreLabel;
+    private static Label coinsLabel;
 
-    public Hud(SpriteBatch sb){
+
+    public Hud(SpriteBatch sb) {
         lives = 3;
         score = 0;
         coins = 0;
@@ -51,11 +53,28 @@ public class Hud implements Disposable{
         table.add(coinsLabel).expandX().padTop(10);
 
         stage.addActor(table);
+    }
+
+        public static void addScore(int value){
+        coins+=value;
+        coinsLabel.setText(String.format("%03d", coins));
 
     }
+
+
 
     @Override
     public void dispose() {
         stage.dispose();
     }
+
+    public void update(float dt){
+        timeCount += dt;
+        if(timeCount >= 1){
+            score++;
+            scoreLabel.setText(String.format("%04d", score));
+            timeCount = 0.8f;
+        }
+    }
 }
+

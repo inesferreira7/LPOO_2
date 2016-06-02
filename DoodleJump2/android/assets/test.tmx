@@ -21,7 +21,6 @@
  </layer>
  <objectgroup name="plats"/>
  <objectgroup name="floor">
-  <object id="4" x="-1" y="1088" width="480" height="30"/>
-  <object id="5" x="479" y="1118"/>
+  <object id="4" x="-1" y="1086" width="480" height="32"/>
  </objectgroup>
 </map>

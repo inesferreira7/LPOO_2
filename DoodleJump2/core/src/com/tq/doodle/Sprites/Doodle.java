@@ -11,6 +11,7 @@ import com.badlogic.gdx.physics.box2d.World;
 import com.tq.doodle.DoodleJump;
 import com.tq.doodle.Screens.PlayScreen;
 
+
 /**
  * Created by Inês on 01/06/2016.
  */
@@ -29,7 +30,17 @@ public class Doodle extends Sprite{
     }
 
     public void update(float dt){
-        setPosition(b2body.getPosition().x - getWidth() / 2, b2body.getPosition().y - getHeight() / 2);
+        setPosition(b2body.getPosition().x - getWidth() / 2, b2body.getPosition().y - getHeight() / 2 +0.05f);
+        if(b2body.getPosition().x <=0.1){
+            b2body.setTransform(0.1f,b2body.getPosition().y,0);
+        }
+        if(b2body.getPosition().x >= DoodleJump.V_WIDTH/DoodleJump.PPM - 0.3f){
+            b2body.setTransform(DoodleJump.V_WIDTH/DoodleJump.PPM -0.3f ,b2body.getPosition().y,0);
+        }
+
+       /* if(b2body.getPosition().y >=DoodleJump.V_HEIGHT/DoodleJump.PPM + 3){
+            b2body.setTransform(b2body.getPosition().x,DoodleJump.V_HEIGHT/DoodleJump.PPM+3,0);
+        }*/
     }
 
 

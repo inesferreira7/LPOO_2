@@ -109,6 +109,7 @@ public class PlayScreen implements Screen, InputProcessor {
         player.update(dt);
         gamecam.update();
         renderer.setView(gamecam);
+        hud.update(dt);
     }
 
     @Override
@@ -192,8 +193,10 @@ public class PlayScreen implements Screen, InputProcessor {
 
     @Override
     public boolean touchDown(int screenX, int screenY, int pointer, int button) {
-        if (screenX < DoodleJump.V_WIDTH/2)
-            player.b2body.applyForceToCenter(-JUMP_WIDTH_MODIFIER, JUMP_HEIGHT_MODIFIER *-GRAVITY.y, true);
+        Hud.addScore(100);
+        if (screenX < DoodleJump.V_WIDTH/2) {
+            player.b2body.applyForceToCenter(-JUMP_WIDTH_MODIFIER, JUMP_HEIGHT_MODIFIER * -GRAVITY.y, true);
+        }
         if (screenX > DoodleJump.V_WIDTH/2)
             player.b2body.applyForceToCenter(JUMP_WIDTH_MODIFIER, JUMP_HEIGHT_MODIFIER *-GRAVITY.y, true);
         return false;
