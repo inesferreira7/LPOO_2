@@ -1,5 +1,6 @@
 package com.tq.doodle.Sprites;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Circle;
@@ -18,10 +19,12 @@ import com.tq.doodle.Screens.PlayScreen;
 public class Doodle extends Sprite{
     public World world;
     public Body b2body;
+    public boolean kk;
     private TextureRegion jumpright;
 
     public Doodle(World world, PlayScreen screen){
         super(screen.getAtlas().findRegion("doodleright"));
+        kk = false;
         this.world = world;
         defineDoodle();
         jumpright = new TextureRegion(getTexture(), 0, 0, 60, 62);
@@ -55,4 +58,43 @@ public class Doodle extends Sprite{
 
     }
 
-}
+    public void flipDoodle(boolean turned, int screenX) {
+
+
+            if (kk) {
+                if (screenX > b2body.getWorldCenter().x * DoodleJump.PPM * 1.125) {
+                    Gdx.app.log("ola1", "ola1");
+                    System.out.println(screenX);
+                    System.out.println(b2body.getWorldCenter().x * DoodleJump.PPM * 1.125);
+                    flip(true, false);
+                    kk = false;
+                }
+                if (screenX < b2body.getWorldCenter().x * DoodleJump.PPM * 1.125) {
+                    Gdx.app.log("ola2", "ola2");
+                    System.out.println(screenX);
+                    System.out.println(b2body.getWorldCenter().x * DoodleJump.PPM * 1.125);
+                    flip(false, false);
+                    kk = true;
+
+                }
+            }
+            if (!kk) {
+                if (screenX > b2body.getWorldCenter().x * DoodleJump.PPM * 1.125) {
+                    Gdx.app.log("ola3", "ola3");
+                    System.out.println(screenX);
+                    System.out.println(b2body.getWorldCenter().x * DoodleJump.PPM * 1.125);
+                    flip(false, false);
+                }
+                if (screenX < b2body.getWorldCenter().x * DoodleJump.PPM * 1.125) {
+                    turned = true;
+                    kk = true;
+                    Gdx.app.log("ola4", "ola4");
+                    System.out.println(screenX);
+                    System.out.println(b2body.getWorldCenter().x * DoodleJump.PPM * 1.125);
+                    flip(true, false);
+
+                }
+            }
+        }
+    }
+

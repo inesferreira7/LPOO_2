@@ -50,8 +50,6 @@ public class PlayScreen implements Screen, InputProcessor {
     private final static int JUMP_HEIGHT_MODIFIER = 50;
     private final static int JUMP_WIDTH_MODIFIER = 30;
 
-
-
     public PlayScreen(DoodleJump game){
         this.game= game;
         atlas = new TextureAtlas("Jump.pack");
@@ -74,7 +72,6 @@ public class PlayScreen implements Screen, InputProcessor {
         new B2WorldCreator(world, map);
 
         Gdx.input.setInputProcessor(this);
-
     }
 
     public TextureAtlas getAtlas(){
@@ -184,9 +181,12 @@ public class PlayScreen implements Screen, InputProcessor {
         Hud.addScore(100);
         if (screenX < DoodleJump.V_WIDTH/2) {
             player.b2body.applyForceToCenter(-JUMP_WIDTH_MODIFIER, JUMP_HEIGHT_MODIFIER * -GRAVITY.y, true);
+            player.flipDoodle(player.kk, screenX);
         }
-        if (screenX > DoodleJump.V_WIDTH/2)
-            player.b2body.applyForceToCenter(JUMP_WIDTH_MODIFIER, JUMP_HEIGHT_MODIFIER *-GRAVITY.y, true);
+        if (screenX > DoodleJump.V_WIDTH/2) {
+            player.b2body.applyForceToCenter(JUMP_WIDTH_MODIFIER, JUMP_HEIGHT_MODIFIER * -GRAVITY.y, true);
+            player.flipDoodle(player.kk,screenX);
+        }
         return false;
     }
 
