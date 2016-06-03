@@ -19,6 +19,7 @@ import com.badlogic.gdx.utils.viewport.Viewport;
 import com.tq.doodle.DoodleJump;
 import com.tq.doodle.Scenes.Hud;
 import com.tq.doodle.Sprites.Doodle;
+import com.tq.doodle.Sprites.Platform;
 import com.tq.doodle.Tools.B2WorldCreator;
 
 /**
@@ -33,6 +34,7 @@ public class PlayScreen implements Screen, InputProcessor {
     private OrthographicCamera gamecam;
     private Viewport gamePort;
     private MapProperties prop;
+    private Platform plat;
 
     //Tiled map variables
     private TmxMapLoader maploader;
@@ -57,7 +59,7 @@ public class PlayScreen implements Screen, InputProcessor {
         gamePort = new FitViewport(DoodleJump.V_WIDTH/DoodleJump.PPM, DoodleJump.V_HEIGHT/DoodleJump.PPM,gamecam);
         hud = new Hud(game.batch);
         maploader = new TmxMapLoader();
-        map = maploader.load("test.tmx");
+        map = maploader.load("randTest.tmx");
         prop = map.getProperties();
         renderer = new OrthogonalTiledMapRenderer(map, 1/DoodleJump.PPM);
         gamecam.position.set(gamePort.getWorldWidth()/2, gamePort.getWorldHeight()/2, 0);
@@ -69,9 +71,19 @@ public class PlayScreen implements Screen, InputProcessor {
         mapWidth = prop.get("width", Integer.class).intValue() * prop.get("tilewidth", Integer.class).intValue();
         mapHeight = prop.get("height", Integer.class).intValue() * prop.get("tileheight", Integer.class).intValue();
 
+        plat = new Platform(world, this);
+
         new B2WorldCreator(world, map);
 
         Gdx.input.setInputProcessor(this);
+    }
+
+    public int getMapWidth() {
+        return mapWidth;
+    }
+
+    public int getMapHeight() {
+        return mapHeight;
     }
 
     public TextureAtlas getAtlas(){
@@ -125,6 +137,7 @@ public class PlayScreen implements Screen, InputProcessor {
         game.batch.setProjectionMatrix(gamecam.combined);
         game.batch.begin();
         player.draw(game.batch);
+        plat.render(game.batch);
         game.batch.end();
 
         //Set our batch to now draw what the Hud camera sees

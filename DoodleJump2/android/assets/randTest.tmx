@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="30" height="70" tilewidth="16" tileheight="16" nextobjectid="6">
+ <tileset firstgid="1" name="plat" tilewidth="16" tileheight="16" tilecount="4" columns="4">
+  <image source="plat.png" trans="ff00ff" width="64" height="16"/>
+ </tileset>
+ <tileset firstgid="5" name="background" tilewidth="16" tileheight="16" tilecount="640" columns="20">
+  <image source="background.png" trans="ff00ff" width="320" height="512"/>
+ </tileset>
+ <tileset firstgid="645" name="floor" tilewidth="16" tileheight="16" tilecount="64" columns="32">
+  <image source="floor.png" trans="ff00ff" width="512" height="46"/>
+ </tileset>
+ <layer name="background" width="30" height="70">
+  <data encoding="base64" compression="zlib">
+   eJzt11OTmAcYhuHNxrZtmxvbtm1bG9tJ3Zh1Y9aNWTdm3Zh1g+sX9GC/6dk3816H9+k78ySMiIhIRGKSkJRkJCcFKUlFatKQlnSkJwMJY9hnJRvZyUFOcpGbPOQlH/kpQEEKUZgiAfqSlKI0ZShLOcpTgSgqUonKVKEq1ageoK9DXepRnwY0pBGNaUJTmtGcFrSkFa0D9B3oSCc604WudKM7PehJL3rTh770o3+AfghDGcZwRjCSUYxmDGMZx3gmMJFoJgXopzODmcxiNnOYyzzms4CFLGIxS1jKsgD9S7zMK7zKclawklWsZg1rWcd6NrCRTQH6t3ibd3iXzWxhK9vYzg52sovd7GEv+wL0H/Exn/Ap+znAQQ5xmCMc5RjHOcFJTgXov+JrvuFbTnOGs5zjPBe4yCUuc4WrXAvQ/8TP/MKvXOcGN7nFbe5wl3vc5wEPeRSg/4u/+Yd/ecwTnhIRyxFJbOIQl3jEJ0GsmPdJSUZyUpCSVKQmDWlJR3oykJFMZCZLgD4nuchNHvKSj/wUoCCFKEwRilKM4pQI0JelHOWpQBQVqURlqlCValSnBjWpRe0AfQMa0ojGNKEpzWhOC1rSita0oS3taB+g70JXutGdHvSkF73pQ1/60Z8BDGQQgwP0IxjJKEYzhrGMYzwTmEg0k5jMFKYyLUA/mznMZR7zWcBCFrGYJSxlGc/xPC/wYoB+OStYySpWs4a1rGM9G9jIJl7jdd7gzQD9ZrawlW1sZwc72cVu9rCXfbzH+3zAhwH6/RzgIIc4zBGOcozjnOAkp/iMz/mCLwP0pznDWc5xngtc5BKXucJVrvEd3/MDPwbor3ODm9ziNne4yz3u84CHPOI3fucP/gzQP+YJT4mI9MeJJDZxiEs84pOAhCQiMUkiY96nJBWpSUNa0pGeDGQkE5nJQlaykZ0cAfq85CM/BShIIQpThKIUozglKEkpSlMmQB9FRSpRmSpUpRrVqUFNalGbOtSlHvUD9E1oSjOa04KWtKI1bWhLO9rTgY50onOAvgc96UVv+tCXfvRnAAMZxGCGMJRhDA/Qj2Es4xjPBCYSzSQmM4WpTGM6M5jJrAB9TPdruH/D/ftffbh/w/0b7t9w/4b7N9y/4f4N92+4f8P9G+7fcP+G+zfcv+H+/f/27zMzhZYI
+  </data>
+ </layer>
+ <layer name="graphics" width="30" height="70">
+  <data encoding="base64" compression="zlib">
+   eJztmNEKgCAMRaWH/rz/7ikIU0lxd8rOAYkSPE7mDFMCgF05Ky0SXnHX1r7VlHNZFfU8d1kXiAf1Gx5WODPeTmUu5i68eGc585yeOW6rPxWePWP31IHa3rVe55JH4Xy7VaziVZ0N+bsqnzzw8EaK1ctLrONjedxrjNypWNdFtdfqv+WPr/Td0tnqt/B57UtlvgLAF/YcjLBzzb6OWO0GFy4kVQ==
+  </data>
+ </layer>
+ <objectgroup name="floor">
+  <object id="4" x="-1" y="1086" width="480" height="32"/>
+ </objectgroup>
+</map>

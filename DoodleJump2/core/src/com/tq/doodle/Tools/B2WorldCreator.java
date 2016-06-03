@@ -24,7 +24,7 @@ public class B2WorldCreator {
         Body body;
 
 
-        //Definir as plataformas como um corpo
+        /*//Definir as plataformas como um corpo
         for (MapObject object : map.getLayers().get(2).getObjects().getByType(RectangleMapObject.class)){
             Rectangle rect = ((RectangleMapObject) object).getRectangle();
             bdef.type = BodyDef.BodyType.StaticBody;
@@ -33,10 +33,10 @@ public class B2WorldCreator {
             shape.setAsBox(rect.getWidth()/2 /DoodleJump.PPM, rect.getHeight()/2 /DoodleJump.PPM);
             fdef.shape = shape;
             body.createFixture(fdef);
-        }
+        }*/
 
         //Definir o chao como um corpo
-        for (MapObject object : map.getLayers().get(3).getObjects().getByType(RectangleMapObject.class)){
+        for (MapObject object : map.getLayers().get(2).getObjects().getByType(RectangleMapObject.class)){
             Rectangle rect = ((RectangleMapObject) object).getRectangle();
             bdef.type = BodyDef.BodyType.StaticBody;
             bdef.position.set((rect.getX() + rect.getWidth()/2)/DoodleJump.PPM, (rect.getY() + rect.getHeight()/2)/DoodleJump.PPM);
