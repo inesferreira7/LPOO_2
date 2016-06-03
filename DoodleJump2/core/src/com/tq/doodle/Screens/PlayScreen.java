@@ -96,7 +96,18 @@ public class PlayScreen implements Screen, InputProcessor {
     }
 
     public void handleInput(float dt) {
-        //Necessario verificar se carreaga no botao de pause
+        if (Gdx.input.isButtonPressed(Input.Buttons.LEFT)){
+            int cursor_x = Gdx.input.getX();
+            int cursor_y = Gdx.input.getY();
+            System.out.println(cursor_x); //158
+            System.out.println(cursor_y); //63
+
+            if(cursor_x >= 50 && cursor_x < 180){
+                if (cursor_y < 100 && cursor_y >30){
+                    game.setScreen(new PauseScreen(game));
+                }
+            }
+        }
     }
 
 

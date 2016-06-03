@@ -63,16 +63,10 @@ public class Doodle extends Sprite{
 
             if (kk) {
                 if (screenX > b2body.getWorldCenter().x * DoodleJump.PPM * 1.125) {
-                    Gdx.app.log("ola1", "ola1");
-                    System.out.println(screenX);
-                    System.out.println(b2body.getWorldCenter().x * DoodleJump.PPM * 1.125);
                     flip(true, false);
                     kk = false;
                 }
                 if (screenX < b2body.getWorldCenter().x * DoodleJump.PPM * 1.125) {
-                    Gdx.app.log("ola2", "ola2");
-                    System.out.println(screenX);
-                    System.out.println(b2body.getWorldCenter().x * DoodleJump.PPM * 1.125);
                     flip(false, false);
                     kk = true;
 
@@ -80,17 +74,11 @@ public class Doodle extends Sprite{
             }
             if (!kk) {
                 if (screenX > b2body.getWorldCenter().x * DoodleJump.PPM * 1.125) {
-                    Gdx.app.log("ola3", "ola3");
-                    System.out.println(screenX);
-                    System.out.println(b2body.getWorldCenter().x * DoodleJump.PPM * 1.125);
                     flip(false, false);
                 }
                 if (screenX < b2body.getWorldCenter().x * DoodleJump.PPM * 1.125) {
                     turned = true;
                     kk = true;
-                    Gdx.app.log("ola4", "ola4");
-                    System.out.println(screenX);
-                    System.out.println(b2body.getWorldCenter().x * DoodleJump.PPM * 1.125);
                     flip(true, false);
 
                 }
