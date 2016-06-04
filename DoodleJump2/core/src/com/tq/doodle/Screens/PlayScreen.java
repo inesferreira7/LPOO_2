@@ -4,6 +4,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.Screen;
+import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
@@ -36,6 +37,7 @@ public class PlayScreen implements Screen, InputProcessor {
     private Viewport gamePort;
     private MapProperties prop;
     private Platform plat;
+    private Music music;
 
     //Tiled map variables
     private TmxMapLoader maploader;
@@ -78,6 +80,13 @@ public class PlayScreen implements Screen, InputProcessor {
         new B2WorldCreator(world, map);
 
         Gdx.input.setInputProcessor(this);
+
+        if(game.getMusic() == true) {
+            music = Gdx.audio.newMusic(Gdx.files.internal("background_music.mp3"));
+            music.setLooping(true);
+            music.setVolume(1f);
+            music.play();
+        }
     }
 
     public int getMapWidth() {
@@ -104,6 +113,7 @@ public class PlayScreen implements Screen, InputProcessor {
             if(cursor_x >= 50 && cursor_x < 180){
                 if (cursor_y < 100 && cursor_y >30){
                     game.setScreen(new PauseScreen(game));
+                    if(music!= null) music.stop();
                 }
             }
         }
@@ -182,6 +192,7 @@ public class PlayScreen implements Screen, InputProcessor {
         world.dispose();
         b2dr.dispose();
         hud.dispose();
+        music.dispose();
     }
 
     @Override

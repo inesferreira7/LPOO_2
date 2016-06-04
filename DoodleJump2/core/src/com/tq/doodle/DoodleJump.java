@@ -10,23 +10,21 @@ public class DoodleJump extends Game {
 	public static final int V_WIDTH = 480;
 	public static final int V_HEIGHT = 800;
 	public static final float PPM = 100; //pixels per meter
-
+	public boolean music;
 
 	@Override
 	public void create () {
 		batch = new SpriteBatch();
 		setScreen( new MenuScreen(this));
+		music = true;
 	}
 
 	@Override
 	public void render () {
 		super.render();
 	}
-/*
-	@Override
-	public void setScreen(Screen screen) {
-		super.setScreen(screen);
-		this.getScreen().resize(Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
+
+	public boolean getMusic(){
+		return music;
 	}
-	*/
 }
