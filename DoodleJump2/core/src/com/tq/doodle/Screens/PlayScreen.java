@@ -53,7 +53,7 @@ public class PlayScreen implements Screen, InputProcessor {
 
     public final static Vector2 GRAVITY = new Vector2(0, -10);
     private final static int JUMP_HEIGHT_MODIFIER = 30;
-    private final static int JUMP_WIDTH_MODIFIER = 50;
+    private final static int JUMP_WIDTH_MODIFIER = 120;
     private final static Vector2 base = new Vector2(0,0);
 
     public PlayScreen(DoodleJump game){
@@ -64,7 +64,7 @@ public class PlayScreen implements Screen, InputProcessor {
         gamePort = new FitViewport(DoodleJump.V_WIDTH/DoodleJump.PPM, DoodleJump.V_HEIGHT/DoodleJump.PPM,gamecam);
         hud = new Hud(game.batch);
         maploader = new TmxMapLoader();
-        map = maploader.load("randTest.tmx");
+        map = maploader.load("level1.tmx");
         prop = map.getProperties();
         renderer = new OrthogonalTiledMapRenderer(map, 1/DoodleJump.PPM);
         gamecam.position.set(gamePort.getWorldWidth()/2, gamePort.getWorldHeight()/2, 0);
@@ -215,6 +215,7 @@ public class PlayScreen implements Screen, InputProcessor {
     @Override
     public boolean touchDown(int screenX, int screenY, int pointer, int button) {
 
+
         if(player.b2body.getLinearVelocity() != base){
             player.b2body.setLinearVelocity(0,0);
         }
@@ -257,4 +258,5 @@ public class PlayScreen implements Screen, InputProcessor {
             }
         }
     }
+
 }
