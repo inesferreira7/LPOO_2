@@ -16,6 +16,7 @@ import com.badlogic.gdx.physics.box2d.Box2DDebugRenderer;
 import com.badlogic.gdx.physics.box2d.World;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
+import com.sun.glass.ui.View;
 import com.tq.doodle.DoodleJump;
 import com.tq.doodle.Scenes.Hud;
 import com.tq.doodle.Sprites.Doodle;
@@ -56,6 +57,7 @@ public class PlayScreen implements Screen, InputProcessor {
         this.game= game;
         atlas = new TextureAtlas("Jump.pack");
         gamecam = new OrthographicCamera();
+        gamecam.setToOrtho(false);
         gamePort = new FitViewport(DoodleJump.V_WIDTH/DoodleJump.PPM, DoodleJump.V_HEIGHT/DoodleJump.PPM,gamecam);
         hud = new Hud(game.batch);
         maploader = new TmxMapLoader();
@@ -99,9 +101,6 @@ public class PlayScreen implements Screen, InputProcessor {
         if (Gdx.input.isButtonPressed(Input.Buttons.LEFT)){
             int cursor_x = Gdx.input.getX();
             int cursor_y = Gdx.input.getY();
-            System.out.println(cursor_x); //158
-            System.out.println(cursor_y); //63
-
             if(cursor_x >= 50 && cursor_x < 180){
                 if (cursor_y < 100 && cursor_y >30){
                     game.setScreen(new PauseScreen(game));
@@ -109,7 +108,6 @@ public class PlayScreen implements Screen, InputProcessor {
             }
         }
     }
-
 
     public void update(float dt){
         handleInput(dt);
@@ -157,7 +155,8 @@ public class PlayScreen implements Screen, InputProcessor {
     }
 
     @Override
-    public void resize(int width, int height) {
+    public void resize(int width, int height)
+    {
         gamePort.update(width, height);
     }
 

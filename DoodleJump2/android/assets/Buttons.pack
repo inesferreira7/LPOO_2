@@ -1,0 +1,47 @@
+
+Buttons.png
+format: RGBA8888
+filter: Nearest,Nearest
+repeat: none
+resume
+  rotate: false
+  xy: 1, 44
+  size: 224, 80
+  orig: 224, 80
+  offset: 0, 0
+  index: -1
+menubtn
+  rotate: false
+  xy: 1, 1
+  size: 112, 41
+  orig: 112, 41
+  offset: 0, 0
+  index: -1
+options
+  rotate: false
+  xy: 227, 84
+  size: 112, 40
+  orig: 112, 40
+  offset: 0, 0
+  index: -1
+scores
+  rotate: false
+  xy: 341, 84
+  size: 112, 40
+  orig: 112, 40
+  offset: 0, 0
+  index: -1
+play
+  rotate: false
+  xy: 115, 2
+  size: 111, 40
+  orig: 111, 40
+  offset: 0, 0
+  index: -1
+media-pause
+  rotate: false
+  xy: 455, 92
+  size: 32, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: -1

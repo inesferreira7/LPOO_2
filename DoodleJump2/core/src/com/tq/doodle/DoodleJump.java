@@ -1,9 +1,9 @@
 package com.tq.doodle;
 
 import com.badlogic.gdx.Game;
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.tq.doodle.Screens.MenuScreen;
-import com.tq.doodle.Screens.PlayScreen;
 
 public class DoodleJump extends Game {
 	public SpriteBatch batch;
@@ -22,4 +22,11 @@ public class DoodleJump extends Game {
 	public void render () {
 		super.render();
 	}
+/*
+	@Override
+	public void setScreen(Screen screen) {
+		super.setScreen(screen);
+		this.getScreen().resize(Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
+	}
+	*/
 }
