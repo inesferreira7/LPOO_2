@@ -25,15 +25,15 @@ public class Hud implements Disposable{
 
     private Image pause;
     private Texture pauseTexture;
-    private Integer score;
+    private static Integer score;
     private static Integer coins;
     private Label pauseLabel;
-    private Label scoreLabel;
+    private static Label scoreLabel;
     private static Label coinsLabel;
 
 
     public Hud(SpriteBatch sb) {
-        score = 0;
+        score = 1500;
         coins = 0;
         viewport = new FitViewport(DoodleJump.V_WIDTH, DoodleJump.V_HEIGHT, new OrthographicCamera());
         stage = new Stage(viewport, sb);
@@ -57,8 +57,14 @@ public class Hud implements Disposable{
     }
 
         public static void addScore(int value){
-        coins+=value;
-        coinsLabel.setText(String.format("%03d", coins));
+            if(score == 0){
+                score = 0;
+                scoreLabel.setText(String.format("%03d",score));
+            }
+            else {
+                score += value;
+                scoreLabel.setText(String.format("%03d", score));
+            }
 
     }
 
@@ -68,12 +74,12 @@ public class Hud implements Disposable{
     }
 
     public void update(float dt){
-        timeCount += dt;
+       /* timeCount += dt;
         if(timeCount >= 1){
             score++;
             scoreLabel.setText(String.format("%04d", score));
             timeCount = 0.8f;
-        }
+        }*/
     }
 }
 
