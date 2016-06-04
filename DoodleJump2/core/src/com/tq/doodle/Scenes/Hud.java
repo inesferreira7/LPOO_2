@@ -76,7 +76,12 @@ public class Hud implements Disposable{
     public void update(float dt){
         timeCount += dt;
         if(timeCount >= 1){
-            score--;
+            if(score <= 0){
+                score = 0;
+            }
+            else {
+                score--;
+            }
             scoreLabel.setText(String.format("%04d", score));
             timeCount = 0.8f;
         }

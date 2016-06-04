@@ -1,22 +1,20 @@
 package com.tq.doodle.Sprites;
 
-        import com.badlogic.gdx.graphics.Texture;
-        import com.badlogic.gdx.graphics.g2d.Sprite;
-        import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-        import com.badlogic.gdx.graphics.g2d.TextureRegion;
-        import com.badlogic.gdx.math.Rectangle;
-        import com.badlogic.gdx.physics.box2d.Body;
-        import com.badlogic.gdx.physics.box2d.BodyDef;
-        import com.badlogic.gdx.physics.box2d.Fixture;
-        import com.badlogic.gdx.physics.box2d.FixtureDef;
-        import com.badlogic.gdx.physics.box2d.PolygonShape;
-        import com.badlogic.gdx.physics.box2d.World;
-        import com.badlogic.gdx.utils.Array;
-        import com.tq.doodle.DoodleJump;
-        import com.tq.doodle.Screens.PlayScreen;
-
-
-        import java.util.Random;
+import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.Sprite;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import com.badlogic.gdx.math.Rectangle;
+import com.badlogic.gdx.physics.box2d.Body;
+import com.badlogic.gdx.physics.box2d.BodyDef;
+import com.badlogic.gdx.physics.box2d.Fixture;
+import com.badlogic.gdx.physics.box2d.FixtureDef;
+import com.badlogic.gdx.physics.box2d.PolygonShape;
+import com.badlogic.gdx.physics.box2d.World;
+import com.badlogic.gdx.utils.Array;
+import com.tq.doodle.DoodleJump;
+import com.tq.doodle.Screens.PlayScreen;
+import java.util.Random;
 
 /**
  * Created by Utilizador on 02/06/2016.
@@ -30,26 +28,31 @@ public class Platform extends Sprite {
     private Random randX;
     private Random randY;
     private Random randGap;
-    private static int CURRHEIGHT = 0;
+    private static int currentHeight = 0;
     private Texture newPlat;
     private Array<Rectangle> rectangles;
     public Rectangle bounds;
     private Array<Body> platforms;
+    private Texture teste;
 
     public Platform(World world, PlayScreen screen){
-        newPlat = new Texture("plat.png");
         this.world = world;
+        newPlat = new Texture("plat.png");
+        teste = new Texture("teste.png");
         platforms = new Array<Body>();
         rectangles = new Array<Rectangle>();
         bounds = new Rectangle();
 
-        while(screen.getMapHeight() >= CURRHEIGHT){
+        currentHeight = 0;
+
+        while(screen.getMapHeight() >= currentHeight){
             randGap = new Random();
             double gap;
             gap = randGap.nextInt(200-150)+100 ;
-            CURRHEIGHT+=gap;
-            definePlatform(CURRHEIGHT);
+            currentHeight+=gap;
+            definePlatform(currentHeight);
         }
+        System.out.println("SIZE: " + platforms.size);
     }
 
     public void definePlatform(double currentHeight){
@@ -79,8 +82,8 @@ public class Platform extends Sprite {
     }
 
     public void render(SpriteBatch sb){
-
         for(int i = 0; i < platforms.size -1; i++){
+           // System.out.println("ENTROU!");
             sb.draw(newPlat,platforms.get(i).getPosition().x-32/DoodleJump.PPM,platforms.get(i).getPosition().y-8/DoodleJump.PPM,64/DoodleJump.PPM,16/DoodleJump.PPM);
         }
     }
