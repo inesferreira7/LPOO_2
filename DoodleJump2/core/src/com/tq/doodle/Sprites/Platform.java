@@ -34,15 +34,18 @@ public class Platform extends Sprite {
     private Random randGap;
     private static int CURRHEIGHT = 0;
     private Texture newPlat;
+    private Array<Rectangle> rectangles;
+    public Rectangle bounds;
     private Array<Body> platforms;
 
     public Platform(World world, PlayScreen screen){
         newPlat = new Texture("plat.png");
-
         this.world = world;
         platforms = new Array<Body>();
+        rectangles = new Array<Rectangle>();
+        bounds = new Rectangle();
 
-        while(screen.getMapHeight() >= CURRHEIGHT+ 50/DoodleJump.PPM ){
+        while(screen.getMapHeight() >= CURRHEIGHT){
             randGap = new Random();
             double gap;
             gap = randGap.nextInt(200-150)+100 ;
@@ -52,25 +55,28 @@ public class Platform extends Sprite {
     }
 
     public void definePlatform(double currentHeight){
-
         randX = new Random();
         randY = new Random();
+        bounds =  new Rectangle(randX.nextInt(XVAR)/DoodleJump.PPM,(int)currentHeight/DoodleJump.PPM,32/DoodleJump.PPM,8/DoodleJump.PPM);
+        rectangles.add(bounds);
 
+
+        PolygonShape shape = new PolygonShape();
+        shape.setAsBox(32/ DoodleJump.PPM,8/DoodleJump.PPM);
 
         BodyDef bdef = new BodyDef();
         bdef.position.set(randX.nextInt(XVAR) / DoodleJump.PPM, (int)currentHeight/DoodleJump.PPM);
-
         bdef.type = BodyDef.BodyType.StaticBody;
         platBody = world.createBody(bdef);
 
-
         FixtureDef fdef = new FixtureDef();
-        PolygonShape shape = new PolygonShape();
         shape.setAsBox(32/ DoodleJump.PPM,8/DoodleJump.PPM);
 
         fdef.shape = shape;
 
         platBody.createFixture(fdef);
+        bounds.set(platBody.getPosition().x,platBody.getPosition().y,64/DoodleJump.PPM, 16/DoodleJump.PPM);
+
         platforms.add(platBody);
     }
 
@@ -79,5 +85,13 @@ public class Platform extends Sprite {
         for(int i = 0; i < platforms.size -1; i++){
             sb.draw(newPlat,platforms.get(i).getPosition().x-32/DoodleJump.PPM,platforms.get(i).getPosition().y-8/DoodleJump.PPM,64/DoodleJump.PPM,16/DoodleJump.PPM);
         }
+    }
+
+    public Array<Rectangle> getRectangles() {
+        return rectangles;
+    }
+
+    public Array<Body> getPlatforms() {
+        return platforms;
     }
 }

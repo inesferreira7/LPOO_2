@@ -34,12 +34,17 @@ public class OptionsScreen implements Screen{
     private OrthographicCamera cam;
     private ImageButton soundBtn;
     private ImageButton menuBtn;
+    private Texture title;
     private boolean musicon;
     private int touchs;
+
+    public static final int title_width = 420;
+    public static final int title_height = 130;
 
     public OptionsScreen(DoodleJump game){
         this.game = game;
         this.background = new Texture("background.png");
+        title = new Texture("optionstitle.png");
         cam = new OrthographicCamera();
         cam.setToOrtho(false);
         optionsPort = new FitViewport(DoodleJump.V_WIDTH, DoodleJump.V_HEIGHT,cam);
@@ -79,6 +84,7 @@ public class OptionsScreen implements Screen{
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
         game.batch.begin();
         game.batch.draw(background,0, 0, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
+        game.batch.draw(title, Gdx.graphics.getWidth()/2 - title_width/2 - 20, Gdx.graphics.getHeight()/2 + 150, title_width, title_height);
         game.batch.end();
         stage.draw();
     }
@@ -121,7 +127,7 @@ public class OptionsScreen implements Screen{
         //Soundbutton
         if(game.music == true) soundBtn = new ImageButton(skin.getDrawable("soundon"), skin.getDrawable("soundoff"), skin.getDrawable("soundoff"));
         if(game.music == false) soundBtn = new ImageButton(skin.getDrawable("soundoff"), skin.getDrawable("soundon"), skin.getDrawable("soundon"));
-        soundBtn.setSize(soundBtn.getWidth(),soundBtn.getHeight());
+        soundBtn.setSize(100,100);
         soundBtn.setPosition(DoodleJump.V_WIDTH/2 - soundBtn.getWidth()/2, DoodleJump.V_HEIGHT/2);
         stage.addActor(soundBtn);
 

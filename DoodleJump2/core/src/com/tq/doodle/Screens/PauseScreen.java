@@ -21,6 +21,7 @@ import com.tq.doodle.DoodleJump;
 public class PauseScreen implements Screen {
 
     private DoodleJump game;
+    private PlayScreen play;
     private Texture background_pause;
     private Stage stage;
     private TextureAtlas lvlMenuAtlas;
@@ -34,8 +35,9 @@ public class PauseScreen implements Screen {
     public static final int btn_width = 140;
     public static final int btn_height = 60;
 
-    public PauseScreen (DoodleJump game){
+    public PauseScreen (PlayScreen play, DoodleJump game){
         this.game = game;
+        this.play=play;
         this.background_pause = new Texture("background_pause.png");
         cam = new OrthographicCamera();
         cam.setToOrtho(false);
@@ -51,6 +53,7 @@ public class PauseScreen implements Screen {
     public void handleInput(float dt){
 
         if(menuBtn.isPressed()) game.setScreen(new MenuScreen(game));
+        if(resumeBtn.isPressed()) game.setScreen(play);
 
     }
 

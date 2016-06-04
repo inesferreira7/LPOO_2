@@ -52,8 +52,9 @@ public class PlayScreen implements Screen, InputProcessor {
     private int mapHeight;
 
     public final static Vector2 GRAVITY = new Vector2(0, -10);
-    private final static int JUMP_HEIGHT_MODIFIER = 50;
-    private final static int JUMP_WIDTH_MODIFIER = 30;
+    private final static int JUMP_HEIGHT_MODIFIER = 30;
+    private final static int JUMP_WIDTH_MODIFIER = 50;
+    private final static Vector2 base = new Vector2(0,0);
 
     public PlayScreen(DoodleJump game){
         this.game= game;
@@ -112,7 +113,7 @@ public class PlayScreen implements Screen, InputProcessor {
             int cursor_y = Gdx.input.getY();
             if(cursor_x >= 50 && cursor_x < 180){
                 if (cursor_y < 100 && cursor_y >30){
-                    game.setScreen(new PauseScreen(game));
+                    game.setScreen(new PauseScreen(this, game));
                     if(music!= null) music.stop();
                 }
             }
@@ -126,6 +127,7 @@ public class PlayScreen implements Screen, InputProcessor {
         gamecam.update();
         renderer.setView(gamecam);
         hud.update(dt);
+        collisions();
     }
 
     @Override
@@ -212,7 +214,11 @@ public class PlayScreen implements Screen, InputProcessor {
 
     @Override
     public boolean touchDown(int screenX, int screenY, int pointer, int button) {
-        Hud.addScore(100);
+
+        if(player.b2body.getLinearVelocity() != base){
+            player.b2body.setLinearVelocity(0,0);
+        }
+
         if (screenX < DoodleJump.V_WIDTH/2) {
             player.b2body.applyForceToCenter(-JUMP_WIDTH_MODIFIER, JUMP_HEIGHT_MODIFIER * -GRAVITY.y, true);
             player.flipDoodle(player.kk, screenX);
@@ -242,5 +248,13 @@ public class PlayScreen implements Screen, InputProcessor {
     @Override
     public boolean scrolled(int amount) {
         return false;
+    }
+
+    public void collisions(){
+        for(int i  = 0; i < plat.getRectangles().size; i++){
+            if(player.collides(plat.getRectangles().get(i))){
+
+            }
+        }
     }
 }

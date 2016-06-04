@@ -4,6 +4,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Circle;
+import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.BodyDef;
 import com.badlogic.gdx.physics.box2d.CircleShape;
@@ -11,6 +12,8 @@ import com.badlogic.gdx.physics.box2d.FixtureDef;
 import com.badlogic.gdx.physics.box2d.World;
 import com.tq.doodle.DoodleJump;
 import com.tq.doodle.Screens.PlayScreen;
+
+import org.w3c.dom.css.Rect;
 
 
 /**
@@ -21,11 +24,13 @@ public class Doodle extends Sprite{
     public Body b2body;
     public boolean kk;
     private TextureRegion jumpright;
+    public Rectangle doodleBounds;
 
     public Doodle(World world, PlayScreen screen){
         super(screen.getAtlas().findRegion("doodleright"));
         kk = false;
         this.world = world;
+        doodleBounds = new Rectangle();
         defineDoodle();
         jumpright = new TextureRegion(getTexture(), 0, 0, 60, 62);
         setBounds(0,0, 60/DoodleJump.PPM, 62/DoodleJump.PPM);
@@ -33,13 +38,17 @@ public class Doodle extends Sprite{
     }
 
     public void update(float dt){
-        setPosition(b2body.getPosition().x - getWidth() / 2, b2body.getPosition().y - getHeight() / 2 +0.05f);
+
+        setPosition(b2body.getPosition().x - getWidth() / 2, b2body.getPosition().y - getHeight() / 2);
+
         if(b2body.getPosition().x <=0.1){
             b2body.setTransform(0.1f,b2body.getPosition().y,0);
         }
         if(b2body.getPosition().x >= DoodleJump.V_WIDTH/DoodleJump.PPM - 0.3f){
             b2body.setTransform(DoodleJump.V_WIDTH/DoodleJump.PPM -0.3f ,b2body.getPosition().y,0);
         }
+
+        doodleBounds.setPosition(b2body.getPosition().x,b2body.getPosition().y);
     }
 
 
@@ -55,6 +64,8 @@ public class Doodle extends Sprite{
 
         fdef.shape = shape;
         b2body.createFixture(fdef);
+
+        doodleBounds.set(b2body.getPosition().x, b2body.getPosition().y,64/DoodleJump.PPM, 64/DoodleJump.PPM);
 
     }
 
@@ -84,5 +95,14 @@ public class Doodle extends Sprite{
                 }
             }
         }
+
+    public Rectangle getDoodleBounds() {
+        return doodleBounds;
     }
+
+    public boolean collides(Rectangle platform){
+        if(platform.overlaps(doodleBounds) == true) return true;
+        else return false;
+    }
+}
 
