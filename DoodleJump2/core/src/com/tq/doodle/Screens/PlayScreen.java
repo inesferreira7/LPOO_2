@@ -7,7 +7,9 @@ import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;;
+import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.maps.MapProperties;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TmxMapLoader;
@@ -20,6 +22,7 @@ import com.badlogic.gdx.utils.viewport.Viewport;
 import com.sun.glass.ui.View;
 import com.tq.doodle.DoodleJump;
 import com.tq.doodle.Scenes.Hud;
+import com.tq.doodle.Sprites.Coin;
 import com.tq.doodle.Sprites.Doodle;
 import com.tq.doodle.Sprites.Platform;
 import com.tq.doodle.Tools.B2WorldCreator;
@@ -43,6 +46,9 @@ public class PlayScreen implements Screen, InputProcessor {
     private TmxMapLoader maploader;
     private TiledMap map;
     private OrthogonalTiledMapRenderer renderer;
+
+    private Coin coin;
+    private Texture a;
 
     //Box2d variables
     private World world;
@@ -88,6 +94,10 @@ public class PlayScreen implements Screen, InputProcessor {
             music.setVolume(1f);
             music.play();
         }
+
+        Texture t = new Texture("Coin.png");
+        coin = new Coin(new TextureRegion(t), 8, 0.6f);
+        a=new Texture("Coin.png");
     }
 
     public int getMapWidth() {
@@ -128,6 +138,7 @@ public class PlayScreen implements Screen, InputProcessor {
         renderer.setView(gamecam);
         hud.update(dt);
         collisions();
+        coin.update(dt);
     }
 
     @Override
@@ -159,11 +170,13 @@ public class PlayScreen implements Screen, InputProcessor {
         game.batch.begin();
         player.draw(game.batch);
         plat.render(game.batch);
+        game.batch.draw(coin.getFrame(), 50/DoodleJump.PPM, 50/DoodleJump.PPM, coin.getFrame().getRegionWidth()/DoodleJump.PPM, coin.getFrame().getRegionHeight()/DoodleJump.PPM);
         game.batch.end();
 
         //Set our batch to now draw what the Hud camera sees
         game.batch.setProjectionMatrix(hud.stage.getCamera().combined);
         hud.stage.draw();
+
     }
 
     @Override

@@ -25,8 +25,6 @@ public class Platform extends Sprite {
     private static final int XVAR = DoodleJump.V_WIDTH ;
     private static final int YVAR = DoodleJump.V_HEIGHT;
 
-
-
     public World world;
     public Body platBody;
     private Random randX;
