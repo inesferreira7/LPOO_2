@@ -73,7 +73,7 @@ public class Doodle extends Sprite{
 
         fdef.shape = shape;
         fdef.filter.categoryBits = DoodleJump.DOODLE_BIT;
-        fdef.filter.maskBits = DoodleJump.GROUND_BIT | DoodleJump.WORLD_BIT;
+        fdef.filter.maskBits = DoodleJump.GROUND_BIT | DoodleJump.WORLD_BIT | DoodleJump.COIN_BIT;
         b2body.createFixture(fdef).setUserData(this);
 
         doodleBounds.set(b2body.getPosition().x-32/DoodleJump.PPM, b2body.getPosition().y-32/DoodleJump.PPM,64/DoodleJump.PPM, 64/DoodleJump.PPM);
