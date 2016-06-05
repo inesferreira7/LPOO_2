@@ -5,6 +5,7 @@ import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Circle;
 import com.badlogic.gdx.math.Rectangle;
+import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.BodyDef;
 import com.badlogic.gdx.physics.box2d.CircleShape;
@@ -25,6 +26,11 @@ public class Doodle extends Sprite{
     public boolean kk;
     private TextureRegion jumpright;
     public Rectangle doodleBounds;
+
+    public final static Vector2 GRAVITY = new Vector2(0, -10);
+    private final static int JUMP_HEIGHT_MODIFIER = 30;
+    private final static int JUMP_WIDTH_MODIFIER = 120;
+    private final static Vector2 base = new Vector2(0,0);
 
     public Doodle(World world, PlayScreen screen){
         super(screen.getAtlas().findRegion("doodleright"));
@@ -103,6 +109,15 @@ public class Doodle extends Sprite{
     public boolean collides(Rectangle platform){
         if(platform.overlaps(doodleBounds) == true) return true;
         else return false;
+    }
+
+    public void jumpRight() {
+
+        b2body.applyForceToCenter(-JUMP_WIDTH_MODIFIER, JUMP_HEIGHT_MODIFIER * -GRAVITY.y, true);
+    }
+
+    public void jumpLeft(){
+        b2body.applyForceToCenter(JUMP_WIDTH_MODIFIER, JUMP_HEIGHT_MODIFIER * -GRAVITY.y, true);
     }
 }
 

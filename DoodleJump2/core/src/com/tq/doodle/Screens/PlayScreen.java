@@ -57,10 +57,7 @@ public class PlayScreen implements Screen, InputProcessor {
 
     private int mapWidth;
     private int mapHeight;
-
-    public final static Vector2 GRAVITY = new Vector2(0, -10);
-    private final static int JUMP_HEIGHT_MODIFIER = 30;
-    private final static int JUMP_WIDTH_MODIFIER = 120;
+    
     private final static Vector2 base = new Vector2(0,0);
 
     public PlayScreen(DoodleJump game){
@@ -238,11 +235,11 @@ public class PlayScreen implements Screen, InputProcessor {
         }
 
         if (screenX < DoodleJump.V_WIDTH/2) {
-            player.b2body.applyForceToCenter(-JUMP_WIDTH_MODIFIER, JUMP_HEIGHT_MODIFIER * -GRAVITY.y, true);
+            player.jumpRight();
             player.flipDoodle(player.kk, screenX);
         }
         if (screenX > DoodleJump.V_WIDTH/2) {
-            player.b2body.applyForceToCenter(JUMP_WIDTH_MODIFIER, JUMP_HEIGHT_MODIFIER * -GRAVITY.y, true);
+            player.jumpLeft();
             player.flipDoodle(player.kk,screenX);
         }
         return false;
