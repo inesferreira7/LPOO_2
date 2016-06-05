@@ -16,8 +16,10 @@ import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TmxMapLoader;
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
 import com.badlogic.gdx.math.Vector2;
+import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.Box2DDebugRenderer;
 import com.badlogic.gdx.physics.box2d.World;
+import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 import com.sun.glass.ui.EventLoop;
@@ -29,6 +31,8 @@ import com.tq.doodle.Sprites.Doodle;
 import com.tq.doodle.Sprites.Platform;
 import com.tq.doodle.Tools.B2WorldCreator;
 import com.tq.doodle.Tools.WorldContactListener;
+
+import java.util.ArrayList;
 
 /**
  * Created by Inês on 01/06/2016.
@@ -64,6 +68,8 @@ public class PlayScreen implements Screen, InputProcessor {
 
     private final static Vector2 base = new Vector2(0,0);
 
+    //public ArrayList<Body> destroyNextUpdate;
+
     public PlayScreen(DoodleJump game){
         this.game= game;
         atlas = new TextureAtlas("Jump.pack");
@@ -78,7 +84,7 @@ public class PlayScreen implements Screen, InputProcessor {
         gamecam.position.set(gamePort.getWorldWidth()/2, gamePort.getWorldHeight()/2, 0);
 
         world = new World(new Vector2(0, -10), true);
-        world.setContactListener(new WorldContactListener());
+
         b2dr = new Box2DDebugRenderer();
         player = new Doodle(world, this);
 
@@ -102,6 +108,10 @@ public class PlayScreen implements Screen, InputProcessor {
         Texture t = new Texture("Coin.png");
         coin = new Coin(new TextureRegion(t), 8, 0.6f, this,world);
         a=new Texture("Coin.png");
+        world.setContactListener(new WorldContactListener(world, coin, this));
+
+       // destroyNextUpdate = new ArrayList<Body>();
+
     }
 
     public int getMapWidth() {
@@ -139,6 +149,11 @@ public class PlayScreen implements Screen, InputProcessor {
 
     public void update(float dt){
         handleInput(dt);
+/*
+        for (Body toDelete: destroyNextUpdate){
+            world.destroyBody(toDelete);
+        }
+*/
         world.step(1/60f, 6, 2);
         player.update(dt);
         gamecam.update();
@@ -297,4 +312,11 @@ public class PlayScreen implements Screen, InputProcessor {
         }
     }
 
+/*
+    public void removeCoin (Body body) {
+        destroyNextUpdate.add(body);
+        coin.getCoins().remove(body);
+
+    }
+    */
 }//puxar para baixo um bocado o x e o y inicial!
