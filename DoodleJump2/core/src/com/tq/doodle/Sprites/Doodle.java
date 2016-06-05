@@ -32,6 +32,7 @@ public class Doodle extends Sprite{
     private final static int JUMP_HEIGHT_MODIFIER = 30;
     private final static int JUMP_WIDTH_MODIFIER = 120;
     private final static Vector2 base = new Vector2(0,0);
+    private boolean win ;
 
     public Doodle(World world, PlayScreen screen){
         super(screen.getAtlas().findRegion("doodleright"));
@@ -42,6 +43,7 @@ public class Doodle extends Sprite{
         jumpright = new TextureRegion(getTexture(), 0, 0, 60, 62);
         setBounds(0,0, 60/DoodleJump.PPM, 62/DoodleJump.PPM);
         setRegion(jumpright);
+        win = false;
     }
 
     public void update(float dt){
@@ -111,10 +113,18 @@ public class Doodle extends Sprite{
         return doodleBounds;
     }
 
+
+
     public boolean collides(Rectangle platform){
         if(platform.overlaps(doodleBounds) == true) return true;
         else return false;
     }
+
+   /* public boolean coinCol (Body coin ){
+
+
+
+    }*/
 
     public void jumpRight() {
 
@@ -123,6 +133,14 @@ public class Doodle extends Sprite{
 
     public void jumpLeft(){
         b2body.applyForceToCenter(JUMP_WIDTH_MODIFIER, JUMP_HEIGHT_MODIFIER * -GRAVITY.y, true);
+    }
+
+    public boolean getWin() {
+        return win;
+    }
+
+    public void setWin(boolean win) {
+        this.win = win;
     }
 }
 

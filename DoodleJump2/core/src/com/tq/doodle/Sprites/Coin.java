@@ -24,6 +24,7 @@ public class Coin extends Sprite {
 
     private Array<TextureRegion> frames;
     private ArrayList<Body> coins;
+    private Array<Coin> coinList;
     public World world;
     float maxFrameTime;
     float currFrameTime;
@@ -44,6 +45,7 @@ public class Coin extends Sprite {
     public Coin(TextureRegion region, int frameCount, float time, PlayScreen screen, World world) {
         this.world = world;
         coins = new ArrayList<Body>();
+        coinList = new Array();
 
         currentHeight = 0;
         while (screen.getMapHeight() >= currentHeight) {
@@ -125,4 +127,6 @@ public class Coin extends Sprite {
     public ArrayList<Body> getCoins() {
         return coins;
     }
+
+
 }

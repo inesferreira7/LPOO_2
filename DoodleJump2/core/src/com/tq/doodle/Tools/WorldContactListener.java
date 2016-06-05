@@ -32,6 +32,7 @@ public class WorldContactListener implements ContactListener{
 
     @Override
     public void beginContact(Contact contact) {
+        System.out.println("ENTROU!");
         Fixture fixtureA = contact.getFixtureA();
         Fixture fixtureB = contact.getFixtureB();
 
@@ -42,8 +43,12 @@ public class WorldContactListener implements ContactListener{
 
         //Implementar colisao entre doodle e moeda
         if (fixtureA.getFilterData().categoryBits == DoodleJump.DOODLE_BIT && fixtureB.getFilterData().categoryBits == DoodleJump.COIN_BIT){
-            System.out.println("Reconhece colisao entre doodle e moeda");
-        }
+            /*((Coin))
+            for(int i = 0; i < ((Coin)fixtureB.getUserData()).getCoins().size(); i++){
+
+            }*/
+
+    }
 
         else if (fixtureA.getFilterData().categoryBits == DoodleJump.COIN_BIT && fixtureB.getFilterData().categoryBits == DoodleJump.DOODLE_BIT) {
             System.out.println("Reconhece colisao entre doodle e moeda");
