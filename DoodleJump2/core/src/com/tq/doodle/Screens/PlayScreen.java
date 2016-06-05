@@ -5,6 +5,7 @@ import com.badlogic.gdx.Input;
 import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.audio.Music;
+import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;;
 import com.badlogic.gdx.graphics.Texture;
@@ -42,6 +43,7 @@ public class PlayScreen implements Screen, InputProcessor {
     private MapProperties prop;
     private Platform plat;
     private Music music;
+    private Sound dough;
 
     //Tiled map variables
     private TmxMapLoader maploader;
@@ -57,7 +59,7 @@ public class PlayScreen implements Screen, InputProcessor {
 
     private int mapWidth;
     private int mapHeight;
-    
+
     private final static Vector2 base = new Vector2(0,0);
 
     public PlayScreen(DoodleJump game){
@@ -91,6 +93,7 @@ public class PlayScreen implements Screen, InputProcessor {
             music.setLooping(true);
             music.setVolume(1f);
             music.play();
+            dough = Gdx.audio.newSound(Gdx.files.internal("simpson.ogg"));
         }
 
         Texture t = new Texture("Coin.png");
@@ -210,6 +213,7 @@ public class PlayScreen implements Screen, InputProcessor {
         music.dispose();
         coin.dispose();
         plat.dispose();
+        dough.dispose();
     }
 
     @Override
@@ -268,9 +272,9 @@ public class PlayScreen implements Screen, InputProcessor {
     public void collisions(){
         long endPauseTime = 0;
 
-
         for(int i  = 0; i < plat.getRectangles().size; i++){
             if(player.collides(plat.getRectangles().get(i))){
+                dough.play();
                 endPauseTime = System.currentTimeMillis() + (1 * 1000);
                 while(System.currentTimeMillis() < endPauseTime)
                 {
