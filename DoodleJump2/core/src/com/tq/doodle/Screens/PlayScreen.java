@@ -118,6 +118,7 @@ public class PlayScreen implements Screen, InputProcessor {
     }
 
     public void handleInput(float dt) {
+
         if (Gdx.input.isButtonPressed(Input.Buttons.LEFT)){
             int cursor_x = Gdx.input.getX();
             int cursor_y = Gdx.input.getY();
@@ -227,8 +228,7 @@ public class PlayScreen implements Screen, InputProcessor {
 
     @Override
     public boolean touchDown(int screenX, int screenY, int pointer, int button) {
-
-
+        
         if(player.b2body.getLinearVelocity() != base){
             player.b2body.setLinearVelocity(0,0);
         }
