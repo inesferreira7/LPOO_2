@@ -270,8 +270,9 @@ public class PlayScreen implements Screen, InputProcessor {
     public void collisions(){
         for(int i  = 0; i < plat.getRectangles().size; i++){
             if(player.collides(plat.getRectangles().get(i))){
+                game.setScreen(new GameOverScreen(game));
             }
         }
     }
 
-}
+}//puxar para baixo um bocado o x e o y inicial!
