@@ -57,7 +57,7 @@ public class Platform extends Sprite {
     public void definePlatform(double currentHeight){
         randX = new Random();
         randY = new Random();
-        bounds =  new Rectangle(randX.nextInt(XVAR)/DoodleJump.PPM,(int)currentHeight/DoodleJump.PPM,32/DoodleJump.PPM,8/DoodleJump.PPM);
+        bounds =  new Rectangle(randX.nextInt(XVAR)/DoodleJump.PPM,(int)currentHeight/DoodleJump.PPM,64/DoodleJump.PPM,16/DoodleJump.PPM);
         rectangles.add(bounds);
 
 
@@ -75,8 +75,7 @@ public class Platform extends Sprite {
         fdef.shape = shape;
 
         platBody.createFixture(fdef);
-        bounds.set(platBody.getPosition().x,platBody.getPosition().y,64/DoodleJump.PPM, 16/DoodleJump.PPM);
-
+        bounds.set(platBody.getPosition().x-32/DoodleJump.PPM,platBody.getPosition().y-8/DoodleJump.PPM,64/DoodleJump.PPM, 16/DoodleJump.PPM);
         platforms.add(platBody);
     }
 

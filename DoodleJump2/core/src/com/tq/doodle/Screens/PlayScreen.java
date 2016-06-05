@@ -19,6 +19,7 @@ import com.badlogic.gdx.physics.box2d.Box2DDebugRenderer;
 import com.badlogic.gdx.physics.box2d.World;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
+import com.sun.glass.ui.EventLoop;
 import com.sun.glass.ui.View;
 import com.tq.doodle.DoodleJump;
 import com.tq.doodle.Scenes.Hud;
@@ -268,9 +269,19 @@ public class PlayScreen implements Screen, InputProcessor {
     }
 
     public void collisions(){
+        long endPauseTime = 0;
+
+
         for(int i  = 0; i < plat.getRectangles().size; i++){
             if(player.collides(plat.getRectangles().get(i))){
-                game.setScreen(new GameOverScreen(game));
+                endPauseTime = System.currentTimeMillis() + (1 * 1000);
+                while(System.currentTimeMillis() < endPauseTime)
+                {
+
+                }
+                    game.setScreen(new GameOverScreen(game));
+
+
             }
         }
     }

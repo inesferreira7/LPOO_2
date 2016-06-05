@@ -39,7 +39,7 @@ public class Doodle extends Sprite{
 
     public void update(float dt){
 
-        setPosition(b2body.getPosition().x - getWidth() / 2, b2body.getPosition().y - getHeight() / 2);
+        setPosition(b2body.getPosition().x - 32/DoodleJump.PPM, b2body.getPosition().y - 32/DoodleJump.PPM);
 
         if(b2body.getPosition().x <=0.1){
             b2body.setTransform(0.1f,b2body.getPosition().y,0);
@@ -48,13 +48,13 @@ public class Doodle extends Sprite{
             b2body.setTransform(DoodleJump.V_WIDTH/DoodleJump.PPM -0.3f ,b2body.getPosition().y,0);
         }
 
-        doodleBounds.setPosition(b2body.getPosition().x,b2body.getPosition().y);
+        doodleBounds.setPosition(b2body.getPosition().x-32/DoodleJump.PPM,b2body.getPosition().y-32/DoodleJump.PPM);
     }
 
 
     public void defineDoodle(){
         BodyDef bdef = new BodyDef();
-        bdef.position.set(100/ DoodleJump.PPM, 30/ DoodleJump.PPM);
+        bdef.position.set(100/DoodleJump.PPM, 30/ DoodleJump.PPM);
         bdef.type = BodyDef.BodyType.DynamicBody;
         b2body = world.createBody(bdef);
 
@@ -65,7 +65,7 @@ public class Doodle extends Sprite{
         fdef.shape = shape;
         b2body.createFixture(fdef);
 
-        doodleBounds.set(b2body.getPosition().x, b2body.getPosition().y,64/DoodleJump.PPM, 64/DoodleJump.PPM);
+        doodleBounds.set(b2body.getPosition().x-32/DoodleJump.PPM, b2body.getPosition().y-32/DoodleJump.PPM,64/DoodleJump.PPM, 64/DoodleJump.PPM);
 
     }
 
