@@ -10,6 +10,7 @@ import com.badlogic.gdx.physics.box2d.World;
 import com.tq.doodle.DoodleJump;
 import com.tq.doodle.Screens.PlayScreen;
 import com.tq.doodle.Sprites.Coin;
+import com.tq.doodle.Sprites.Doodle;
 
 /**
  * Created by Inês on 05/06/2016.
@@ -19,11 +20,14 @@ public class WorldContactListener implements ContactListener{
     private World world;
     private Coin coin;
     private PlayScreen screen;
+    private DoodleJump game;
+    private boolean vitoria;
 
     public WorldContactListener( World world, Coin coin, PlayScreen screen){
         this.world = world;
         this.coin = coin;
         this.screen=screen;
+        vitoria = false;
     }
 
     @Override
@@ -34,7 +38,7 @@ public class WorldContactListener implements ContactListener{
         //Colisao entre o doodle e a meta
         if ((fixtureA.getFilterData().categoryBits == DoodleJump.DOODLE_BIT && fixtureB.getFilterData().categoryBits == DoodleJump.WORLD_BIT)
                 || (fixtureA.getFilterData().categoryBits == DoodleJump.WORLD_BIT && fixtureB.getFilterData().categoryBits == DoodleJump.DOODLE_BIT))
-            System.out.println("OlaInes!!!!!!!!!!!!!!!");
+            ((Doodle) fixtureB.getUserData()).setWin(true);
 
         //Implementar colisao entre doodle e moeda
         if (fixtureA.getFilterData().categoryBits == DoodleJump.DOODLE_BIT && fixtureB.getFilterData().categoryBits == DoodleJump.COIN_BIT){
@@ -59,5 +63,9 @@ public class WorldContactListener implements ContactListener{
     @Override
     public void endContact(Contact contact) {
 
+    }
+
+    public boolean getVitoria(){
+        return vitoria;
     }
 }

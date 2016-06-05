@@ -143,6 +143,10 @@ public class PlayScreen implements Screen, InputProcessor {
                 }
             }
         }
+
+        if (player.getWin() == true){
+            game.setScreen(new WinScreen(game));
+        }
     }
 
     public void update(float dt) {
@@ -151,6 +155,7 @@ public class PlayScreen implements Screen, InputProcessor {
         for (Body toDelete: destroyNextUpdate){
             world.destroyBody(toDelete);
         }
+
 */
         world.step(1 / 60f, 6, 2);
         player.update(dt);

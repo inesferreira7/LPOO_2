@@ -7,6 +7,7 @@ import com.badlogic.gdx.physics.box2d.Body;
 import com.tq.doodle.Screens.GameOverScreen;
 import com.tq.doodle.Screens.MenuScreen;
 import com.tq.doodle.Screens.PlayScreen;
+import com.tq.doodle.Screens.WinScreen;
 
 public class DoodleJump extends Game {
 	public SpriteBatch batch;
