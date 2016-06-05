@@ -13,6 +13,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 import com.tq.doodle.DoodleJump;
+import com.tq.doodle.Tools.FileHandler;
 
 
 /**
@@ -28,6 +29,7 @@ public class MenuScreen implements Screen {
     private Stage stage;
     private TextureAtlas lvlMenuAtlas;
     private Skin skin;
+    private FileHandler handler;
 
     private OrthographicCamera cam;
     private Viewport menuPort;
@@ -55,6 +57,8 @@ public class MenuScreen implements Screen {
         cam = new OrthographicCamera();
         cam.setToOrtho(false);
         menuPort = new FitViewport(DoodleJump.V_WIDTH, DoodleJump.V_HEIGHT,cam);
+        handler = new FileHandler();
+
 
         initStage(game.batch);
     }
@@ -62,7 +66,13 @@ public class MenuScreen implements Screen {
     public void handleInput(float dt) {
 
         if (playBtn.isPressed()) game.setScreen(new PlayScreen(game));
-        if (optionsBtn.isPressed()) game.setScreen(new OptionsScreen(game));
+        if (optionsBtn.isPressed()){
+            game.setScreen(new OptionsScreen(game));
+            System.out.println("Ola");
+            handler.write();
+        }
+
+
 
     }
 

@@ -75,10 +75,10 @@ public class GameOverScreen implements Screen{
         Gdx.gl.glClearColor(0, 0, 0, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
         game.batch.begin();
-        game.batch.draw(background,0, 0, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
-        game.batch.draw(lost, Gdx.graphics.getWidth()/2 - lost_width/2, Gdx.graphics.getHeight()/2 + 180, lost_width,lost_height);
-        game.batch.draw(doodle, Gdx.graphics.getWidth()/2+50, Gdx.graphics.getHeight()/2 + 20);
-        game.batch.draw(littledoodle, Gdx.graphics.getWidth()/2-170, Gdx.graphics.getHeight()/2 -40, 85, 85);
+        game.batch.draw(background,0, 0, DoodleJump.V_WIDTH, DoodleJump.V_HEIGHT);
+        game.batch.draw(lost, DoodleJump.V_WIDTH/2 - lost_width/2, DoodleJump.V_HEIGHT/2 + 180, lost_width,lost_height);
+        game.batch.draw(doodle, DoodleJump.V_WIDTH/2+50, DoodleJump.V_HEIGHT/2 + 20);
+        game.batch.draw(littledoodle, DoodleJump.V_WIDTH/2-170, DoodleJump.V_HEIGHT/2 -40, 85, 85);
         game.batch.draw(bottom, 0, 0);
         game.batch.end();
         stage.draw();

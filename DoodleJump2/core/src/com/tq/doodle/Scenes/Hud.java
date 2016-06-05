@@ -33,7 +33,7 @@ public class Hud implements Disposable{
 
 
     public Hud(SpriteBatch sb) {
-        score = 1500;
+        score = 500;
         coins = 0;
         viewport = new FitViewport(DoodleJump.V_WIDTH, DoodleJump.V_HEIGHT, new OrthographicCamera());
         stage = new Stage(viewport, sb);
@@ -85,6 +85,10 @@ public class Hud implements Disposable{
             scoreLabel.setText(String.format("%04d", score));
             timeCount = 0.8f;
         }
+    }
+
+    public int getScore(){
+        return score;
     }
 }
 

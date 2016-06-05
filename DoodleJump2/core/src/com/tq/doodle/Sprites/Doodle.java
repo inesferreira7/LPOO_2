@@ -66,7 +66,7 @@ public class Doodle extends Sprite{
 
         FixtureDef fdef = new FixtureDef();
         CircleShape shape = new CircleShape();
-        shape.setRadius(20 / DoodleJump.PPM);
+        shape.setRadius(1 / DoodleJump.PPM);
 
         fdef.shape = shape;
         b2body.createFixture(fdef);

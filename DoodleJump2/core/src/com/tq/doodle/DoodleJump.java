@@ -13,12 +13,14 @@ public class DoodleJump extends Game {
 	public static final int V_HEIGHT = 800;
 	public static final float PPM = 100; //pixels per meter
 	public boolean music;
+	public boolean sounds;
 
 	@Override
 	public void create () {
 		batch = new SpriteBatch();
 		setScreen( new MenuScreen(this));
 		music = true;
+		sounds = true;
 	}
 
 	@Override
@@ -29,4 +31,6 @@ public class DoodleJump extends Game {
 	public boolean getMusic(){
 		return music;
 	}
+
+	public boolean getSounds(){return sounds;}
 }

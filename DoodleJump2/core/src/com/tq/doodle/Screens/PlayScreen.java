@@ -59,6 +59,7 @@ public class PlayScreen implements Screen, InputProcessor {
 
     private int mapWidth;
     private int mapHeight;
+    private int finalScore;
 
     private final static Vector2 base = new Vector2(0,0);
 
@@ -88,7 +89,7 @@ public class PlayScreen implements Screen, InputProcessor {
 
         Gdx.input.setInputProcessor(this);
 
-        if(game.getMusic() == true) {
+        if(game.getMusic() == true  && game.getSounds() == true) {
             music = Gdx.audio.newMusic(Gdx.files.internal("background_music.mp3"));
             music.setLooping(true);
             music.setVolume(1f);
@@ -127,6 +128,8 @@ public class PlayScreen implements Screen, InputProcessor {
                 if (cursor_y < 100 && cursor_y >30){
                     game.setScreen(new PauseScreen(this, game));
                     if(music!= null) music.stop();
+                    if(dough!= null) dough.stop();
+
                 }
             }
         }
@@ -273,16 +276,21 @@ public class PlayScreen implements Screen, InputProcessor {
         long endPauseTime = 0;
 
         for(int i  = 0; i < plat.getRectangles().size; i++){
+
+            //Condiçao de perder
             if(player.collides(plat.getRectangles().get(i))){
-                dough.play();
+
+                if (game.sounds == true) dough.play(); //no commit nao ta a aparecer
+
                 endPauseTime = System.currentTimeMillis() + (1 * 1000);
+
                 while(System.currentTimeMillis() < endPauseTime)
                 {
 
                 }
                     game.setScreen(new GameOverScreen(game));
-
-
+                if(music!= null) music.stop();
+                if(dough!= null) dough.stop();
             }
         }
     }

@@ -23,20 +23,19 @@ public class B2WorldCreator {
         FixtureDef fdef = new FixtureDef();
         Body body;
 
-
-        /*//Definir as plataformas como um corpo
+        //Definir o chao como um corpo
         for (MapObject object : map.getLayers().get(2).getObjects().getByType(RectangleMapObject.class)){
             Rectangle rect = ((RectangleMapObject) object).getRectangle();
             bdef.type = BodyDef.BodyType.StaticBody;
-            bdef.position.set((rect.getX() + rect.getWidth()/2)/ DoodleJump.PPM, (rect.getY() + rect.getHeight()/2)/DoodleJump.PPM);
+            bdef.position.set((rect.getX() + rect.getWidth()/2)/DoodleJump.PPM, (rect.getY() + rect.getHeight()/2)/DoodleJump.PPM);
             body = world.createBody(bdef);
             shape.setAsBox(rect.getWidth()/2 /DoodleJump.PPM, rect.getHeight()/2 /DoodleJump.PPM);
             fdef.shape = shape;
             body.createFixture(fdef);
-        }*/
+        }
 
-        //Definir o chao como um corpo
-        for (MapObject object : map.getLayers().get(2).getObjects().getByType(RectangleMapObject.class)){
+        //Definir a meta como um corpo
+        for (MapObject object : map.getLayers().get(3).getObjects().getByType(RectangleMapObject.class)){
             Rectangle rect = ((RectangleMapObject) object).getRectangle();
             bdef.type = BodyDef.BodyType.StaticBody;
             bdef.position.set((rect.getX() + rect.getWidth()/2)/DoodleJump.PPM, (rect.getY() + rect.getHeight()/2)/DoodleJump.PPM);
