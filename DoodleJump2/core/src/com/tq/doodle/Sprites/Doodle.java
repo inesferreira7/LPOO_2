@@ -10,6 +10,7 @@ import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.BodyDef;
 import com.badlogic.gdx.physics.box2d.CircleShape;
 import com.badlogic.gdx.physics.box2d.FixtureDef;
+import com.badlogic.gdx.physics.box2d.PolygonShape;
 import com.badlogic.gdx.physics.box2d.World;
 import com.tq.doodle.DoodleJump;
 import com.tq.doodle.Screens.PlayScreen;
@@ -65,8 +66,10 @@ public class Doodle extends Sprite{
         b2body = world.createBody(bdef);
 
         FixtureDef fdef = new FixtureDef();
-        CircleShape shape = new CircleShape();
-        shape.setRadius(1 / DoodleJump.PPM);
+        PolygonShape shape = new PolygonShape();
+        shape.setAsBox(24/DoodleJump.PPM,16/DoodleJump.PPM);
+        //CircleShape shape = new CircleShape();
+        //shape.setRadius(1 / DoodleJump.PPM);
 
         fdef.shape = shape;
         fdef.filter.categoryBits = DoodleJump.DOODLE_BIT;

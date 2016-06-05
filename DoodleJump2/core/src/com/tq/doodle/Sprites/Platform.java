@@ -44,7 +44,7 @@ public class Platform extends Sprite {
 
         currentHeight = (int)(10000/DoodleJump.PPM);
 
-        while(screen.getMapHeight() >= currentHeight){
+        while(screen.getMapHeight() - 20000/DoodleJump.PPM >= currentHeight ){
             randGap = new Random();
             double gap;
             gap = randGap.nextInt(200-150)+100 ;
@@ -59,6 +59,7 @@ public class Platform extends Sprite {
         randY = new Random();
         bounds =  new Rectangle(/*randX.nextInt(XVAR)/DoodleJump.PPM,(int)currentHeight/DoodleJump.PPM,52/DoodleJump.PPM,8/DoodleJump.PPM*/);
 
+      //  r.nextInt(High-Low) + Low;
 
 
         PolygonShape shape = new PolygonShape();
@@ -72,7 +73,7 @@ public class Platform extends Sprite {
         FixtureDef fdef = new FixtureDef();
         shape.setAsBox(32/ DoodleJump.PPM,8/DoodleJump.PPM);
 
-        fdef.shape = shape;
+       fdef.shape = shape;
 
         platBody.createFixture(fdef);
         bounds.set(platBody.getPosition().x-26/DoodleJump.PPM,platBody.getPosition().y+3/DoodleJump.PPM,54/DoodleJump.PPM, 0);
@@ -81,9 +82,10 @@ public class Platform extends Sprite {
     }
 
     public void render(SpriteBatch sb){
-        for(int i = 0; i < platforms.size -1; i++){
-            sb.draw(newPlat,platforms.get(i).getPosition().x-32/DoodleJump.PPM,platforms.get(i).getPosition().y-8/DoodleJump.PPM,64/DoodleJump.PPM,16/DoodleJump.PPM);
+        for(int i = 0; i < platforms.size ; i++){
+            sb.draw(newPlat,platforms.get(i).getPosition().x-44/DoodleJump.PPM,platforms.get(i).getPosition().y-23/DoodleJump.PPM,84/DoodleJump.PPM,30/DoodleJump.PPM);
         }
+
     }
 
     public Array<Rectangle> getRectangles() {

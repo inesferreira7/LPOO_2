@@ -69,7 +69,7 @@ public class MenuScreen implements Screen {
         if (optionsBtn.isPressed()){
             game.setScreen(new OptionsScreen(game));
             System.out.println("Ola");
-            handler.write();
+            //handler.write();
         }
 
 
