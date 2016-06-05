@@ -3,6 +3,7 @@ package com.tq.doodle;
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.tq.doodle.Screens.GameOverScreen;
 import com.tq.doodle.Screens.MenuScreen;
 
 public class DoodleJump extends Game {
@@ -15,7 +16,7 @@ public class DoodleJump extends Game {
 	@Override
 	public void create () {
 		batch = new SpriteBatch();
-		setScreen( new MenuScreen(this));
+		setScreen( new GameOverScreen(this));
 		music = true;
 	}
 
