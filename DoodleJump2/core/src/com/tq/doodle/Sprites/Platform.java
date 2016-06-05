@@ -42,7 +42,7 @@ public class Platform extends Sprite {
         rectangles = new Array<Rectangle>();
         bounds = new Rectangle();
 
-        currentHeight = 0;
+        currentHeight = (int)(10000/DoodleJump.PPM);
 
         while(screen.getMapHeight() >= currentHeight){
             randGap = new Random();
@@ -57,8 +57,8 @@ public class Platform extends Sprite {
     public void definePlatform(double currentHeight){
         randX = new Random();
         randY = new Random();
-        bounds =  new Rectangle(randX.nextInt(XVAR)/DoodleJump.PPM,(int)currentHeight/DoodleJump.PPM,64/DoodleJump.PPM,16/DoodleJump.PPM);
-        rectangles.add(bounds);
+        bounds =  new Rectangle(/*randX.nextInt(XVAR)/DoodleJump.PPM,(int)currentHeight/DoodleJump.PPM,52/DoodleJump.PPM,8/DoodleJump.PPM*/);
+
 
 
         PolygonShape shape = new PolygonShape();
@@ -75,7 +75,8 @@ public class Platform extends Sprite {
         fdef.shape = shape;
 
         platBody.createFixture(fdef);
-        bounds.set(platBody.getPosition().x-32/DoodleJump.PPM,platBody.getPosition().y-8/DoodleJump.PPM,64/DoodleJump.PPM, 16/DoodleJump.PPM);
+        bounds.set(platBody.getPosition().x-26/DoodleJump.PPM,platBody.getPosition().y+3/DoodleJump.PPM,54/DoodleJump.PPM, 0);
+        rectangles.add(bounds);
         platforms.add(platBody);
     }
 

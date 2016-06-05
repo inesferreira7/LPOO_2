@@ -41,8 +41,8 @@ public class Doodle extends Sprite{
 
         setPosition(b2body.getPosition().x - 32/DoodleJump.PPM, b2body.getPosition().y - 32/DoodleJump.PPM);
 
-        if(b2body.getPosition().x <=0.1){
-            b2body.setTransform(0.1f,b2body.getPosition().y,0);
+        if(b2body.getPosition().x <=0.35){
+            b2body.setTransform(0.35f,b2body.getPosition().y,0);
         }
         if(b2body.getPosition().x >= DoodleJump.V_WIDTH/DoodleJump.PPM - 0.3f){
             b2body.setTransform(DoodleJump.V_WIDTH/DoodleJump.PPM -0.3f ,b2body.getPosition().y,0);
