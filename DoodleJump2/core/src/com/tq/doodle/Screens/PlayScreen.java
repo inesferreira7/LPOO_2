@@ -157,7 +157,7 @@ public class PlayScreen implements Screen, InputProcessor {
         gamecam.update();
         renderer.setView(gamecam);
         hud.update(dt);
-        //collisions();
+        collisions();
         coin.update(dt);
     }
 
@@ -169,8 +169,6 @@ public class PlayScreen implements Screen, InputProcessor {
         //clear the game screen with black
         Gdx.gl.glClearColor(0, 0, 0, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
-        System.out.println("POS:" + player.b2body.getPosition().y);
-        System.out.println("HEIGHT: " + mapHeight);
         float cameraY = player.b2body.getPosition().y;
         if (cameraY < gamePort.getWorldHeight() / 2)
             cameraY = gamePort.getWorldHeight() / 2;

@@ -51,7 +51,7 @@ public class MenuScreen implements Screen {
     public MenuScreen(DoodleJump game) {
         this.game = game;
         this.background = new Texture("background.png");
-        this.title = new Texture("title.png");
+        this.title = new Texture("titles.png");
         menudoodle = new Texture("menu.png");
 
         cam = new OrthographicCamera();
