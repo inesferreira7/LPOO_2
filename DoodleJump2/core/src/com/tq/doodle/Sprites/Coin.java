@@ -44,7 +44,8 @@ public class Coin extends Sprite {
         while(screen.getMapHeight() >= currentHeight) {
             randGap = new Random();
             double gap;
-            gap = randGap.nextInt(1600-600) + 600;
+            //gap = randGap.nextInt(1600-600) + 600;
+            gap = randGap.nextInt(300-150)+100;
             currentHeight += gap;
             defineCoin(region, frameCount, time,currentHeight);
         }

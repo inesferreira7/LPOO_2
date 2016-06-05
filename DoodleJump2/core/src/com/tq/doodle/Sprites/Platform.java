@@ -20,7 +20,7 @@ import java.util.Random;
  * Created by Utilizador on 02/06/2016.
  */
 public class Platform extends Sprite {
-    private static final int XVAR = DoodleJump.V_WIDTH ;
+    private static final int XVAR = DoodleJump.V_WIDTH - 40 ;
     private static final int YVAR = DoodleJump.V_HEIGHT;
 
     public World world;
@@ -44,7 +44,9 @@ public class Platform extends Sprite {
 
         currentHeight = (int)(10000/DoodleJump.PPM);
 
-        while(screen.getMapHeight() - 20000/DoodleJump.PPM >= currentHeight ){
+
+        while(screen.getMapHeight() - 300 >= currentHeight ){
+
             randGap = new Random();
             double gap;
             gap = randGap.nextInt(200-150)+100 ;
@@ -57,16 +59,18 @@ public class Platform extends Sprite {
     public void definePlatform(double currentHeight){
         randX = new Random();
         randY = new Random();
-        bounds =  new Rectangle(/*randX.nextInt(XVAR)/DoodleJump.PPM,(int)currentHeight/DoodleJump.PPM,52/DoodleJump.PPM,8/DoodleJump.PPM*/);
+        bounds =  new Rectangle();
 
-      //  r.nextInt(High-Low) + Low;
+        float xPos = randX.nextInt((XVAR -80)+80 );
+        if (xPos <= 40) xPos+=50;
 
 
         PolygonShape shape = new PolygonShape();
         shape.setAsBox(32/ DoodleJump.PPM,8/DoodleJump.PPM);
 
         BodyDef bdef = new BodyDef();
-        bdef.position.set(randX.nextInt(XVAR) / DoodleJump.PPM, (int)currentHeight/DoodleJump.PPM);
+
+        bdef.position.set(xPos / DoodleJump.PPM, (int)currentHeight/DoodleJump.PPM);
         bdef.type = BodyDef.BodyType.StaticBody;
         platBody = world.createBody(bdef);
 
@@ -82,7 +86,8 @@ public class Platform extends Sprite {
     }
 
     public void render(SpriteBatch sb){
-        for(int i = 0; i < platforms.size ; i++){
+
+        for(int i = 0; i < platforms.size  ; i++){
             sb.draw(newPlat,platforms.get(i).getPosition().x-44/DoodleJump.PPM,platforms.get(i).getPosition().y-23/DoodleJump.PPM,84/DoodleJump.PPM,30/DoodleJump.PPM);
         }
 

@@ -72,7 +72,7 @@ public class PlayScreen implements Screen, InputProcessor {
         gamePort = new FitViewport(DoodleJump.V_WIDTH/DoodleJump.PPM, DoodleJump.V_HEIGHT/DoodleJump.PPM,gamecam);
         hud = new Hud(game.batch);
         maploader = new TmxMapLoader();
-        map = maploader.load("level1.tmx");
+        map = maploader.load("teste.tmx");
         prop = map.getProperties();
         renderer = new OrthogonalTiledMapRenderer(map, 1/DoodleJump.PPM);
         gamecam.position.set(gamePort.getWorldWidth()/2, gamePort.getWorldHeight()/2, 0);
@@ -102,6 +102,7 @@ public class PlayScreen implements Screen, InputProcessor {
         Texture t = new Texture("Coin.png");
         coin = new Coin(new TextureRegion(t), 8, 0.6f, this,world);
         a=new Texture("Coin.png");
+
     }
 
     public int getMapWidth() {
@@ -144,7 +145,7 @@ public class PlayScreen implements Screen, InputProcessor {
         gamecam.update();
         renderer.setView(gamecam);
         hud.update(dt);
-        collisions();
+        //collisions();
         coin.update(dt);
     }
 
@@ -162,6 +163,9 @@ public class PlayScreen implements Screen, InputProcessor {
             cameraY = gamePort.getWorldHeight() / 2;
         else if (cameraY > mapHeight - gamePort.getWorldHeight() / 2)
             cameraY = mapHeight - gamePort.getWorldHeight() / 2;
+        if( cameraY >= mapHeight - DoodleJump.V_HEIGHT/2){
+            cameraY = mapHeight - DoodleJump.V_HEIGHT/2;
+        }
 
         gamecam.position.set(gamePort.getWorldWidth() /2, cameraY, 0);
         gamecam.update();
@@ -297,4 +301,4 @@ public class PlayScreen implements Screen, InputProcessor {
         }
     }
 
-}//puxar para baixo um bocado o x e o y inicial!
+}
