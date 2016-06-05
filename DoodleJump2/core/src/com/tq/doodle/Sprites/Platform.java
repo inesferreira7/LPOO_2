@@ -51,7 +51,7 @@ public class Platform extends Sprite {
             currentHeight+=gap;
             definePlatform(currentHeight);
         }
-        System.out.println("SIZE: " + platforms.size);
+
     }
 
     public void definePlatform(double currentHeight){
@@ -82,7 +82,6 @@ public class Platform extends Sprite {
 
     public void render(SpriteBatch sb){
         for(int i = 0; i < platforms.size -1; i++){
-           // System.out.println("ENTROU!");
             sb.draw(newPlat,platforms.get(i).getPosition().x-32/DoodleJump.PPM,platforms.get(i).getPosition().y-8/DoodleJump.PPM,64/DoodleJump.PPM,16/DoodleJump.PPM);
         }
     }
@@ -93,5 +92,9 @@ public class Platform extends Sprite {
 
     public Array<Body> getPlatforms() {
         return platforms;
+    }
+
+    public void dispose(){
+        newPlat.dispose();
     }
 }

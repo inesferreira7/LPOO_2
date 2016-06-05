@@ -1,20 +1,59 @@
 package com.tq.doodle.Sprites;
 
+import com.badlogic.gdx.graphics.g2d.Sprite;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import com.badlogic.gdx.math.Rectangle;
+import com.badlogic.gdx.physics.box2d.Body;
+import com.badlogic.gdx.physics.box2d.BodyDef;
+import com.badlogic.gdx.physics.box2d.FixtureDef;
+import com.badlogic.gdx.physics.box2d.PolygonShape;
+import com.badlogic.gdx.physics.box2d.World;
 import com.badlogic.gdx.utils.Array;
+import com.tq.doodle.DoodleJump;
+import com.tq.doodle.Screens.PlayScreen;
+
+import java.util.Random;
 
 /**
  * Created by Inês on 04/06/2016.
  */
-public class Coin{
+public class Coin extends Sprite {
 
-    Array<TextureRegion> frames;
+    private Array<TextureRegion> frames;
+    private Array<Body> coins;
+    public World world;
     float maxFrameTime;
     float currFrameTime;
     int frameCount;
     int frame;
+    private Random randX;
+    private Random randY;
+    private Random randGap;
+    private static int currentHeight = 0;
+    private Body coinBody;
+    private static final int XVAR = DoodleJump.V_WIDTH ;
+    private static final int YVAR = DoodleJump.V_HEIGHT;
 
-    public Coin(TextureRegion region, int frameCount, float time){
+
+    public Coin(TextureRegion region, int frameCount, float time, PlayScreen screen,World world){
+        this.world = world;
+        coins =  new Array<Body>();
+
+        currentHeight = 0;
+        while(screen.getMapHeight() >= currentHeight) {
+            randGap = new Random();
+            double gap;
+            gap = randGap.nextInt(1600-600) + 600;
+            currentHeight += gap;
+            defineCoin(region, frameCount, time,currentHeight);
+        }
+
+    }
+
+    public void defineCoin(TextureRegion region, int frameCount, float time, double currentHeight){
+        randX = new Random();
+        randY = new Random();
         frames = new Array<TextureRegion>();
         TextureRegion temp;
         int frameWidth = region.getRegionWidth() / frameCount;
@@ -26,6 +65,22 @@ public class Coin{
 
         this.frameCount=frameCount;
         maxFrameTime = time / frameCount;
+
+        PolygonShape shape = new PolygonShape();
+        shape.setAsBox(15/ DoodleJump.PPM,15/DoodleJump.PPM);
+
+        BodyDef bdef = new BodyDef();
+        bdef.position.set(randX.nextInt(XVAR) / DoodleJump.PPM, (int)currentHeight/DoodleJump.PPM);
+        bdef.type = BodyDef.BodyType.StaticBody;
+        coinBody = world.createBody(bdef);
+
+        FixtureDef fdef = new FixtureDef();
+        //shape.setAsBox(32/ DoodleJump.PPM,8/DoodleJump.PPM);
+
+        fdef.shape = shape;
+
+        coinBody.createFixture(fdef);
+        coins.add(coinBody);
     }
 
 
@@ -46,6 +101,13 @@ public class Coin{
     public void dispose(){
         for (TextureRegion frame : frames){
             frame.getTexture().dispose();
+        }
+    }
+
+    public void render(SpriteBatch sb){
+
+        for(int i= 0; i < coins.size - 2; i++){
+            sb.draw(getFrame(),coins.get(i).getPosition().x - 15/DoodleJump.PPM,coins.get(i).getPosition().y-15/DoodleJump.PPM,30/DoodleJump.PPM,30/DoodleJump.PPM);
         }
     }
 

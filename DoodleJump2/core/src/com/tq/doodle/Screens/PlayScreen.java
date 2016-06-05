@@ -96,7 +96,7 @@ public class PlayScreen implements Screen, InputProcessor {
         }
 
         Texture t = new Texture("Coin.png");
-        coin = new Coin(new TextureRegion(t), 8, 0.6f);
+        coin = new Coin(new TextureRegion(t), 8, 0.6f, this,world);
         a=new Texture("Coin.png");
     }
 
@@ -171,7 +171,8 @@ public class PlayScreen implements Screen, InputProcessor {
         game.batch.begin();
         player.draw(game.batch);
         plat.render(game.batch);
-        game.batch.draw(coin.getFrame(), 50/DoodleJump.PPM, 50/DoodleJump.PPM, coin.getFrame().getRegionWidth()/DoodleJump.PPM, coin.getFrame().getRegionHeight()/DoodleJump.PPM);
+        coin.render(game.batch);
+        //game.batch.draw(coin.getFrame(), 50/DoodleJump.PPM, 50/DoodleJump.PPM, coin.getFrame().getRegionWidth()/DoodleJump.PPM, coin.getFrame().getRegionHeight()/DoodleJump.PPM);
         game.batch.end();
 
         //Set our batch to now draw what the Hud camera sees
@@ -209,6 +210,8 @@ public class PlayScreen implements Screen, InputProcessor {
         b2dr.dispose();
         hud.dispose();
         music.dispose();
+        coin.dispose();
+        plat.dispose();
     }
 
     @Override
@@ -228,7 +231,7 @@ public class PlayScreen implements Screen, InputProcessor {
 
     @Override
     public boolean touchDown(int screenX, int screenY, int pointer, int button) {
-        
+
         if(player.b2body.getLinearVelocity() != base){
             player.b2body.setLinearVelocity(0,0);
         }
@@ -267,7 +270,6 @@ public class PlayScreen implements Screen, InputProcessor {
     public void collisions(){
         for(int i  = 0; i < plat.getRectangles().size; i++){
             if(player.collides(plat.getRectangles().get(i))){
-
             }
         }
     }
