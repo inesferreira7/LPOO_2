@@ -28,6 +28,7 @@ public class Coin{
         maxFrameTime = time / frameCount;
     }
 
+
     public void update(float dt){
         currFrameTime += dt;
 

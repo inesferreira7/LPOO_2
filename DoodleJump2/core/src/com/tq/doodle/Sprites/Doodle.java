@@ -73,21 +73,21 @@ public class Doodle extends Sprite{
 
 
             if (kk) {
-                if (screenX > b2body.getWorldCenter().x * DoodleJump.PPM * 1.125) {
+                if(screenX >  DoodleJump.V_WIDTH/2){
                     flip(true, false);
                     kk = false;
                 }
-                if (screenX < b2body.getWorldCenter().x * DoodleJump.PPM * 1.125) {
+                if(screenX <  DoodleJump.V_WIDTH/2){
                     flip(false, false);
                     kk = true;
 
                 }
             }
             if (!kk) {
-                if (screenX > b2body.getWorldCenter().x * DoodleJump.PPM * 1.125) {
+                if(screenX >  DoodleJump.V_WIDTH/2){
                     flip(false, false);
                 }
-                if (screenX < b2body.getWorldCenter().x * DoodleJump.PPM * 1.125) {
+                if(screenX < DoodleJump.V_WIDTH/2){
                     turned = true;
                     kk = true;
                     flip(true, false);

@@ -38,7 +38,6 @@ public class Platform extends Sprite {
     public Platform(World world, PlayScreen screen){
         this.world = world;
         newPlat = new Texture("plat.png");
-        teste = new Texture("teste.png");
         platforms = new Array<Body>();
         rectangles = new Array<Rectangle>();
         bounds = new Rectangle();

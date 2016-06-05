@@ -53,8 +53,11 @@ public class PauseScreen implements Screen {
     public void handleInput(float dt){
 
         if(menuBtn.isPressed()) game.setScreen(new MenuScreen(game));
-        if(resumeBtn.isPressed()) game.setScreen(play);
+        if(resumeBtn.isPressed()) {
+            Gdx.input.setInputProcessor(play);
+            game.setScreen(play);
 
+        }
     }
 
     @Override
