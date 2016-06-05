@@ -28,6 +28,7 @@ import com.tq.doodle.Sprites.Coin;
 import com.tq.doodle.Sprites.Doodle;
 import com.tq.doodle.Sprites.Platform;
 import com.tq.doodle.Tools.B2WorldCreator;
+import com.tq.doodle.Tools.WorldContactListener;
 
 /**
  * Created by Inês on 01/06/2016.
@@ -77,6 +78,7 @@ public class PlayScreen implements Screen, InputProcessor {
         gamecam.position.set(gamePort.getWorldWidth()/2, gamePort.getWorldHeight()/2, 0);
 
         world = new World(new Vector2(0, -10), true);
+        world.setContactListener(new WorldContactListener());
         b2dr = new Box2DDebugRenderer();
         player = new Doodle(world, this);
 

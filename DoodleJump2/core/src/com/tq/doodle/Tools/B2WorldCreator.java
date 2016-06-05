@@ -31,6 +31,7 @@ public class B2WorldCreator {
             body = world.createBody(bdef);
             shape.setAsBox(rect.getWidth()/2 /DoodleJump.PPM, rect.getHeight()/2 /DoodleJump.PPM);
             fdef.shape = shape;
+            fdef.filter.categoryBits = DoodleJump.GROUND_BIT;
             body.createFixture(fdef);
         }
 
@@ -42,6 +43,7 @@ public class B2WorldCreator {
             body = world.createBody(bdef);
             shape.setAsBox(rect.getWidth()/2 /DoodleJump.PPM, rect.getHeight()/2 /DoodleJump.PPM);
             fdef.shape = shape;
+            fdef.filter.categoryBits = DoodleJump.WORLD_BIT;
             body.createFixture(fdef);
         }
     }
