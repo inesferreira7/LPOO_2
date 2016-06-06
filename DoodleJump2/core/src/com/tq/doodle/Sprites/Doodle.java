@@ -36,11 +36,18 @@ public class Doodle extends Sprite{
     private Texture doodleNormal;
     private Texture doodleBunny;
     private Texture doodleJungle;
+
     private Texture doodleGhost;
     private Texture doodleIce;
     private Texture doodleSpace;
     private Texture doodleWater;
     private TextureRegion normalDoodle;
+
+    private Texture tommyBiceps;
+    private TextureRegion normalDoodle;
+
+    private Random randDoodle;
+
 
 
     public Rectangle doodleBounds;
@@ -61,11 +68,15 @@ public class Doodle extends Sprite{
         doodleNormal = new Texture("Jump.png");
         doodleBunny = new Texture("bunny.png");
         doodleJungle = new Texture("jungledoodle.png");
+<<<<<<< HEAD
         doodleGhost = new Texture("ghost.png");
         doodleIce = new Texture("ice.png");
         doodleSpace = new Texture("space.png");
         doodleWater = new Texture("underwater.png");
 
+=======
+        tommyBiceps = new Texture("tommybiceps.png");
+>>>>>>> origin/master
         chooseDoodle();
 
         defineDoodle();
