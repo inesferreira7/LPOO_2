@@ -106,7 +106,7 @@ public class PlayScreen implements Screen, InputProcessor {
             music.setVolume(1f);
             music.play();
             dough = Gdx.audio.newSound(Gdx.files.internal("simpson.ogg"));
-            achievement = Gdx.audio.newSound(Gdx.files.internal("achievement.ogg"));
+            achievement = Gdx.audio.newSound(Gdx.files.internal("wo.ogg"));
         }
 
         Texture t = new Texture("Coin.png");

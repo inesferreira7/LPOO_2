@@ -78,29 +78,14 @@ public class Coin extends Sprite {
         this.frameCount = frameCount;
         maxFrameTime = time / frameCount;
 
-
-        //PolygonShape shape = new PolygonShape();
-        //shape.setAsBox(15 / DoodleJump.PPM, 15 / DoodleJump.PPM);
-
-        //BodyDef bdef = new BodyDef();
-        //bdef.position.set(randX.nextInt(XVAR) / DoodleJump.PPM, (int) currentHeight / DoodleJump.PPM);
-        //bdef.type = BodyDef.BodyType.StaticBody;
-        //coinBody = world.createBody(bdef);
-
-       // FixtureDef fdef = new FixtureDef();
-
-        //fdef.shape = shape;
-        //fdef.isSensor = true;
-        //fdef.filter.categoryBits = DoodleJump.COIN_BIT;
-        //coinBody.createFixture(fdef).setUserData(this);
-        //coinBody.createFixture(fdef);
-        //coins.add(coinBody);
     }
 
     public void createCoin(double currentHeight){
         randX = new Random();
         randY = new Random();
-        coinRectangle = new Rectangle(randX.nextInt(XVAR) / DoodleJump.PPM , (int) currentHeight / DoodleJump.PPM,30/DoodleJump.PPM,30/DoodleJump.PPM);
+       float xPos = randX.nextInt((XVAR -80)+80 );
+        if (xPos <= 40) xPos+=50;
+        coinRectangle = new Rectangle(xPos / DoodleJump.PPM , (int) currentHeight / DoodleJump.PPM,30/DoodleJump.PPM,30/DoodleJump.PPM);
         coinRectangles.add(coinRectangle);
     }
 
