@@ -66,13 +66,8 @@ public class MenuScreen implements Screen {
     public void handleInput(float dt) {
 
         if (playBtn.isPressed()) game.setScreen(new PlayScreen(game));
-        if (optionsBtn.isPressed()){
-            game.setScreen(new OptionsScreen(game));
-            System.out.println("Ola");
-            handler.write();
-        }
-
-
+        if (optionsBtn.isPressed()) game.setScreen(new OptionsScreen(game));
+        if(scoresBtn.isPressed()) game.setScreen(new HighScores(game));
 
     }
 
