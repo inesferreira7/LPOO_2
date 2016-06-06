@@ -101,7 +101,7 @@ public class PlayScreen implements Screen, InputProcessor {
         Gdx.input.setInputProcessor(this);
 
         if (game.getMusic() == true && game.getSounds() == true) {
-            music = Gdx.audio.newMusic(Gdx.files.internal("background_music.mp3"));
+            music = Gdx.audio.newMusic(Gdx.files.internal("movebitch.mp3"));
             music.setLooping(true);
             music.setVolume(1f);
             music.play();
