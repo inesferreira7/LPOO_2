@@ -32,7 +32,6 @@ public class WorldContactListener implements ContactListener{
 
     @Override
     public void beginContact(Contact contact) {
-        System.out.println("ENTROU!");
         Fixture fixtureA = contact.getFixtureA();
         Fixture fixtureB = contact.getFixtureB();
 

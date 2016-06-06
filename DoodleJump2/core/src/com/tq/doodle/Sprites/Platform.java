@@ -57,7 +57,6 @@ public class Platform extends Sprite {
             if(rand == 2) gap = 240;
 
             currentHeight+=gap;
-            System.out.println(currentHeight);
             definePlatform(currentHeight);
         }
 

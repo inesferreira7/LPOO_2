@@ -59,6 +59,7 @@ public class WinScreen implements Screen {
         winPort = new FitViewport(DoodleJump.V_WIDTH, DoodleJump.V_HEIGHT, cam);
         initStage(game.batch);
         game.highscores.add(screen.getFinalScore());
+        game.writeToFile();
     }
 
     public void update(float dt){
