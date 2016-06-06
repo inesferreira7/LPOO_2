@@ -41,7 +41,7 @@ import java.util.ArrayList;
 public class PlayScreen implements Screen, InputProcessor {
 
     private DoodleJump game;
-    private TextureAtlas atlas;
+    //private TextureAtlas atlas;
     private Doodle player;
     private Hud hud;
     private OrthographicCamera gamecam;
@@ -74,7 +74,7 @@ public class PlayScreen implements Screen, InputProcessor {
 
     public PlayScreen(DoodleJump game) {
         this.game = game;
-        atlas = new TextureAtlas("Jump.pack");
+        //atlas = new TextureAtlas("Jump.pack");
         gamecam = new OrthographicCamera();
         gamecam.setToOrtho(false);
         gamePort = new FitViewport(DoodleJump.V_WIDTH / DoodleJump.PPM, DoodleJump.V_HEIGHT / DoodleJump.PPM, gamecam);
@@ -124,9 +124,6 @@ public class PlayScreen implements Screen, InputProcessor {
         return mapHeight;
     }
 
-    public TextureAtlas getAtlas() {
-        return atlas;
-    }
 
     @Override
     public void show() {
@@ -156,12 +153,6 @@ public class PlayScreen implements Screen, InputProcessor {
 
     public void update(float dt) {
         handleInput(dt);
-/*
-        for (Body toDelete: destroyNextUpdate){
-            world.destroyBody(toDelete);
-        }
-
-*/
         world.step(1 / 60f, 6, 2);
         player.update(dt);
         gamecam.update();
@@ -203,7 +194,8 @@ public class PlayScreen implements Screen, InputProcessor {
 
         game.batch.setProjectionMatrix(gamecam.combined);
         game.batch.begin();
-        player.draw(game.batch);
+        player.render(game.batch);
+        //player.draw(game.batch);
         plat.render(game.batch);
         coin.render(game.batch);
         //game.batch.draw(coin.getFrame(), 50/DoodleJump.PPM, 50/DoodleJump.PPM, coin.getFrame().getRegionWidth()/DoodleJump.PPM, coin.getFrame().getRegionHeight()/DoodleJump.PPM);
@@ -247,6 +239,7 @@ public class PlayScreen implements Screen, InputProcessor {
         plat.dispose();
         dough.dispose();
         achievement.dispose();
+        player.dispose();
     }
 
     @Override

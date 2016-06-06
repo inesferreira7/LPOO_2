@@ -65,7 +65,6 @@ public class Platform extends Sprite {
 
     public void definePlatform(double currentHeight){
         randX = new Random();
-        //randY = new Random();
         bounds =  new Rectangle();
 
         float xPos = randX.nextInt((XVAR -80)+80 );

@@ -1,7 +1,9 @@
 package com.tq.doodle.Sprites;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Circle;
 import com.badlogic.gdx.math.Rectangle;
@@ -18,6 +20,8 @@ import com.tq.doodle.Screens.PlayScreen;
 
 import org.w3c.dom.css.Rect;
 
+import java.util.Random;
+
 
 /**
  * Created by Inês on 01/06/2016.
@@ -26,7 +30,15 @@ public class Doodle extends Sprite{
     public World world;
     public Body b2body;
     public boolean kk;
-    private TextureRegion jumpright;
+
+    //private TextureRegion jumpright;
+    private Texture doodleNormal;
+    private Texture doodleBunny;
+    private Texture doodleJungle;
+    private TextureRegion normalDoodle;
+    private Random randDoodle;
+
+
     public Rectangle doodleBounds;
 
     public final static Vector2 GRAVITY = new Vector2(0, -10);
@@ -36,14 +48,19 @@ public class Doodle extends Sprite{
     private boolean win ;
 
     public Doodle(World world, PlayScreen screen){
-        super(screen.getAtlas().findRegion("doodleright"));
+       // super(screen.getAtlas().findRegion("doodleright"));
         kk = false;
         this.world = world;
         doodleBounds = new Rectangle();
+        doodleNormal = new Texture("Jump.png");
+        doodleBunny = new Texture("bunny.png");
+        doodleJungle = new Texture("jungledoodle.png");
+        chooseDoodle();
+
         defineDoodle();
-        jumpright = new TextureRegion(getTexture(), 0, 0, 60, 62);
-        setBounds(0,0, 60/DoodleJump.PPM, 62/DoodleJump.PPM);
-        setRegion(jumpright);
+        //jumpright = new TextureRegion(getTexture(), 0, 0, 60, 62);
+        //setBounds(0,0, 60/DoodleJump.PPM, 62/DoodleJump.PPM);
+        //setRegion(jumpright);
         win = false;
     }
 
@@ -81,28 +98,50 @@ public class Doodle extends Sprite{
 
     }
 
+    public void chooseDoodle(){
+        randDoodle = new Random();
+        int newDoodle = randDoodle.nextInt(3);
+
+        switch(newDoodle){
+            case 0:
+                normalDoodle = new TextureRegion(doodleNormal,0,0,64,64);
+                break;
+            case 1:
+                normalDoodle = new TextureRegion(doodleBunny,0,0,64,64);
+                break;
+            case 2:
+                normalDoodle = new TextureRegion(doodleJungle,0,0,64,64);
+                break;
+            default:
+                break;
+        }
+
+
+
+    }
+
     public void flipDoodle(boolean turned, int screenX) {
 
 
             if (kk) {
                 if(screenX >  DoodleJump.V_WIDTH/2){
-                    flip(true, false);
+                    normalDoodle.flip(true, false);
                     kk = false;
                 }
                 if(screenX <  DoodleJump.V_WIDTH/2){
-                    flip(false, false);
+                    normalDoodle.flip(false, false);
                     kk = true;
 
                 }
             }
             if (!kk) {
                 if(screenX >  DoodleJump.V_WIDTH/2){
-                    flip(false, false);
+                    normalDoodle.flip(false, false);
                 }
                 if(screenX < DoodleJump.V_WIDTH/2){
                     turned = true;
                     kk = true;
-                    flip(true, false);
+                    normalDoodle.flip(true, false);
 
                 }
             }
@@ -126,7 +165,15 @@ public class Doodle extends Sprite{
         else return false;
     }
 
+    public void render(SpriteBatch sb){
+        sb.draw(normalDoodle,b2body.getPosition().x-32/DoodleJump.PPM, b2body.getPosition().y-32/DoodleJump.PPM,64/DoodleJump.PPM, 64/DoodleJump.PPM);
+    }
 
+    public void dispose(){
+        doodleNormal.dispose();
+        doodleBunny.dispose();
+        doodleJungle.dispose();
+    }
 
     public void jumpRight() {
 
