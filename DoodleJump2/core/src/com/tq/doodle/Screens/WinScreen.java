@@ -17,9 +17,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 import com.tq.doodle.DoodleJump;
-import com.tq.doodle.Scenes.Hud;
-import com.tq.doodle.Screens.PlayScreen;
-import com.tq.doodle.Sprites.Doodle;
+
 /**
  * Created by Inês on 05/06/2016.
  */
@@ -73,8 +71,8 @@ public class WinScreen implements Screen {
         game.batch.draw(background,0, 0, DoodleJump.V_WIDTH, DoodleJump.V_HEIGHT);
         game.batch.draw(win, DoodleJump.V_WIDTH/2 - win_width/2, DoodleJump.V_HEIGHT/2 + 160, win_width,win_height);
         game.batch.draw(stars, DoodleJump.V_WIDTH/2 - win_width/2 - 20, DoodleJump.V_HEIGHT/2 + 240, 50, 40);
-        //game.batch.draw(doodle, DoodleJump.V_WIDTH/2 - 140, DoodleJump.V_HEIGHT/2 -25, 75, 75);
-        //game.batch.draw(jungle, 0, 0, DoodleJump.V_WIDTH, jungle.getHeight()-20);
+        game.batch.draw(doodle, DoodleJump.V_WIDTH/2 - 140, DoodleJump.V_HEIGHT/2 -25, 75, 75);
+        game.batch.draw(jungle, 0, 0, DoodleJump.V_WIDTH, jungle.getHeight()-20);
         game.batch.end();
         stage.draw();
     }
