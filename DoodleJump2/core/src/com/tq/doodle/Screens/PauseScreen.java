@@ -94,7 +94,13 @@ public class PauseScreen implements Screen {
 
     @Override
     public void dispose() {
+
         background_pause.dispose();
+        game.dispose();
+        play.dispose();
+        stage.dispose();
+        lvlMenuAtlas.dispose();
+        skin.dispose();
     }
 
 

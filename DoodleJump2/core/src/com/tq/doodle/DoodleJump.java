@@ -3,11 +3,14 @@ package com.tq.doodle;
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.math.Vector;
 import com.badlogic.gdx.physics.box2d.Body;
 import com.tq.doodle.Screens.GameOverScreen;
 import com.tq.doodle.Screens.MenuScreen;
 import com.tq.doodle.Screens.PlayScreen;
 import com.tq.doodle.Screens.WinScreen;
+
+import java.util.ArrayList;
 
 public class DoodleJump extends Game {
 	public SpriteBatch batch;
@@ -23,12 +26,23 @@ public class DoodleJump extends Game {
 	public boolean music;
 	public boolean sounds;
 
+   public ArrayList<Integer> highscores;
+
+
 	@Override
 	public void create () {
 		batch = new SpriteBatch();
 		setScreen( new MenuScreen(this));
 		music = true;
 		sounds = true;
+        highscores = new ArrayList<Integer>();
+
+        highscores.add(0);
+        highscores.add(0);
+        highscores.add(0);
+        highscores.add(0);
+        highscores.add(0);
+
 	}
 
 	@Override

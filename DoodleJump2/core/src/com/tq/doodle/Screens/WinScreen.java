@@ -52,7 +52,11 @@ public class WinScreen implements Screen {
         cam.setToOrtho(false);
         winPort = new FitViewport(DoodleJump.V_WIDTH, DoodleJump.V_HEIGHT,cam);
         initStage(game.batch);
+        game.highscores.add(screen.getFinalScore());
     }
+
+
+
     public void update(float dt){
         handleInput(dt);
     }
@@ -115,4 +119,5 @@ public class WinScreen implements Screen {
         stage.addActor(table);
         Gdx.input.setInputProcessor(stage);
     }
+
 }

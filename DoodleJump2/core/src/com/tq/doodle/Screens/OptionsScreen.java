@@ -121,7 +121,13 @@ public class OptionsScreen implements Screen {
 
     @Override
     public void dispose() {
-
+        game.dispose();
+        background.dispose();
+        ovni.dispose();
+        stage.dispose();
+        lvlMenuAtlas.dispose();
+        skin.dispose();
+        title.dispose();
     }
 
     public void initStage(SpriteBatch batch) {

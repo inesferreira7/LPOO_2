@@ -107,7 +107,15 @@ public class GameOverScreen implements Screen{
 
     @Override
     public void dispose() {
-
+        game.dispose();
+        background.dispose();
+        lost.dispose();
+        doodle.dispose();
+        littledoodle.dispose();
+        bottom.dispose();
+        stage.dispose();
+        lvlMenuAtlas.dispose();
+        skin.dispose();
     }
 
     public void initStage(SpriteBatch batch) {
