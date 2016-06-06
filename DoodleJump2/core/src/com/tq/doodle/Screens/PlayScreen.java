@@ -107,8 +107,6 @@ public class PlayScreen implements Screen, InputProcessor {
         Texture t = new Texture("Coin.png");
         coin = new Coin(new TextureRegion(t), 8, 0.6f, this, world);
         a = new Texture("Coin.png");
-
-
     }
 
     public DoodleJump getGame() {
@@ -190,14 +188,12 @@ public class PlayScreen implements Screen, InputProcessor {
         renderer.render();
 
         //renderer our Box2DDebugLines
-        //b2dr.render(world, gamecam.combined);
 
         game.batch.setProjectionMatrix(gamecam.combined);
         game.batch.begin();
         player.render(game.batch);
         plat.render(game.batch);
         coin.render(game.batch);
-        //game.batch.draw(coin.getFrame(), 50/DoodleJump.PPM, 50/DoodleJump.PPM, coin.getFrame().getRegionWidth()/DoodleJump.PPM, coin.getFrame().getRegionHeight()/DoodleJump.PPM);
         game.batch.end();
 
         //Set our batch to now draw what the Hud camera sees
@@ -329,6 +325,10 @@ public class PlayScreen implements Screen, InputProcessor {
     }
 
     public int getFinalCoins(){ return finalCoins;}
+
+    public int getResult(){
+        return finalScore + finalCoins * 10;
+    }
 
     public Coin getCoin() {
         return coin;

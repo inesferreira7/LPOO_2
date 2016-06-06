@@ -41,6 +41,7 @@ public class WinScreen implements Screen {
     private static Label scoreLabel;
     private static Integer coins;
     private static Label coinLabel;
+    private static Label result;
 
     public static final int win_width = 360;
     public static final int win_height = 170;
@@ -58,7 +59,7 @@ public class WinScreen implements Screen {
         cam.setToOrtho(false);
         winPort = new FitViewport(DoodleJump.V_WIDTH, DoodleJump.V_HEIGHT, cam);
         initStage(game.batch);
-        game.highscores.add(screen.getFinalScore());
+        game.highscores.add(screen.getResult());
         game.writeToFile();
     }
 
@@ -90,7 +91,7 @@ public class WinScreen implements Screen {
         game.batch.draw(stars, DoodleJump.V_WIDTH/2 - win_width/2 - 20, DoodleJump.V_HEIGHT/2 + 240, 50, 40);
         game.batch.draw(doodle, DoodleJump.V_WIDTH/2 - 140, DoodleJump.V_HEIGHT/2 -25, 75, 75);
         game.batch.draw(jungle, 0, 0, DoodleJump.V_WIDTH, jungle.getHeight()-20);
-        game.batch.draw(screen.getCoin().getFrame(),DoodleJump.V_WIDTH/2-50,DoodleJump.V_HEIGHT/2-60,30,30);
+        game.batch.draw(screen.getCoin().getFrame(),DoodleJump.V_WIDTH/2-50,DoodleJump.V_HEIGHT/2-15,30,30);
         game.batch.end();
         stage.draw();
     }
@@ -119,6 +120,7 @@ public class WinScreen implements Screen {
         skin = new Skin();
         skin.addRegions(lvlMenuAtlas);
         stage.clear();
+
         //MenuButtom
         menuBtn = new ImageButton(skin.getDrawable("menubtn"));
         menuBtn.setSize(170, 75);
@@ -126,19 +128,22 @@ public class WinScreen implements Screen {
         stage.addActor(menuBtn);
 
         Table table = new Table();
-        table.left();
+        table.center();
         table.setFillParent(true);
 
 
         scoreLabel = new Label(String.format("%03d", screen.getFinalScore()), new Label.LabelStyle(new BitmapFont(), Color.BLACK));
         scoreLabel.setFontScale(2.5f);
-        coinLabel = new Label(String.format("%02d", screen.getFinalCoins()), new Label.LabelStyle(new BitmapFont(), Color.BLACK));
+        coinLabel = new Label(String.format("%02d x 10", screen.getFinalCoins()), new Label.LabelStyle(new BitmapFont(), Color.BLACK));
         coinLabel.setFontScale(2.5f);
+        result = new Label(String.format("%04d", screen.getResult()), new Label.LabelStyle(new BitmapFont(), Color.BLACK));
+        result.setFontScale(2.5f);
 
-
-        table.add(scoreLabel).height(80).padLeft(230);
+        table.add(scoreLabel).height(80).padLeft(110);
         table.row();
-        table.add(coinLabel).height(80).padLeft(230);
+        table.add(coinLabel).height(80).padLeft(110);
+        table.row();
+        table.add(result).height(80).padLeft(110);
         stage.addActor(table);
 
         Gdx.input.setInputProcessor(stage);
