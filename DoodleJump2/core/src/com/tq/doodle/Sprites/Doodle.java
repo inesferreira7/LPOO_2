@@ -35,7 +35,9 @@ public class Doodle extends Sprite{
     private Texture doodleNormal;
     private Texture doodleBunny;
     private Texture doodleJungle;
+    private Texture tommyBiceps;
     private TextureRegion normalDoodle;
+
     private Random randDoodle;
 
 
@@ -55,6 +57,7 @@ public class Doodle extends Sprite{
         doodleNormal = new Texture("Jump.png");
         doodleBunny = new Texture("bunny.png");
         doodleJungle = new Texture("jungledoodle.png");
+        tommyBiceps = new Texture("tommybiceps.png");
         chooseDoodle();
 
         defineDoodle();
