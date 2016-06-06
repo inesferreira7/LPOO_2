@@ -53,8 +53,8 @@ public class Coin extends Sprite {
         coinRectangle = new Rectangle();
 
 
-        currentHeight = 0;
-        while (screen.getMapHeight() >= currentHeight) {
+        currentHeight = (int)(5000/DoodleJump.PPM);
+        while (screen.getMapHeight() -500>= currentHeight) {
             randGap = new Random();
             double gap;
             //gap = randGap.nextInt(1600-600) + 600;
