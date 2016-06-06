@@ -36,17 +36,15 @@ public class OptionsScreen implements Screen {
     private OrthographicCamera cam;
     private ImageButton soundBtn;
     private ImageButton menuBtn;
-    private Texture title;
     private boolean musicon;
     private int touchs;
 
     public static final int title_width = 420;
-    public static final int title_height = 130;
+    public static final int title_height = 250;
 
     public OptionsScreen(DoodleJump game) {
         this.game = game;
-        this.background = new Texture("background.png");
-        title = new Texture("optionstitle.png");
+        this.background = new Texture("newoptionsscreen.png");
         ovni = new Texture("ovni.png");
         cam = new OrthographicCamera();
         cam.setToOrtho(false);
@@ -91,7 +89,6 @@ public class OptionsScreen implements Screen {
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
         game.batch.begin();
         game.batch.draw(background, 0, 0, DoodleJump.V_WIDTH, DoodleJump.V_HEIGHT);
-        game.batch.draw(title, DoodleJump.V_WIDTH / 2 - title_width / 2, DoodleJump.V_HEIGHT / 2 + 180, title_width, title_height);
         game.batch.draw(ovni, DoodleJump.V_WIDTH / 2 - ovni.getWidth() / 2, 200);
         game.batch.end();
         stage.draw();
@@ -127,7 +124,6 @@ public class OptionsScreen implements Screen {
         stage.dispose();
         lvlMenuAtlas.dispose();
         skin.dispose();
-        title.dispose();
     }
 
     public void initStage(SpriteBatch batch) {

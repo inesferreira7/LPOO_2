@@ -28,18 +28,12 @@ public class HighScoresScreen implements Screen {
 
     private DoodleJump game;
     private Texture background;
-    private Texture title;
-    private Texture top;
-    private Texture left;
     private Stage stage;
     private TextureAtlas lvlMenuAtlas;
     private Skin skin;
     private Viewport scoresPort;
     private OrthographicCamera cam;
     private ImageButton menuBtn;
-
-    public static final int top_width = 430;
-    public static final int top_height = 165;
 
     //Table variables
 
@@ -58,9 +52,7 @@ public class HighScoresScreen implements Screen {
 
     public HighScoresScreen(DoodleJump game){
         this.game = game;
-        background = new Texture("background.png");
-        top = new Texture("high-scores-top.png");
-        left = new Texture("high-scores-left.png");
+        background = new Texture("newscoresscreen.png");
 
         cam = new OrthographicCamera();
         cam.setToOrtho(false);
@@ -94,8 +86,8 @@ public class HighScoresScreen implements Screen {
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
         game.batch.begin();
         game.batch.draw(background,0, 0, DoodleJump.V_WIDTH, DoodleJump.V_HEIGHT);
-        game.batch.draw(top, DoodleJump.V_WIDTH/2 - top_width/2 - 20, DoodleJump.V_HEIGHT/2 +180, top_width, top_height);
-        game.batch.draw(left, DoodleJump.V_WIDTH/2 +150, DoodleJump.V_HEIGHT/2 - 160, left.getWidth(), left.getHeight()*1.7f);
+        //game.batch.draw(top, DoodleJump.V_WIDTH/2 - top_width/2 - 20, DoodleJump.V_HEIGHT/2 +180, top_width, top_height);
+        //game.batch.draw(left, DoodleJump.V_WIDTH/2 +150, DoodleJump.V_HEIGHT/2 - 160, left.getWidth(), left.getHeight()*1.7f);
         game.batch.end();
         stage.draw();
 

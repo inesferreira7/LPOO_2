@@ -38,7 +38,7 @@ public class PauseScreen implements Screen {
     public PauseScreen (PlayScreen play, DoodleJump game){
         this.game = game;
         this.play=play;
-        this.background_pause = new Texture("background_pause.png");
+        this.background_pause = new Texture("newpausescreen.png");
         cam = new OrthographicCamera();
         cam.setToOrtho(false);
         pausePort = new FitViewport(DoodleJump.V_WIDTH, DoodleJump.V_HEIGHT, cam);
