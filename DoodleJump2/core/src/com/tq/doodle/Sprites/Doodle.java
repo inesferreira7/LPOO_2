@@ -9,6 +9,7 @@ import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.BodyDef;
 import com.badlogic.gdx.physics.box2d.CircleShape;
+import com.badlogic.gdx.physics.box2d.Fixture;
 import com.badlogic.gdx.physics.box2d.FixtureDef;
 import com.badlogic.gdx.physics.box2d.PolygonShape;
 import com.badlogic.gdx.physics.box2d.World;
@@ -70,8 +71,6 @@ public class Doodle extends Sprite{
         FixtureDef fdef = new FixtureDef();
         PolygonShape shape = new PolygonShape();
         shape.setAsBox(24/DoodleJump.PPM,16/DoodleJump.PPM);
-        //CircleShape shape = new CircleShape();
-        //shape.setRadius(1 / DoodleJump.PPM);
 
         fdef.shape = shape;
         fdef.filter.categoryBits = DoodleJump.DOODLE_BIT;
@@ -120,11 +119,14 @@ public class Doodle extends Sprite{
         else return false;
     }
 
-   /* public boolean coinCol (Body coin ){
+    public boolean coinCollide(Rectangle coin){
+        if(coin.overlaps(doodleBounds) == true){
+            return true;
+        }
+        else return false;
+    }
 
 
-
-    }*/
 
     public void jumpRight() {
 

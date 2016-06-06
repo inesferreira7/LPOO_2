@@ -68,6 +68,11 @@ public class Hud implements Disposable{
 
     }
 
+    public static void addCoin(){
+        coins+=1;
+        coinsLabel.setText(String.format("%03d", coins));
+    }
+
     @Override
     public void dispose() {
         stage.dispose();

@@ -15,6 +15,7 @@ import com.badlogic.gdx.maps.MapProperties;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TmxMapLoader;
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
+import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.Box2DDebugRenderer;
@@ -316,6 +317,24 @@ public class PlayScreen implements Screen, InputProcessor {
                 if (dough != null) dough.stop();
             }
         }
+
+        for(int i = 0; i < coin.getCoinRectangles().size; i++){
+            if(player.collides(coin.getCoinRectangles().get(i))){
+                hud.addCoin();
+                coin.getCoinRectangles().removeIndex(i);
+            }
+        }
+
+
     }
+
+    /*public int findCoin(Rectangle coinFind){
+        for(int i= 0; i < coin.getCoinRectangles().size; i++){
+            if(coin.getCoinRectangles().get(i) == coinFind)
+                return i;
+
+        }
+        return -1;
+    }*/
 }
 
