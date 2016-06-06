@@ -41,16 +41,23 @@ public class Platform extends Sprite {
         platforms = new Array<Body>();
         rectangles = new Array<Rectangle>();
         bounds = new Rectangle();
+        randY =  new Random();
 
         currentHeight = (int)(10000/DoodleJump.PPM);
 
 
         while(screen.getMapHeight() - 300 >= currentHeight ){
-
+            int rand;
             randGap = new Random();
-            double gap;
-            gap = randGap.nextInt(200-150)+100 ;
+            double gap = 0;
+           // gap = randGap.nextInt(200-150)+100 ;
+            rand = randY.nextInt(2);
+            if(rand == 0) gap = 120;
+            if(rand == 1) gap = 180;
+            if(rand == 2) gap = 240;
+
             currentHeight+=gap;
+            System.out.println(currentHeight);
             definePlatform(currentHeight);
         }
 
@@ -58,7 +65,7 @@ public class Platform extends Sprite {
 
     public void definePlatform(double currentHeight){
         randX = new Random();
-        randY = new Random();
+        //randY = new Random();
         bounds =  new Rectangle();
 
         float xPos = randX.nextInt((XVAR -80)+80 );

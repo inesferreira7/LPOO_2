@@ -53,11 +53,12 @@ public class Coin extends Sprite {
         coinRectangle = new Rectangle();
 
 
-        currentHeight = (int)(5000/DoodleJump.PPM);
-        while (screen.getMapHeight() -500>= currentHeight) {
+        currentHeight = (int)(6000/DoodleJump.PPM);
+        while (screen.getMapHeight() -600>= currentHeight) {
             randGap = new Random();
             double gap;
-            gap = randGap.nextInt(300-150)+100;
+            //gap = randGap.nextInt(300-150)+100;
+            gap = 370;
             currentHeight += gap;
             defineCoin(region, frameCount, time, currentHeight);
             createCoin(currentHeight);
@@ -112,7 +113,7 @@ public class Coin extends Sprite {
     }
 
     public void render(SpriteBatch sb) {
-        System.out.println(coinRectangles.size);
+
         for(int i = 0; i < coinRectangles.size; i++){
             sb.draw(getFrame(),coinRectangles.get(i).getX()-15/DoodleJump.PPM,coinRectangles.get(i).getY() -15/DoodleJump.PPM,30 / DoodleJump.PPM, 30 / DoodleJump.PPM );
         }
