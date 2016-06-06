@@ -320,7 +320,6 @@ public class PlayScreen implements Screen, InputProcessor {
             }
         }
 
-
     }
 
     public int getFinalScore(){
@@ -328,6 +327,10 @@ public class PlayScreen implements Screen, InputProcessor {
     }
 
     public int getFinalCoins(){ return finalCoins;}
+
+    public Coin getCoin() {
+        return coin;
+    }
 
     public World getWorld(){ return world;}
 }

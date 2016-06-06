@@ -119,6 +119,10 @@ public class Coin extends Sprite {
         }
 
     }
+    /*public void winRender(SpriteBatch sb){
+
+        sb.draw(getFrame(),);
+    }*/
 
 
 

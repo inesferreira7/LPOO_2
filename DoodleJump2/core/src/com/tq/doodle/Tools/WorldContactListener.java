@@ -37,11 +37,13 @@ public class WorldContactListener implements ContactListener{
 
         //Colisao entre o doodle e a meta
         if ((fixtureA.getFilterData().categoryBits == DoodleJump.DOODLE_BIT && fixtureB.getFilterData().categoryBits == DoodleJump.WORLD_BIT)){
+            //coin.winRender(game.batch);
             ((Doodle) fixtureA.getUserData()).setWin(true);
+
         } else if (fixtureA.getFilterData().categoryBits == DoodleJump.WORLD_BIT && fixtureB.getFilterData().categoryBits == DoodleJump.DOODLE_BIT)
         {
-                ((Doodle) fixtureB.getUserData()).setWin(true);
-
+            //coin.winRender(game.batch);
+            ((Doodle) fixtureB.getUserData()).setWin(true);
         }
 
 

@@ -64,6 +64,7 @@ public class WinScreen implements Screen {
 
     public void update(float dt){
         handleInput(dt);
+        screen.getCoin().update(dt);
     }
 
 
@@ -77,6 +78,7 @@ public class WinScreen implements Screen {
     }
 
 
+
     @Override
     public void render(float delta) {
         update(delta);
@@ -88,6 +90,7 @@ public class WinScreen implements Screen {
         game.batch.draw(stars, DoodleJump.V_WIDTH/2 - win_width/2 - 20, DoodleJump.V_HEIGHT/2 + 240, 50, 40);
         game.batch.draw(doodle, DoodleJump.V_WIDTH/2 - 140, DoodleJump.V_HEIGHT/2 -25, 75, 75);
         game.batch.draw(jungle, 0, 0, DoodleJump.V_WIDTH, jungle.getHeight()-20);
+        game.batch.draw(screen.getCoin().getFrame(),DoodleJump.V_WIDTH/2-50,DoodleJump.V_HEIGHT/2-60,30,30);
         game.batch.end();
         stage.draw();
     }
