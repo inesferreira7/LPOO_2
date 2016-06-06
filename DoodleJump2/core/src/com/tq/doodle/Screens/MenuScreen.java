@@ -13,6 +13,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 import com.tq.doodle.DoodleJump;
+import com.tq.doodle.Sprites.Doodle;
 
 
 /**
@@ -28,6 +29,7 @@ public class MenuScreen implements Screen {
     private Stage stage;
     private TextureAtlas lvlMenuAtlas;
     private Skin skin;
+    private Doodle doodle;
 
     private OrthographicCamera cam;
     private Viewport menuPort;

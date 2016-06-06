@@ -65,7 +65,6 @@ public class PlayScreen implements Screen, InputProcessor {
 
     private final static Vector2 base = new Vector2(0, 0);
 
-    //public ArrayList<Body> destroyNextUpdate;
 
     public PlayScreen(DoodleJump game) {
         this.game = game;
@@ -110,6 +109,10 @@ public class PlayScreen implements Screen, InputProcessor {
         a = new Texture("Coin.png");
 
 
+    }
+
+    public DoodleJump getGame() {
+        return game;
     }
 
     public int getMapWidth() {
@@ -332,5 +335,9 @@ public class PlayScreen implements Screen, InputProcessor {
     }
 
     public World getWorld(){ return world;}
+
+    public Doodle getDoodle(){
+        return player;
+    }
 }
 

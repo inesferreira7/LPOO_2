@@ -10,6 +10,7 @@ import com.tq.doodle.Screens.GameOverScreen;
 import com.tq.doodle.Screens.MenuScreen;
 import com.tq.doodle.Screens.PlayScreen;
 import com.tq.doodle.Screens.WinScreen;
+import com.tq.doodle.Sprites.Doodle;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -25,10 +26,13 @@ public class DoodleJump extends Game {
 	public static final short COIN_BIT = 8;
 	public boolean coinDraw;
 
+    public int texture;
 	public boolean music;
 	public boolean sounds;
 	public ArrayList<Integer> highscores;
 	public Preferences scores;
+
+    public Doodle doodle;
 
 
 	@Override
@@ -43,6 +47,7 @@ public class DoodleJump extends Game {
         highscores.add(0);
         highscores.add(0);
         highscores.add(0);
+        texture  = 0;
 
 
 			String name = scores.getString("name","nogame");
@@ -94,6 +99,17 @@ public class DoodleJump extends Game {
 
 		scores.flush();
 
-
 	}
+
+    public Doodle getDoodle(){
+        return doodle;
+    }
+
+    public int getTexture() {
+        return texture;
+    }
+
+    public void setTexture(int texture) {
+        this.texture = texture;
+    }
 }

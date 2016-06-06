@@ -28,6 +28,7 @@ import java.util.Random;
  */
 public class Doodle extends Sprite{
     public World world;
+    public PlayScreen screen;
     public Body b2body;
     public boolean kk;
 
@@ -35,8 +36,11 @@ public class Doodle extends Sprite{
     private Texture doodleNormal;
     private Texture doodleBunny;
     private Texture doodleJungle;
+    private Texture doodleGhost;
+    private Texture doodleIce;
+    private Texture doodleSpace;
+    private Texture doodleWater;
     private TextureRegion normalDoodle;
-    private Random randDoodle;
 
 
     public Rectangle doodleBounds;
@@ -46,15 +50,22 @@ public class Doodle extends Sprite{
     private final static int JUMP_WIDTH_MODIFIER = 120;
     private final static Vector2 base = new Vector2(0,0);
     private boolean win ;
+    private int texture;
 
     public Doodle(World world, PlayScreen screen){
        // super(screen.getAtlas().findRegion("doodleright"));
         kk = false;
         this.world = world;
+        this.screen=screen;
         doodleBounds = new Rectangle();
         doodleNormal = new Texture("Jump.png");
         doodleBunny = new Texture("bunny.png");
         doodleJungle = new Texture("jungledoodle.png");
+        doodleGhost = new Texture("ghost.png");
+        doodleIce = new Texture("ice.png");
+        doodleSpace = new Texture("space.png");
+        doodleWater = new Texture("underwater.png");
+
         chooseDoodle();
 
         defineDoodle();
@@ -62,6 +73,7 @@ public class Doodle extends Sprite{
         //setBounds(0,0, 60/DoodleJump.PPM, 62/DoodleJump.PPM);
         //setRegion(jumpright);
         win = false;
+        texture =0;
     }
 
     public void update(float dt){
@@ -99,10 +111,8 @@ public class Doodle extends Sprite{
     }
 
     public void chooseDoodle(){
-        randDoodle = new Random();
-        int newDoodle = randDoodle.nextInt(3);
 
-        switch(newDoodle){
+        switch(screen.getGame().getTexture()){
             case 0:
                 normalDoodle = new TextureRegion(doodleNormal,0,0,64,64);
                 break;
@@ -112,11 +122,21 @@ public class Doodle extends Sprite{
             case 2:
                 normalDoodle = new TextureRegion(doodleJungle,0,0,64,64);
                 break;
+            case 3:
+                normalDoodle = new TextureRegion(doodleGhost,0,0,64,64);
+                break;
+            case 4:
+                normalDoodle = new TextureRegion(doodleIce,0,0,64,64);
+                break;
+            case 5:
+                normalDoodle = new TextureRegion(doodleSpace,0,0,64,64);
+                break;
+            case 6:
+                normalDoodle = new TextureRegion(doodleWater,0,0,64,64);
+                break;
             default:
                 break;
         }
-
-
 
     }
 
@@ -190,6 +210,14 @@ public class Doodle extends Sprite{
 
     public void setWin(boolean win) {
         this.win = win;
+    }
+
+    public void setTexture(int texture){
+        this.texture = texture;
+    }
+
+    public PlayScreen getScreen() {
+        return screen;
     }
 }
 

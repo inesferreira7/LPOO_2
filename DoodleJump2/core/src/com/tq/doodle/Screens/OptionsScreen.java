@@ -31,13 +31,22 @@ public class OptionsScreen implements Screen {
     private Texture ovni;
     private Stage stage;
     private TextureAtlas lvlMenuAtlas;
+    private TextureAtlas lvlDoodle;
     private Skin skin;
+    private Skin skinDoodle;
     private Viewport optionsPort;
     private OrthographicCamera cam;
-    private ImageButton soundBtn;
-    private ImageButton menuBtn;
     private boolean musicon;
     private int touchs;
+
+    private ImageButton soundBtn;
+    private ImageButton menuBtn;
+    private ImageButton bunnyDoodle;
+    private ImageButton ghostDoodle;
+    private ImageButton iceDoodle;
+    private ImageButton jungleDoodle;
+    private ImageButton spaceDoodle;
+    private ImageButton waterDoodle;
 
     public static final int title_width = 420;
     public static final int title_height = 250;
@@ -72,9 +81,14 @@ public class OptionsScreen implements Screen {
         touchs = 0;
 
 
-        if (menuBtn.isPressed()) {
-            game.setScreen(new MenuScreen(game));
-        }
+        if (menuBtn.isPressed())game.setScreen(new MenuScreen(game));
+        if (bunnyDoodle.isPressed()) game.setTexture(1);
+        if (jungleDoodle.isPressed()) game.setTexture(2);
+        if (ghostDoodle.isPressed()) game.setTexture(3);
+        if (iceDoodle.isPressed()) game.setTexture(4);
+        if (spaceDoodle.isPressed()) game.setTexture(5);
+        if (waterDoodle.isPressed()) game.setTexture(6);
+
     }
 
     @Override
@@ -89,7 +103,7 @@ public class OptionsScreen implements Screen {
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
         game.batch.begin();
         game.batch.draw(background, 0, 0, DoodleJump.V_WIDTH, DoodleJump.V_HEIGHT);
-        game.batch.draw(ovni, DoodleJump.V_WIDTH / 2 - ovni.getWidth() / 2, 200);
+        //game.batch.draw(ovni, DoodleJump.V_WIDTH / 2 - ovni.getWidth() / 2, 200);
         game.batch.end();
         stage.draw();
     }
@@ -134,13 +148,20 @@ public class OptionsScreen implements Screen {
         skin.addRegions(lvlMenuAtlas);
         stage.clear();
 
+        lvlDoodle = new TextureAtlas("Doodles.pack");
+        skinDoodle = new Skin();
+        skin.addRegions(lvlDoodle);
+        stage.clear();
+
+
+
         //Soundbutton
         if (game.music == true)
             soundBtn = new ImageButton(skin.getDrawable("soundon"), skin.getDrawable("soundoff"), skin.getDrawable("soundoff"));
         if (game.music == false)
             soundBtn = new ImageButton(skin.getDrawable("soundoff"), skin.getDrawable("soundon"), skin.getDrawable("soundon"));
-        soundBtn.setSize(100, 100);
-        soundBtn.setPosition(DoodleJump.V_WIDTH / 2 - soundBtn.getWidth() / 2, DoodleJump.V_HEIGHT / 2);
+        soundBtn.setSize(80, 80);
+        soundBtn.setPosition(DoodleJump.V_WIDTH / 2 - soundBtn.getWidth() / 2, DoodleJump.V_HEIGHT / 2 + 70);
         stage.addActor(soundBtn);
 
         soundBtn.addListener(new InputListener() {
@@ -156,8 +177,42 @@ public class OptionsScreen implements Screen {
         //Back to Menu Button
         menuBtn = new ImageButton(skin.getDrawable("menubtn"));
         menuBtn.setSize(170, 80);
-        menuBtn.setPosition(DoodleJump.V_WIDTH / 2 - menuBtn.getWidth() / 2, DoodleJump.V_HEIGHT / 2 - 200);
+        menuBtn.setPosition(DoodleJump.V_WIDTH / 2 - menuBtn.getWidth() / 2, DoodleJump.V_HEIGHT / 2 - 350);
         stage.addActor(menuBtn);
+
+
+        //Escolher skin do doodle;
+
+        bunnyDoodle = new ImageButton(skin.getDrawable("bunny"));
+        bunnyDoodle.setSize(170, 80);
+        bunnyDoodle.setPosition(DoodleJump.V_WIDTH / 2 - menuBtn.getWidth() / 2 - 130, DoodleJump.V_HEIGHT / 2 - 70);
+        stage.addActor(bunnyDoodle);
+
+        ghostDoodle = new ImageButton(skin.getDrawable("ghost"));
+        ghostDoodle.setSize(170, 80);
+        ghostDoodle.setPosition(DoodleJump.V_WIDTH / 2 - menuBtn.getWidth() / 2, DoodleJump.V_HEIGHT / 2 - 70);
+        stage.addActor(ghostDoodle);
+
+        iceDoodle = new ImageButton(skin.getDrawable("ice"));
+        iceDoodle.setSize(170, 80);
+        iceDoodle.setPosition(DoodleJump.V_WIDTH / 2 - menuBtn.getWidth() / 2 + 130, DoodleJump.V_HEIGHT / 2 - 70);
+        stage.addActor(iceDoodle);
+
+        jungleDoodle = new ImageButton(skin.getDrawable("jungle"));
+        jungleDoodle.setSize(170, 80);
+        jungleDoodle.setPosition(DoodleJump.V_WIDTH / 2 - menuBtn.getWidth() / 2 - 130, DoodleJump.V_HEIGHT / 2 - 200);
+        stage.addActor(jungleDoodle);
+
+        spaceDoodle = new ImageButton(skin.getDrawable("space"));
+        spaceDoodle.setSize(170, 80);
+        spaceDoodle.setPosition(DoodleJump.V_WIDTH / 2 - menuBtn.getWidth() / 2, DoodleJump.V_HEIGHT / 2 - 200);
+        stage.addActor(spaceDoodle);
+
+        waterDoodle = new ImageButton(skin.getDrawable("underwater"));
+        waterDoodle.setSize(170, 80);
+        waterDoodle.setPosition(DoodleJump.V_WIDTH / 2 - menuBtn.getWidth() / 2 + 130, DoodleJump.V_HEIGHT / 2 - 200);
+        stage.addActor(waterDoodle);
+
 
         Gdx.input.setInputProcessor(stage);
 
