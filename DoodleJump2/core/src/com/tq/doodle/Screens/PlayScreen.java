@@ -1,4 +1,4 @@
-﻿package com.tq.doodle.Screens;
+package com.tq.doodle.Screens;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
@@ -36,7 +36,6 @@ import java.util.ArrayList;
 public class PlayScreen implements Screen, InputProcessor {
 
     private DoodleJump game;
-    //private TextureAtlas atlas;
     private Doodle player;
     private Hud hud;
     private OrthographicCamera gamecam;
