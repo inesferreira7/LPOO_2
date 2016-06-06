@@ -9,6 +9,7 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.ImageButton;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
@@ -17,12 +18,14 @@ import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 import com.tq.doodle.DoodleJump;
+import com.tq.doodle.Sprites.Coin;
 
 /**
  * Created by Inês on 05/06/2016.
  */
 public class WinScreen implements Screen {
     private DoodleJump game;
+    private PlayScreen screen;
     private Texture background;
     private Texture win;
     private Texture stars;
@@ -36,13 +39,16 @@ public class WinScreen implements Screen {
     private ImageButton menuBtn;
     private static Integer score;
     private static Label scoreLabel;
+    private static Integer coins;
+    private static Label coinLabel;
+
     public static final int win_width = 360;
     public static final int win_height = 170;
-    private PlayScreen screen;
 
-    public WinScreen(DoodleJump game, PlayScreen screen){
-        this.game=game;
-        this.screen=screen;
+
+    public WinScreen(DoodleJump game, PlayScreen screen) {
+        this.game = game;
+        this.screen = screen;
         this.background = new Texture("background.png");
         win = new Texture("win.png");
         stars = new Texture("stars.png");
@@ -50,22 +56,26 @@ public class WinScreen implements Screen {
         jungle = new Texture("jungle.png");
         cam = new OrthographicCamera();
         cam.setToOrtho(false);
-        winPort = new FitViewport(DoodleJump.V_WIDTH, DoodleJump.V_HEIGHT,cam);
+        winPort = new FitViewport(DoodleJump.V_WIDTH, DoodleJump.V_HEIGHT, cam);
         initStage(game.batch);
         game.highscores.add(screen.getFinalScore());
     }
 
-
-
     public void update(float dt){
         handleInput(dt);
     }
+
+
     public void handleInput(float dt){
         if(menuBtn.isPressed()) game.setScreen(new MenuScreen(game));
     }
+
+
     @Override
     public void show() {
     }
+
+
     @Override
     public void render(float delta) {
         update(delta);
@@ -110,13 +120,23 @@ public class WinScreen implements Screen {
         menuBtn.setSize(170, 75);
         menuBtn.setPosition(DoodleJump.V_WIDTH / 2 - 170 / 2, DoodleJump.V_HEIGHT / 2 - 270);
         stage.addActor(menuBtn);
+
         Table table = new Table();
-        table.center();
+        table.left();
         table.setFillParent(true);
+
+
         scoreLabel = new Label(String.format("%03d", screen.getFinalScore()), new Label.LabelStyle(new BitmapFont(), Color.BLACK));
         scoreLabel.setFontScale(2.5f);
-        table.add(scoreLabel).expandY().padLeft(80);
+        coinLabel = new Label(String.format("%02d", screen.getFinalCoins()), new Label.LabelStyle(new BitmapFont(), Color.BLACK));
+        coinLabel.setFontScale(2.5f);
+
+
+        table.add(scoreLabel).height(80).padLeft(230);
+        table.row();
+        table.add(coinLabel).height(80).padLeft(230);
         stage.addActor(table);
+
         Gdx.input.setInputProcessor(stage);
     }
 

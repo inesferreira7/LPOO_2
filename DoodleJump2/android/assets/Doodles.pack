@@ -1,0 +1,47 @@
+
+Doodles.png
+format: RGBA8888
+filter: Nearest,Nearest
+repeat: none
+bunny
+  rotate: false
+  xy: 1, 1
+  size: 62, 60
+  orig: 62, 60
+  offset: 0, 0
+  index: -1
+ghost
+  rotate: false
+  xy: 65, 1
+  size: 62, 60
+  orig: 62, 60
+  offset: 0, 0
+  index: -1
+ice
+  rotate: false
+  xy: 129, 1
+  size: 62, 60
+  orig: 62, 60
+  offset: 0, 0
+  index: -1
+jungle
+  rotate: false
+  xy: 193, 1
+  size: 62, 60
+  orig: 62, 60
+  offset: 0, 0
+  index: -1
+space
+  rotate: false
+  xy: 257, 1
+  size: 62, 60
+  orig: 62, 60
+  offset: 0, 0
+  index: -1
+underwater
+  rotate: false
+  xy: 321, 1
+  size: 62, 60
+  orig: 62, 60
+  offset: 0, 0
+  index: -1

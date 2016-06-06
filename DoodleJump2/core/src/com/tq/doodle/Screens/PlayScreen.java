@@ -9,22 +9,16 @@ import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;;
 import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.maps.MapProperties;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TmxMapLoader;
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
-import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
-import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.Box2DDebugRenderer;
 import com.badlogic.gdx.physics.box2d.World;
-import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
-import com.sun.glass.ui.EventLoop;
-import com.sun.glass.ui.View;
 import com.tq.doodle.DoodleJump;
 import com.tq.doodle.Scenes.Hud;
 import com.tq.doodle.Sprites.Coin;
@@ -61,12 +55,14 @@ public class PlayScreen implements Screen, InputProcessor {
     private Texture a;
 
     //Box2d variables
+    //Box2d variables
     private World world;
     private Box2DDebugRenderer b2dr;
 
     private int mapWidth;
     private int mapHeight;
     private int finalScore;
+    private int finalCoins;
 
     private final static Vector2 base = new Vector2(0, 0);
 
@@ -74,7 +70,6 @@ public class PlayScreen implements Screen, InputProcessor {
 
     public PlayScreen(DoodleJump game) {
         this.game = game;
-        //atlas = new TextureAtlas("Jump.pack");
         gamecam = new OrthographicCamera();
         gamecam.setToOrtho(false);
         gamePort = new FitViewport(DoodleJump.V_WIDTH / DoodleJump.PPM, DoodleJump.V_HEIGHT / DoodleJump.PPM, gamecam);
@@ -92,6 +87,7 @@ public class PlayScreen implements Screen, InputProcessor {
         player = new Doodle(world, this);
 
         mapWidth = prop.get("width", Integer.class).intValue() * prop.get("tilewidth", Integer.class).intValue();
+        mapHeight = prop.get("height", Integer.class).intValue() * prop.get("tileheight", Integer.class).intValue();
         mapHeight = prop.get("height", Integer.class).intValue() * prop.get("tileheight", Integer.class).intValue();
 
         plat = new Platform(world, this);
@@ -161,6 +157,7 @@ public class PlayScreen implements Screen, InputProcessor {
         collisions();
         coin.update(dt);
         finalScore = hud.getScore();
+        finalCoins = hud.getCoins();
     }
 
     @Override
@@ -195,7 +192,6 @@ public class PlayScreen implements Screen, InputProcessor {
         game.batch.setProjectionMatrix(gamecam.combined);
         game.batch.begin();
         player.render(game.batch);
-        //player.draw(game.batch);
         plat.render(game.batch);
         coin.render(game.batch);
         //game.batch.draw(coin.getFrame(), 50/DoodleJump.PPM, 50/DoodleJump.PPM, coin.getFrame().getRegionWidth()/DoodleJump.PPM, coin.getFrame().getRegionHeight()/DoodleJump.PPM);
@@ -331,5 +327,9 @@ public class PlayScreen implements Screen, InputProcessor {
     public int getFinalScore(){
         return finalScore;
     }
+
+    public int getFinalCoins(){ return finalCoins;}
+
+    public World getWorld(){ return world;}
 }
 
