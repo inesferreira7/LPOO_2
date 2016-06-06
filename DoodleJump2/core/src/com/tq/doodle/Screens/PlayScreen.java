@@ -3,6 +3,7 @@ package com.tq.doodle.Screens;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.InputProcessor;
+import com.badlogic.gdx.Preferences;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.audio.Sound;
@@ -97,6 +98,7 @@ public class PlayScreen implements Screen, InputProcessor {
         plat = new Platform(world, this);
 
         new B2WorldCreator(world, map);
+
 
         Gdx.input.setInputProcessor(this);
 
@@ -302,14 +304,12 @@ public class PlayScreen implements Screen, InputProcessor {
 
             //Condiçao de perder
             if (player.collides(plat.getRectangles().get(i))) {
-
                 if (game.sounds == true) dough.play(); //no commit nao ta a aparecer
-
                 endPauseTime = System.currentTimeMillis() + (1 * 1000);
-
                 while (System.currentTimeMillis() < endPauseTime) {
 
                 }
+
                 game.setScreen(new GameOverScreen(game));
                 if (music != null) music.stop();
                 if (dough != null) dough.stop();
@@ -331,5 +331,6 @@ public class PlayScreen implements Screen, InputProcessor {
     public int getFinalScore(){
         return finalScore;
     }
+
 }
 

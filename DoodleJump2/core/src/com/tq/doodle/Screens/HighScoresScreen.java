@@ -1,6 +1,7 @@
 package com.tq.doodle.Screens;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Preferences;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
@@ -64,6 +65,7 @@ public class HighScoresScreen implements Screen {
         cam = new OrthographicCamera();
         cam.setToOrtho(false);
         scoresPort = new FitViewport(DoodleJump.V_WIDTH, DoodleJump.V_HEIGHT,cam);
+
 
         initStage(game.batch);
     }
@@ -170,7 +172,12 @@ public class HighScoresScreen implements Screen {
         stage.addActor(table);
 
 
+
+
         Gdx.input.setInputProcessor(stage);
 
+
     }
+
+
 }
