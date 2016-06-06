@@ -37,9 +37,14 @@ public class WorldContactListener implements ContactListener{
         Fixture fixtureB = contact.getFixtureB();
 
         //Colisao entre o doodle e a meta
-        if ((fixtureA.getFilterData().categoryBits == DoodleJump.DOODLE_BIT && fixtureB.getFilterData().categoryBits == DoodleJump.WORLD_BIT)
-                || (fixtureA.getFilterData().categoryBits == DoodleJump.WORLD_BIT && fixtureB.getFilterData().categoryBits == DoodleJump.DOODLE_BIT))
-            ((Doodle) fixtureB.getUserData()).setWin(true);
+        if ((fixtureA.getFilterData().categoryBits == DoodleJump.DOODLE_BIT && fixtureB.getFilterData().categoryBits == DoodleJump.WORLD_BIT)){
+            ((Doodle) fixtureA.getUserData()).setWin(true);
+        } else if (fixtureA.getFilterData().categoryBits == DoodleJump.WORLD_BIT && fixtureB.getFilterData().categoryBits == DoodleJump.DOODLE_BIT)
+        {
+                ((Doodle) fixtureB.getUserData()).setWin(true);
+
+        }
+
 
         //Implementar colisao entre doodle e moeda
         if (fixtureA.getFilterData().categoryBits == DoodleJump.DOODLE_BIT && fixtureB.getFilterData().categoryBits == DoodleJump.COIN_BIT){

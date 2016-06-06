@@ -147,7 +147,7 @@ public class PlayScreen implements Screen, InputProcessor {
         }
 
         if (player.getWin() == true){
-            game.setScreen(new WinScreen(game));
+            game.setScreen(new WinScreen(game,this));
         }
     }
 
@@ -166,6 +166,7 @@ public class PlayScreen implements Screen, InputProcessor {
         hud.update(dt);
         collisions();
         coin.update(dt);
+        finalScore = hud.getScore();
     }
 
     @Override
@@ -328,13 +329,8 @@ public class PlayScreen implements Screen, InputProcessor {
 
     }
 
-    /*public int findCoin(Rectangle coinFind){
-        for(int i= 0; i < coin.getCoinRectangles().size; i++){
-            if(coin.getCoinRectangles().get(i) == coinFind)
-                return i;
-
-        }
-        return -1;
-    }*/
+    public int getFinalScore(){
+        return finalScore;
+    }
 }
 
