@@ -50,6 +50,7 @@ public class PlayScreen implements Screen, InputProcessor {
     private Platform plat;
     private Music music;
     private Sound dough;
+    private Sound achievement;
 
     //Tiled map variables
     private TmxMapLoader maploader;
@@ -105,6 +106,7 @@ public class PlayScreen implements Screen, InputProcessor {
             music.setVolume(1f);
             music.play();
             dough = Gdx.audio.newSound(Gdx.files.internal("simpson.ogg"));
+            achievement = Gdx.audio.newSound(Gdx.files.internal("achievement.ogg"));
         }
 
         Texture t = new Texture("Coin.png");
@@ -141,6 +143,7 @@ public class PlayScreen implements Screen, InputProcessor {
                     game.setScreen(new PauseScreen(this, game));
                     if (music != null) music.stop();
                     if (dough != null) dough.stop();
+                    if (achievement != null) achievement.stop();
 
                 }
             }
@@ -243,6 +246,7 @@ public class PlayScreen implements Screen, InputProcessor {
         coin.dispose();
         plat.dispose();
         dough.dispose();
+        achievement.dispose();
     }
 
     @Override
@@ -316,11 +320,13 @@ public class PlayScreen implements Screen, InputProcessor {
                 game.setScreen(new GameOverScreen(game));
                 if (music != null) music.stop();
                 if (dough != null) dough.stop();
+                if (achievement != null) achievement.stop();
             }
         }
 
         for(int i = 0; i < coin.getCoinRectangles().size; i++){
             if(player.collides(coin.getCoinRectangles().get(i))){
+                if(game.sounds == true) achievement.play();
                 hud.addCoin();
                 coin.getCoinRectangles().removeIndex(i);
             }
