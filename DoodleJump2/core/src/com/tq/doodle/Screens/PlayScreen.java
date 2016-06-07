@@ -253,11 +253,11 @@ public class PlayScreen implements Screen, InputProcessor {
 
         if (screenX < DoodleJump.V_WIDTH / 2) {
             player.jumpRight();
-            player.flipDoodle(player.kk, screenX);
+            player.flipDoodle(player.flipFlag, screenX);
         }
         if (screenX > DoodleJump.V_WIDTH / 2) {
             player.jumpLeft();
-            player.flipDoodle(player.kk, screenX);
+            player.flipDoodle(player.flipFlag, screenX);
         }
         return false;
     }
