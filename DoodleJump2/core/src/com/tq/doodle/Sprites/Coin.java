@@ -35,7 +35,7 @@ public class Coin extends Sprite {
      * @param region TextureRegion for the coin animation.
      * @param frameCount Frames for the animation.
      * @param time Time for the animation.
-     * @param screen Playscreen where the coin will appear.
+     * @param screen Play screen where the coin will appear.
      * @param world Game world.
      */
     public Coin(TextureRegion region, int frameCount, float time, PlayScreen screen, World world) {
