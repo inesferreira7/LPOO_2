@@ -52,7 +52,7 @@ public class Doodle extends Sprite{
         this.screen=screen;
         doodleBounds = new Rectangle();
 
-            doodleNormal = new Texture("jump.png");
+            doodleNormal = new Texture("Jump.png");
             doodleBunny = new Texture("bunny.png");
             doodleJungle = new Texture("jungledoodle.png");
             doodleGhost = new Texture("ghost.png");

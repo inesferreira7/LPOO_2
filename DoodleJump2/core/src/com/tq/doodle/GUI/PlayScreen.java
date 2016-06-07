@@ -88,7 +88,7 @@ public class PlayScreen implements Screen, InputProcessor {
         if (game.getMusic() == true && game.getSounds() == true) {
             music = Gdx.audio.newMusic(Gdx.files.internal("movebitch.mp3"));
             music.setLooping(true);
-            music.setVolume(1f);
+            music.setVolume(1);
             music.play();
             dough = Gdx.audio.newSound(Gdx.files.internal("simpson.ogg"));
             achievement = Gdx.audio.newSound(Gdx.files.internal("wo.ogg"));
@@ -331,5 +331,7 @@ public class PlayScreen implements Screen, InputProcessor {
     public Doodle getDoodle(){
         return player;
     }
+
+    public Music getMusic(){ return music;}
 }
 

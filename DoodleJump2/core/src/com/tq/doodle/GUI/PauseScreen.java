@@ -55,7 +55,7 @@ public class PauseScreen implements Screen {
         if(resumeBtn.isPressed()) {
             Gdx.input.setInputProcessor(play);
             game.setScreen(play);
-
+            if (game.music == true) play.getMusic().play();
         }
     }
 

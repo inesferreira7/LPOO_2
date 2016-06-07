@@ -138,7 +138,7 @@ public class OptionsScreen implements Screen {
         skin.addRegions(lvlMenuAtlas);
         stage.clear();
 
-        lvlDoodle = new TextureAtlas("doodles.pack");
+        lvlDoodle = new TextureAtlas("Doodles.pack");
         skinDoodle = new Skin();
         skin.addRegions(lvlDoodle);
         stage.clear();
