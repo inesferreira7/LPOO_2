@@ -54,12 +54,12 @@ public class Platform extends Sprite {
         currentHeight = (int)(10000/DoodleJump.PPM);
 
         while(screen.getMapHeight() - 300 >= currentHeight ){
-            randGap = new Random();
-            rand = randY.nextInt(3);
-            if(rand == 0) gap = 120;
-            if(rand == 1) gap = 180;
-            if(rand == 2) gap = 240;
-            currentHeight+=gap;
+            //randGap = new Random();
+            //rand = randY.nextInt(2);
+            //if(rand == 0) gap = 100;
+            //if(rand == 1) gap = 300;
+            //if(rand == ) gap = 240;
+            currentHeight+=200;
             definePlatform(currentHeight);
         }
     }

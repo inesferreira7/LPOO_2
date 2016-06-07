@@ -132,7 +132,7 @@ public class WinScreen implements Screen {
 
         scoreLabel = new Label(String.format("%03d", screen.getFinalScore()), new Label.LabelStyle(new BitmapFont(), Color.BLACK));
         scoreLabel.setFontScale(2.5f);
-        coinLabel = new Label(String.format("%02d x 10", screen.getFinalCoins()), new Label.LabelStyle(new BitmapFont(), Color.BLACK));
+        coinLabel = new Label(String.format("%02d x 20", screen.getFinalCoins()), new Label.LabelStyle(new BitmapFont(), Color.BLACK));
         coinLabel.setFontScale(2.5f);
         result = new Label(String.format("%04d", screen.getResult()), new Label.LabelStyle(new BitmapFont(), Color.BLACK));
         result.setFontScale(2.5f);

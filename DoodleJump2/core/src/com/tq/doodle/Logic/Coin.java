@@ -21,12 +21,14 @@ public class Coin extends Sprite {
     private Random randX;
     private static int currentHeight;
     public World world;
+    public Platform platform;
     float maxFrameTime;
     float currFrameTime;
     int frameCount;
     int frame;
     double gap;
     float xPos;
+    float yPos;
 
 
     /**
@@ -38,13 +40,14 @@ public class Coin extends Sprite {
      * @param screen Play screen where the coin will appear.
      * @param world Game world.
      */
-    public Coin(TextureRegion region, int frameCount, float time, PlayScreen screen, World world) {
+    public Coin(TextureRegion region, int frameCount, float time, PlayScreen screen, World world,Platform platform) {
         this.world = world;
+        this.platform = platform;
         coinRectangles = new Array<Rectangle>();
         coinRectangle = new Rectangle();
-        currentHeight = (int)(6000/DoodleJump.PPM);
-        while (screen.getMapHeight() -600>= currentHeight) {
-            gap = 370;
+        currentHeight = (int)(20000/DoodleJump.PPM);
+        while (screen.getMapHeight() -300>= currentHeight) {
+            gap = 400;
             currentHeight += gap;
             defineCoin(region, frameCount, time);
             createCoin(currentHeight);
@@ -119,7 +122,10 @@ public class Coin extends Sprite {
    public void render(SpriteBatch sb) {
 
         for(int i = 0; i < coinRectangles.size; i++){
-            sb.draw(getFrame(),coinRectangles.get(i).getX()-15/DoodleJump.PPM,coinRectangles.get(i).getY() -15/DoodleJump.PPM,30 / DoodleJump.PPM, 30 / DoodleJump.PPM );
+            yPos = coinRectangles.get(i).getY() -15/DoodleJump.PPM;
+            //coinWithRectangle(coinRectangles.get(i));
+            //System.out.println(yPos);
+            sb.draw(getFrame(),coinRectangles.get(i).getX()-15/DoodleJump.PPM,yPos,30 / DoodleJump.PPM, 30 / DoodleJump.PPM );
         }
 
    }
@@ -131,4 +137,13 @@ public class Coin extends Sprite {
     public Array<Rectangle> getCoinRectangles() {
         return coinRectangles;
     }
+
+    /*public void coinWithRectangle(Rectangle coin){
+        for(int i = 0; i < platform.getRectangles().size ; i++){
+            if(coin.overlaps(platform.getRectangles().get(i))){
+                yPos += 100/DoodleJump.PPM;
+            }
+
+        }
+    }*/
 }

@@ -69,7 +69,7 @@ public class PauseScreen implements Screen {
         Gdx.gl.glClearColor(0, 0, 0, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
         game.batch.begin();
-        game.batch.draw(background_pause, 0, 0, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
+        game.batch.draw(background_pause, 0, 0, DoodleJump.V_WIDTH, DoodleJump.V_HEIGHT);
         game.batch.end();
         stage.draw();
     }

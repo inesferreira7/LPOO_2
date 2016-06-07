@@ -95,7 +95,7 @@ public class PlayScreen implements Screen, InputProcessor {
         }
 
         Texture t = new Texture("Coin.png");
-        coin = new Coin(new TextureRegion(t), 8, 0.6f, this, world);
+        coin = new Coin(new TextureRegion(t), 8, 0.6f, this, world,plat);
         a = new Texture("Coin.png");
     }
 
@@ -209,7 +209,7 @@ public class PlayScreen implements Screen, InputProcessor {
 
     @Override
     public void hide() {
-
+        if(game.music == true) music.stop();
     }
 
     @Override
@@ -319,7 +319,7 @@ public class PlayScreen implements Screen, InputProcessor {
     public int getFinalCoins(){ return finalCoins;}
 
     public int getResult(){
-        return finalScore + finalCoins * 10;
+        return finalScore + finalCoins * 20;
     }
 
     public Coin getCoin() {
