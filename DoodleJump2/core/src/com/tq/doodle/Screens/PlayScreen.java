@@ -289,7 +289,7 @@ public class PlayScreen implements Screen, InputProcessor {
 
             //Condiçao de perder
             if (player.collides(plat.getRectangles().get(i))) {
-                if (game.sounds == true) dough.play(); //no commit nao ta a aparecer
+                if (game.music == true) dough.play(); //no commit nao ta a aparecer
                 Gdx.input.vibrate(400);
                 endPauseTime = System.currentTimeMillis() + (1 * 1000);
 
@@ -306,7 +306,7 @@ public class PlayScreen implements Screen, InputProcessor {
 
         for(int i = 0; i < coin.getCoinRectangles().size; i++){
             if(player.collides(coin.getCoinRectangles().get(i))){
-                if(game.sounds == true) achievement.play();
+                if(game.music == true) achievement.play();
                 hud.addCoin();
                 coin.getCoinRectangles().removeIndex(i);
             }
