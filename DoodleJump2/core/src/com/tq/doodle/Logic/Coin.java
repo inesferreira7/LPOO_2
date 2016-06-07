@@ -1,4 +1,4 @@
-package com.tq.doodle.Sprites;
+package com.tq.doodle.Logic;
 
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
@@ -7,7 +7,7 @@ import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.physics.box2d.World;
 import com.badlogic.gdx.utils.Array;
 import com.tq.doodle.DoodleJump;
-import com.tq.doodle.Screens.PlayScreen;
+import com.tq.doodle.GUI.PlayScreen;
 import java.util.Random;
 
 /**

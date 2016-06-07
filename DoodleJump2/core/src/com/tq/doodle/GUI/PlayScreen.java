@@ -1,4 +1,4 @@
-package com.tq.doodle.Screens;
+package com.tq.doodle.GUI;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
@@ -21,13 +21,11 @@ import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 import com.tq.doodle.DoodleJump;
 import com.tq.doodle.Scenes.Hud;
-import com.tq.doodle.Sprites.Coin;
-import com.tq.doodle.Sprites.Doodle;
-import com.tq.doodle.Sprites.Platform;
+import com.tq.doodle.Logic.Coin;
+import com.tq.doodle.Logic.Doodle;
+import com.tq.doodle.Logic.Platform;
 import com.tq.doodle.Tools.B2WorldCreator;
 import com.tq.doodle.Tools.WorldContactListener;
-
-import java.util.ArrayList;
 
 /**
  * Created by Inês on 01/06/2016.
@@ -73,7 +71,7 @@ public class PlayScreen implements Screen, InputProcessor {
         gamePort = new FitViewport(DoodleJump.V_WIDTH / DoodleJump.PPM, DoodleJump.V_HEIGHT / DoodleJump.PPM, gamecam);
         hud = new Hud(game.batch);
         maploader = new TmxMapLoader();
-        map = maploader.load("teste.tmx");
+        map = maploader.load("finallevel.tmx");
         prop = map.getProperties();
         renderer = new OrthogonalTiledMapRenderer(map, 1 / DoodleJump.PPM);
         gamecam.position.set(gamePort.getWorldWidth() / 2, gamePort.getWorldHeight() / 2, 0);

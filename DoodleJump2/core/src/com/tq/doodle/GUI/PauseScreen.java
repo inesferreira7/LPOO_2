@@ -1,4 +1,4 @@
-package com.tq.doodle.Screens;
+package com.tq.doodle.GUI;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
@@ -8,7 +8,6 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.scenes.scene2d.Stage;
-import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.ui.ImageButton;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.utils.viewport.FitViewport;
@@ -52,7 +51,7 @@ public class PauseScreen implements Screen {
 
     public void handleInput(float dt){
 
-        if(menuBtn.isPressed()) game.setScreen(new MenuScreen(game));
+        if(menuBtn.isPressed()) game.setScreen(new com.tq.doodle.GUI.MenuScreen(game));
         if(resumeBtn.isPressed()) {
             Gdx.input.setInputProcessor(play);
             game.setScreen(play);

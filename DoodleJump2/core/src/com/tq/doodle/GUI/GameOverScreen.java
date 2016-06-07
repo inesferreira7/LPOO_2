@@ -1,4 +1,4 @@
-package com.tq.doodle.Screens;
+package com.tq.doodle.GUI;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
@@ -13,60 +13,41 @@ import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 import com.tq.doodle.DoodleJump;
-import com.tq.doodle.Sprites.Doodle;
-
 
 /**
- * Created by Inês on 02/06/2016.
+ * Created by Inês on 05/06/2016.
  */
-public class MenuScreen implements Screen {
-    private DoodleJump game;
+public class GameOverScreen implements Screen{
 
-    //Variables of textures of menu
+    private DoodleJump game;
     private Texture background;
-    private Texture title;
-    private Texture menudoodle;
+    private Texture lost;
+    private Texture doodle;
+    private Texture littledoodle;
+    private Texture bottom;
     private Stage stage;
     private TextureAtlas lvlMenuAtlas;
     private Skin skin;
-    private Doodle doodle;
-
+    private Viewport lostPort;
     private OrthographicCamera cam;
-    private Viewport menuPort;
-
-    //Variables of menu images
-    public static int title_width = DoodleJump.V_WIDTH - 100;
-    public static int title_height = 100;
-    public static int doodle_width = 180;
-    public static int doodle_height = 180;
-
-    public static int btn_width = 150;
-    public static int btn_height = 70;
-
-    //Inicializaçao dos botoes
     private ImageButton playBtn;
-    private ImageButton optionsBtn;
-    private ImageButton scoresBtn;
+    private ImageButton menuBtn;
 
-    public MenuScreen(DoodleJump game) {
+    public static final int lost_width = 360;
+    public static final int lost_height = 130;
+
+    public GameOverScreen(DoodleJump game){
         this.game = game;
         this.background = new Texture("background.png");
-        this.title = new Texture("titles.png");
-        menudoodle = new Texture("menu.png");
+        lost = new Texture("lost.png");
+        doodle = new Texture("doodlelost.png");
+        littledoodle = new Texture("doodlelostbaby.png");
+        bottom = new Texture("bottomlost.png");
 
         cam = new OrthographicCamera();
         cam.setToOrtho(false);
-        menuPort = new FitViewport(DoodleJump.V_WIDTH, DoodleJump.V_HEIGHT,cam);
-
-
+        lostPort = new FitViewport(DoodleJump.V_WIDTH, DoodleJump.V_HEIGHT,cam);
         initStage(game.batch);
-    }
-
-    public void handleInput(float dt) {
-
-        if (playBtn.isPressed()) game.setScreen(new PlayScreen(game));
-        if (optionsBtn.isPressed()) game.setScreen(new OptionsScreen(game));
-        if(scoresBtn.isPressed()) game.setScreen(new HighScoresScreen(game));
 
     }
 
@@ -75,8 +56,17 @@ public class MenuScreen implements Screen {
         handleInput(dt);
     }
 
+    public void handleInput(float dt){
+
+        if(playBtn.isPressed()) game.setScreen(new PlayScreen(game));
+        if(menuBtn.isPressed()) game.setScreen(new MenuScreen(game));
+
+    }
+
+
     @Override
     public void show() {
+
     }
 
     @Override
@@ -86,15 +76,18 @@ public class MenuScreen implements Screen {
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
         game.batch.begin();
         game.batch.draw(background,0, 0, DoodleJump.V_WIDTH, DoodleJump.V_HEIGHT);
-        game.batch.draw(title,DoodleJump.V_WIDTH / 2 - title_width /2, DoodleJump.V_HEIGHT / 2 + 200, title_width, title_height);
-        game.batch.draw(menudoodle, DoodleJump.V_WIDTH/2 - doodle_width/2, DoodleJump.V_HEIGHT/2 - 50, doodle_width, doodle_height);
+        game.batch.draw(lost, DoodleJump.V_WIDTH/2 - lost_width/2, DoodleJump.V_HEIGHT/2 + 180, lost_width,lost_height);
+        game.batch.draw(doodle, DoodleJump.V_WIDTH/2+50, DoodleJump.V_HEIGHT/2 + 20);
+        game.batch.draw(littledoodle, DoodleJump.V_WIDTH/2-170, DoodleJump.V_HEIGHT/2 -40, 85, 85);
+        game.batch.draw(bottom, 0, 0);
         game.batch.end();
         stage.draw();
+
     }
 
     @Override
     public void resize(int width, int height) {
-        menuPort.update(width, height);
+        lostPort.update(width,height);
     }
 
     @Override
@@ -114,18 +107,19 @@ public class MenuScreen implements Screen {
 
     @Override
     public void dispose() {
-
         game.dispose();
         background.dispose();
-        title.dispose();
-        menudoodle.dispose();
+        lost.dispose();
+        doodle.dispose();
+        littledoodle.dispose();
+        bottom.dispose();
         stage.dispose();
         lvlMenuAtlas.dispose();
         skin.dispose();
     }
 
     public void initStage(SpriteBatch batch) {
-        this.stage = new Stage(menuPort, batch);
+        this.stage = new Stage(lostPort, batch);
 
         lvlMenuAtlas = new TextureAtlas("Buttons.pack");
         skin = new Skin();
@@ -138,17 +132,11 @@ public class MenuScreen implements Screen {
         playBtn.setPosition(DoodleJump.V_WIDTH /2 - playBtn.getWidth()/2,DoodleJump.V_HEIGHT /2 - 170);
         stage.addActor(playBtn);
 
-        //OptionsButton
-        optionsBtn = new ImageButton(skin.getDrawable("options"));
-        optionsBtn.setSize(btn_width,btn_height);
-        optionsBtn.setPosition(DoodleJump.V_WIDTH /2 - optionsBtn.getWidth()/2, DoodleJump.V_HEIGHT/2 - 250);
-        stage.addActor(optionsBtn);
-
-        //ScoresButton
-        scoresBtn = new ImageButton(skin.getDrawable("scores"));
-        scoresBtn.setSize(btn_width,btn_height);
-        scoresBtn.setPosition(DoodleJump.V_WIDTH /2 - optionsBtn.getWidth()/2,DoodleJump.V_HEIGHT/ 2 - 330);
-        stage.addActor(scoresBtn);
+        //MenuButtom
+        menuBtn = new ImageButton(skin.getDrawable("menubtn"));
+        menuBtn.setSize(170,75);
+        menuBtn.setPosition(DoodleJump.V_WIDTH/2 - playBtn.getWidth()/2, DoodleJump.V_HEIGHT/2 - 270);
+        stage.addActor(menuBtn);
 
         Gdx.input.setInputProcessor(stage);
     }

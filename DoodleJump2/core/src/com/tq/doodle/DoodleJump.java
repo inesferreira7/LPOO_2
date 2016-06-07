@@ -4,13 +4,8 @@ import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Preferences;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.badlogic.gdx.math.Vector;
-import com.badlogic.gdx.physics.box2d.Body;
-import com.tq.doodle.Screens.GameOverScreen;
-import com.tq.doodle.Screens.MenuScreen;
-import com.tq.doodle.Screens.PlayScreen;
-import com.tq.doodle.Screens.WinScreen;
-import com.tq.doodle.Sprites.Doodle;
+import com.tq.doodle.GUI.MenuScreen;
+import com.tq.doodle.Logic.Doodle;
 
 import java.util.ArrayList;
 import java.util.Collections;

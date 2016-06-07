@@ -1,4 +1,4 @@
-package com.tq.doodle.Screens;
+package com.tq.doodle.GUI;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
@@ -16,10 +16,6 @@ import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 import com.tq.doodle.DoodleJump;
-
-import java.io.File;
-import java.io.IOException;
-import java.io.PrintWriter;
 
 /**
  * Created by Inês on 04/06/2016.

@@ -1,4 +1,4 @@
-package com.tq.doodle.Sprites;
+package com.tq.doodle.Logic;
 
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
@@ -12,7 +12,7 @@ import com.badlogic.gdx.physics.box2d.FixtureDef;
 import com.badlogic.gdx.physics.box2d.PolygonShape;
 import com.badlogic.gdx.physics.box2d.World;
 import com.tq.doodle.DoodleJump;
-import com.tq.doodle.Screens.PlayScreen;
+import com.tq.doodle.GUI.PlayScreen;
 
 
 
@@ -200,7 +200,7 @@ public class Doodle extends Sprite{
     }
 
     /**
-     *@brief Disposes all the textures used.
+     *@brief Disposes all the textures used to free up space.
      */
     public void dispose(){
         doodleNormal.dispose();
@@ -252,8 +252,8 @@ public class Doodle extends Sprite{
     }
 
     /**
-     * @brief Returns the play screen beign used.
-     * @return Returns the play screen beign used.
+     * @brief Returns the play screen being used.
+     * @return Returns the play screen being used.
      */
     public PlayScreen getScreen() {
         return screen;

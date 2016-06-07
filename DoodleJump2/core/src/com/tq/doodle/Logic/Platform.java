@@ -1,19 +1,17 @@
-package com.tq.doodle.Sprites;
+package com.tq.doodle.Logic;
 
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.BodyDef;
-import com.badlogic.gdx.physics.box2d.Fixture;
 import com.badlogic.gdx.physics.box2d.FixtureDef;
 import com.badlogic.gdx.physics.box2d.PolygonShape;
 import com.badlogic.gdx.physics.box2d.World;
 import com.badlogic.gdx.utils.Array;
 import com.tq.doodle.DoodleJump;
-import com.tq.doodle.Screens.PlayScreen;
+import com.tq.doodle.GUI.PlayScreen;
 import java.util.Random;
 
 /**
@@ -25,16 +23,27 @@ public class Platform extends Sprite {
 
     public World world;
     public Body platBody;
+    private Array<Body> platforms;
+    private Texture newPlat;
+    public Rectangle bounds;
+    private Array<Rectangle> rectangles;
     private Random randX;
     private Random randY;
     private Random randGap;
     private static int currentHeight = 0;
-    private Texture newPlat;
-    private Array<Rectangle> rectangles;
-    public Rectangle bounds;
-    private Array<Body> platforms;
-    private Texture teste;
+    private double gap = 0;
+    private int rand;
+    private float xPos;
 
+
+    //private Texture teste;
+
+    /**
+     * @brief Platforms constructor with the necessary parameters. Generates all the platforms for the level with a gap of 120, 180 or 240 pixels ( depending on the random number
+     * generator). Increases the current height where the platform will be placed with the gap value, untill the current height is higher than the map height - 300.
+     * @param world Game world.
+     * @param screen Play screen where the platforms will appear.
+     */
     public Platform(World world, PlayScreen screen){
         this.world = world;
         newPlat = new Texture("plat.png");
@@ -42,33 +51,30 @@ public class Platform extends Sprite {
         rectangles = new Array<Rectangle>();
         bounds = new Rectangle();
         randY =  new Random();
-
         currentHeight = (int)(10000/DoodleJump.PPM);
 
-
         while(screen.getMapHeight() - 300 >= currentHeight ){
-            int rand;
             randGap = new Random();
-            double gap = 0;
-           // gap = randGap.nextInt(200-150)+100 ;
-            rand = randY.nextInt(2);
+            rand = randY.nextInt(3);
             if(rand == 0) gap = 120;
             if(rand == 1) gap = 180;
             if(rand == 2) gap = 240;
-
             currentHeight+=gap;
             definePlatform(currentHeight);
         }
-
     }
 
+    /**
+     * @brief Creates the platform with the Y position given by the current height and a random X value. Creates the body and the rectangle around the platform necessary
+     * for the collision and adds them to the respective array.
+     * @param currentHeight The Y position where the platform will be placed.
+     */
     public void definePlatform(double currentHeight){
         randX = new Random();
         bounds =  new Rectangle();
 
-        float xPos = randX.nextInt((XVAR -80)+80 );
+        xPos = randX.nextInt((XVAR -80)+80 );
         if (xPos <= 40) xPos+=50;
-
 
         PolygonShape shape = new PolygonShape();
         shape.setAsBox(32/ DoodleJump.PPM,8/DoodleJump.PPM);
@@ -82,7 +88,7 @@ public class Platform extends Sprite {
         FixtureDef fdef = new FixtureDef();
         shape.setAsBox(32/ DoodleJump.PPM,8/DoodleJump.PPM);
 
-       fdef.shape = shape;
+        fdef.shape = shape;
 
         platBody.createFixture(fdef);
         bounds.set(platBody.getPosition().x-26/DoodleJump.PPM,platBody.getPosition().y+3/DoodleJump.PPM,54/DoodleJump.PPM, 0);
@@ -90,6 +96,10 @@ public class Platform extends Sprite {
         platforms.add(platBody);
     }
 
+    /**
+     * @brief Draws all the platform in their respective X and Y positions.
+     * @param sb Spritebatch necessary to draw the platforms.
+     */
     public void render(SpriteBatch sb){
 
         for(int i = 0; i < platforms.size  ; i++){
@@ -98,14 +108,25 @@ public class Platform extends Sprite {
 
     }
 
+    /**
+     * @brief Returns the array of the rectangles of all the platforms.
+     * @return Returns the array of the rectangles of all the platforms.
+     */
     public Array<Rectangle> getRectangles() {
         return rectangles;
     }
 
+    /**
+     * @brief Returns the array of bodies around all of the platforms.
+     * @return Returns the array of bodies around all of the platforms.
+     */
     public Array<Body> getPlatforms() {
         return platforms;
     }
 
+    /**
+     * @brief Disposes the platform texture to free up space.
+     */
     public void dispose(){
         newPlat.dispose();
     }
