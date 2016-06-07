@@ -48,11 +48,8 @@ public class Coin extends Sprite {
 
     public Coin(TextureRegion region, int frameCount, float time, PlayScreen screen, World world) {
         this.world = world;
-        //coins = new ArrayList<Body>();
         coinRectangles = new Array<Rectangle>();
         coinRectangle = new Rectangle();
-
-
         currentHeight = (int)(6000/DoodleJump.PPM);
         while (screen.getMapHeight() -600>= currentHeight) {
             randGap = new Random();
@@ -63,9 +60,6 @@ public class Coin extends Sprite {
             defineCoin(region, frameCount, time, currentHeight);
             createCoin(currentHeight);
         }
-
-
-
     }
 
     public void defineCoin(TextureRegion region, int frameCount, float time, double currentHeight) {
@@ -78,7 +72,6 @@ public class Coin extends Sprite {
         }
         this.frameCount = frameCount;
         maxFrameTime = time / frameCount;
-
     }
 
     public void createCoin(double currentHeight){
@@ -93,13 +86,11 @@ public class Coin extends Sprite {
 
     public void update(float dt) {
         currFrameTime += dt;
-
         if (currFrameTime > maxFrameTime) {
             frame++;
             if (frame == 6) frame = 1;
             currFrameTime = 0;
         }
-
     }
 
     public TextureRegion getFrame() {
@@ -119,10 +110,6 @@ public class Coin extends Sprite {
         }
 
     }
-    /*public void winRender(SpriteBatch sb){
-
-        sb.draw(getFrame(),);
-    }*/
 
 
 

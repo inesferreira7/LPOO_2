@@ -77,24 +77,16 @@ public class PlayScreen implements Screen, InputProcessor {
         prop = map.getProperties();
         renderer = new OrthogonalTiledMapRenderer(map, 1 / DoodleJump.PPM);
         gamecam.position.set(gamePort.getWorldWidth() / 2, gamePort.getWorldHeight() / 2, 0);
-
         world = new World(new Vector2(0, -10), true);
         world.setContactListener(new WorldContactListener(world,coin, this));
-
         b2dr = new Box2DDebugRenderer();
         player = new Doodle(world, this);
-
         mapWidth = prop.get("width", Integer.class).intValue() * prop.get("tilewidth", Integer.class).intValue();
         mapHeight = prop.get("height", Integer.class).intValue() * prop.get("tileheight", Integer.class).intValue();
         mapHeight = prop.get("height", Integer.class).intValue() * prop.get("tileheight", Integer.class).intValue();
-
         plat = new Platform(world, this);
-
         new B2WorldCreator(world, map);
-
-
         Gdx.input.setInputProcessor(this);
-
         if (game.getMusic() == true && game.getSounds() == true) {
             music = Gdx.audio.newMusic(Gdx.files.internal("movebitch.mp3"));
             music.setLooping(true);
@@ -298,7 +290,9 @@ public class PlayScreen implements Screen, InputProcessor {
             //Condiçao de perder
             if (player.collides(plat.getRectangles().get(i))) {
                 if (game.sounds == true) dough.play(); //no commit nao ta a aparecer
+                Gdx.input.vibrate(400);
                 endPauseTime = System.currentTimeMillis() + (1 * 1000);
+
                 while (System.currentTimeMillis() < endPauseTime) {
 
                 }
