@@ -51,13 +51,15 @@ public class Doodle extends Sprite{
         this.world = world;
         this.screen=screen;
         doodleBounds = new Rectangle();
-        doodleNormal = new Texture("jump.png");
-        doodleBunny = new Texture("bunny.png");
-        doodleJungle = new Texture("jungledoodle.png");
-        doodleGhost = new Texture("ghost.png");
-        doodleIce = new Texture("ice.png");
-        doodleSpace = new Texture("space.png");
-        doodleWater = new Texture("underwater.png");
+
+            doodleNormal = new Texture("jump.png");
+            doodleBunny = new Texture("bunny.png");
+            doodleJungle = new Texture("jungledoodle.png");
+            doodleGhost = new Texture("ghost.png");
+            doodleIce = new Texture("ice.png");
+            doodleSpace = new Texture("space.png");
+            doodleWater = new Texture("underwater.png");
+
         chooseDoodle();
         defineDoodle();
         win = false;
@@ -258,5 +260,7 @@ public class Doodle extends Sprite{
     public PlayScreen getScreen() {
         return screen;
     }
+
+
 }
 

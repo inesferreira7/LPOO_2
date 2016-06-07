@@ -9,3 +9,7 @@ sourceSets.main.java.srcDirs = [ "src/" ]
 eclipse.project {
     name = appName + "-core"
 }
+
+dependencies {
+    compile "de.tomgrill.gdxdialogs:gdx-dialogs-core:1.0.0"
+}

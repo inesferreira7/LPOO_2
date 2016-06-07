@@ -16,15 +16,43 @@
 
 package de.tomgrill.gdxtesting.examples;
 
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.physics.box2d.World;
+import com.tq.doodle.GUI.PlayScreen;
+import com.tq.doodle.Logic.Doodle;
+
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 import org.junit.Test;
 
 public class UnitTestExample {
+	Doodle doodle;
+	World world;
+	PlayScreen screen;
 
 	@Test
 	public void oneEqualsOne() {
 		assertEquals(1, 1);
+	}
+
+
+
+	@Test
+	public void jumpRight(){
+		//assertTrue(Gdx.files.internal("background.png").exists());
+		
+		boolean movedRight  = false;
+		doodle = new Doodle(world,screen);
+		int initialX = 100;
+		int initialY = 100;
+		doodle.setPosition(initialX,initialY);
+		doodle.jumpRight();
+		if(doodle.getX() > initialX){
+			movedRight = true;
+		}
+		assertTrue(movedRight);
+
 	}
 
 }
