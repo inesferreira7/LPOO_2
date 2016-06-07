@@ -95,7 +95,7 @@ public class PlayScreen implements Screen, InputProcessor {
 
         Gdx.input.setInputProcessor(this);
 
-        if (game.getMusic() == true && game.getSounds() == true) {
+        if (game.getMusic() == true) {
             music = Gdx.audio.newMusic(Gdx.files.internal("movebitch.mp3"));
             music.setLooping(true);
             music.setVolume(1f);
@@ -136,15 +136,13 @@ public class PlayScreen implements Screen, InputProcessor {
                 if (cursor_y < 100 && cursor_y > 30) {
                     game.setScreen(new PauseScreen(this, game));
                     if (music != null) music.stop();
-                    if (dough != null) dough.stop();
-                    if (achievement != null) achievement.stop();
-
                 }
             }
         }
 
         if (player.getWin() == true){
             game.setScreen(new WinScreen(game,this));
+            if (music != null) music.stop();
         }
     }
 
@@ -312,7 +310,7 @@ public class PlayScreen implements Screen, InputProcessor {
 
         for(int i = 0; i < coin.getCoinRectangles().size; i++){
             if(player.collides(coin.getCoinRectangles().get(i))){
-                if(game.sounds == true) achievement.play();
+                if(game.music == true) achievement.play();
                 hud.addCoin();
                 coin.getCoinRectangles().removeIndex(i);
             }

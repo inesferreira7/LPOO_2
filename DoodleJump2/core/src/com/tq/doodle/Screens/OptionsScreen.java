@@ -69,16 +69,11 @@ public class OptionsScreen implements Screen {
 
     public void handleInput(float dt) {
 
-        if (touchs > 0) {
-            if (game.music == true) {
-                game.music = false;
-                game.sounds = false;
-            } else if (game.music == false) {
-                game.music = true;
-                game.sounds = false;
-            }
+        if (touchs > 0){
+            if (game.music == true) game.music = false;
+            else if (game.music == false) game.music = true;
         }
-        touchs = 0;
+        touchs =0;
 
 
         if (menuBtn.isPressed())game.setScreen(new MenuScreen(game));
@@ -103,7 +98,6 @@ public class OptionsScreen implements Screen {
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
         game.batch.begin();
         game.batch.draw(background, 0, 0, DoodleJump.V_WIDTH, DoodleJump.V_HEIGHT);
-        //game.batch.draw(ovni, DoodleJump.V_WIDTH / 2 - ovni.getWidth() / 2, 200);
         game.batch.end();
         stage.draw();
     }
